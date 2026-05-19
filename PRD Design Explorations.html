@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HBO KMS — PRD Design Explorations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f12;
+    --bg-soft: #16181d;
+    --surface: #1c1f26;
+    --surface-2: #252934;
+    --border: #2a2f3a;
+    --border-soft: #20242c;
+    --text: #f5f6f8;
+    --text-soft: #9ba3b4;
+    --text-dim: #5b6478;
+    --accent: #d97757;
+    --accent-soft: #f4c4a8;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ───── TOP BAR ───── */
+  .topbar {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent) 0%, #b85f3f 100%);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+  }
+
+  .brand-text { line-height: 1.2; }
+  .brand-title { font-weight: 700; font-size: 14px; }
+  .brand-sub { font-size: 11px; color: var(--text-soft); font-family: 'JetBrains Mono', monospace; }
+
+  .topbar-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+  }
+
+  .topbar-meta {
+    font-size: 12px;
+    color: var(--text-soft);
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    gap: 16px;
+  }
+
+  .topbar-meta span b { color: var(--text); font-weight: 500; }
+
+  .topbar-spacer { flex: 1; }
+
+  .topbar-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn:hover {
+    background: var(--surface-2);
+    border-color: var(--text-dim);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #c9684a;
+    border-color: #c9684a;
+  }
+
+  /* ───── TAB BAR ───── */
+  .tabbar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    overflow-x: auto;
+    flex-shrink: 0;
+    scrollbar-width: none;
+  }
+  .tabbar::-webkit-scrollbar { display: none; }
+
+  .tab {
+    background: transparent;
+    border: none;
+    color: var(--text-soft);
+    padding: 14px 20px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.15s;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+
+  .tab:hover { color: var(--text); }
+
+  .tab.active {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  .tab-letter {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .tab.active .tab-letter {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  .tab-name { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+  .tab-name b { font-size: 13px; font-weight: 600; }
+  .tab-name em { font-size: 10px; font-style: normal; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
+  /* ───── DESCRIPTION RAIL ───── */
+  .rail {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    flex-shrink: 0;
+  }
+
+  .rail-marker {
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    font-size: 22px;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .rail-content { flex: 1; min-width: 0; }
+
+  .rail-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .rail-title .badge {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    background: rgba(217,119,87,0.15);
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .rail-desc {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    max-width: 95ch;
+  }
+
+  .rail-chips {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-soft);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ───── FRAME STAGE ───── */
+  .stage {
+    flex: 1;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(217,119,87,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(100,150,200,0.03) 0%, transparent 50%),
+      var(--bg);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .frame-shell {
+    width: 100%;
+    height: 100%;
+    max-width: 1280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow:
+      0 0 0 1px var(--border),
+      0 20px 60px rgba(0,0,0,0.5),
+      0 8px 24px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .frame-chrome {
+    height: 36px;
+    background: linear-gradient(to bottom, #f5f5f3, #ebebe7);
+    border-bottom: 1px solid #d4d4d0;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .traffic {
+    display: flex;
+    gap: 6px;
+  }
+
+  .traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+  }
+
+  .traffic-light:nth-child(1) { background: #ff5f57; }
+  .traffic-light:nth-child(2) { background: #febc2e; }
+  .traffic-light:nth-child(3) { background: #28c840; }
+
+  .frame-url {
+    flex: 1;
+    background: white;
+    border: 1px solid #d4d4d0;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: #555;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .frame-url::before { content: '🔒 '; opacity: 0.5; }
+
+  iframe.design-frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: white;
+    display: block;
+  }
+
+  .frame-wrapper {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .frame-wrapper.active {
+    display: flex;
+  }
+
+  /* ───── STATUS BAR ───── */
+  .statusbar {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--border);
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .statusbar .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #28c840;
+    display: inline-block;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .statusbar-spacer { flex: 1; }
+
+  /* ───── HOME / OVERVIEW ───── */
+  .home-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .home {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  .home-hero {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .home-hero .eyebrow {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text) 0%, var(--text-soft) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .home-hero p {
+    font-size: 17px;
+    color: var(--text-soft);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .home-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .home-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    background: var(--surface-2);
+  }
+
+  .home-card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .home-card-letter {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: var(--accent);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .home-card[data-style="brutalist"] .home-card-letter { background: #FFCE00; color: #0a0a0a; }
+  .home-card[data-style="editorial"] .home-card-letter { background: #b8985f; color: #fff; }
+  .home-card[data-style="terminal"] .home-card-letter { background: #00ff88; color: #000; }
+  .home-card[data-style="serenity-quiet"] .home-card-letter { background: #a8b59a; color: #2a3025; }
+  .home-card[data-style="serenity-modern"] .home-card-letter { background: #6b8e7b; color: #fff; }
+
+  .home-card-title {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .home-card-title em {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .home-card-desc {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .home-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .topbar-meta { display: none; }
+    .rail { padding: 12px 16px; }
+    .rail-marker { width: 36px; height: 36px; font-size: 16px; }
+    .stage { padding: 12px; }
+    .frame-chrome { padding: 0 10px; }
+    .frame-url { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ───── TOP BAR ───── -->
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-logo">K</div>
+    <div class="brand-text">
+      <div class="brand-title">HBO KMS — Design Explorations</div>
+      <div class="brand-sub">prd-kwaliteitsmanagementsysteem · v1.3</div>
+    </div>
+  </div>
+  <div class="topbar-divider"></div>
+  <div class="topbar-meta">
+    <span>5 <b>directions</b></span>
+    <span>1 <b>PRD</b></span>
+    <span>1280 × auto <b>artboards</b></span>
+  </div>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-actions">
+    <button class="btn" id="btn-home">← Overview</button>
+    <button class="btn btn-primary" id="btn-fullscreen">↗ Open in new tab</button>
+  </div>
+</div>
+
+<!-- ───── TAB BAR ───── -->
+<div class="tabbar" id="tabbar">
+  <button class="tab" data-id="home"><span class="tab-letter">⌂</span><span class="tab-name"><b>Overview</b><em>start hier</em></span></button>
+  <button class="tab active" data-id="brutalist"><span class="tab-letter">A</span><span class="tab-name"><b>Brutalist Sesame</b><em>70s blocks</em></span></button>
+  <button class="tab" data-id="editorial"><span class="tab-letter">B</span><span class="tab-name"><b>Editorial</b><em>Acta Pædagogica</em></span></button>
+  <button class="tab" data-id="terminal"><span class="tab-letter">C</span><span class="tab-name"><b>Console</b><em>kms.dev</em></span></button>
+  <button class="tab" data-id="serenity-quiet"><span class="tab-letter">D</span><span class="tab-name"><b>Serenity Quiet</b><em>quiet office</em></span></button>
+  <button class="tab" data-id="serenity-modern"><span class="tab-letter">E</span><span class="tab-name"><b>Serenity Modern</b><em>modern grotesque</em></span></button>
+</div>
+
+<!-- ───── DESCRIPTION RAIL ───── -->
+<div class="rail" id="rail">
+  <div class="rail-marker" id="rail-marker">A</div>
+  <div class="rail-content">
+    <div class="rail-title">
+      <span id="rail-title">Brutalist · Sesame Street 70s</span>
+      <span class="badge" id="rail-badge">Direction A</span>
+    </div>
+    <div class="rail-desc" id="rail-desc">
+      Big Bird yellow, Elmo red, Grover blue, Oscar green, Bert orange. Heavy black 5–6px borders, hard offset shadows, Archivo Black + Rubik Mono One + Space Mono. Asymmetric rotated stickers, oversized section numerals in colored chips, PDCA as a four-color block diagram.
+    </div>
+    <div class="rail-chips" id="rail-chips"></div>
+  </div>
+</div>
+
+<!-- ───── STAGE ───── -->
+<div class="stage" id="stage">
+  <!-- HOME / OVERVIEW -->
+  <div class="frame-wrapper" data-id="home">
+    <div class="home-wrapper">
+      <div class="home">
+        <header class="home-hero">
+          <div class="eyebrow">PRD Design Explorations</div>
+          <h1>Five visual treatments<br>of one curriculum quality system.</h1>
+          <p>Five completely different aesthetic directions for the HBO Curriculum Navigator PRD. From brutalist blocks to quiet hairlines — same content, radically different design language. Pick any direction below to view the full PRD rendered in that style.</p>
+        </header>
+
+        <div class="home-grid">
+          <a class="home-card" data-style="brutalist" data-id="brutalist">
+            <div class="home-card-head">
+              <div class="home-card-letter">A</div>
+              <div class="home-card-title">Brutalist Sesame<em>70s · Sesamestraat</em></div>
+            </div>
+            <div class="home-card-desc">Big Bird yellow, Elmo red, Grover blue, Oscar green. Heavy black borders, hard offset shadows, Archivo Black + Rubik Mono One. Rotated stickers, oversized numerals, PDCA as a four-color block.</div>
+            <div class="home-card-cta">Open direction A →</div>
+          </a>
+
+          <a class="home-card" data-style="editorial" data-id="editorial">
+            <div class="home-card-head">
+              <div class="home-card-letter">B</div>
+              <div class="home-card-title">Editorial · Acta Pædagogica<em>scholarly print</em></div>
+            </div>
+            <div class="home-card-desc">Cream paper, EB Garamond serif, Cormorant italic. Roman numeral sections (I–VIII), drop caps, marginalia notes with footnote refs, an engraved plate for the hierarchy.</div>
+            <div class="home-card-cta">Open direction B →</div>
+          </a>
+
+          <a class="home-card" data-style="terminal" data-id="terminal">
+            <div class="home-card-head">
+              <div class="home-card-letter">C</div>
+              <div class="home-card-title">Console · kms.dev<em>developer dashboard</em></div>
+            </div>
+            <div class="home-card-desc">Dark dev-tool chrome, sidebar nav, tabs, breadcrumbs. Status row of live KPIs, principles as Px tiles, hierarchy as three columns, a live pdca-cycle.log tail.</div>
+            <div class="home-card-cta">Open direction C →</div>
+          </a>
+
+          <a class="home-card" data-style="serenity-quiet" data-id="serenity-quiet">
+            <div class="home-card-head">
+              <div class="home-card-letter">D</div>
+              <div class="home-card-title">Serenity · Quiet Office<em>zen restraint</em></div>
+            </div>
+            <div class="home-card-desc">Off-white paper with sage, sand, mist and clay used as muted ink. Instrument Serif italic headlines. Hairlines instead of borders, generous breathing room, PDCA as a hand-drawn circular diagram.</div>
+            <div class="home-card-cta">Open direction D →</div>
+          </a>
+
+          <a class="home-card" data-style="serenity-modern" data-id="serenity-modern">
+            <div class="home-card-head">
+              <div class="home-card-letter">E</div>
+              <div class="home-card-title">Serenity · Modern<em>contemporary calm</em></div>
+            </div>
+            <div class="home-card-desc">Geist (modern grotesque), cooler off-white, white surfaces with 16px rounded corners and soft shadow. Pill-chips, large thin numerals "01/08", restrained sage accent.</div>
+            <div class="home-card-cta">Open direction E →</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BROWSER-CHROME FRAMES -->
+  <div class="frame-wrapper active" data-id="brutalist">
+    <div class="frame-shell">
+      <div class="frame-chrome">
+        <div class="traffic"><span class="traffic-light"></span><span class="traffic-light"></span><span class="traffic-light"></span></div>
+        <div class="frame-url">designs/brutalist-sesame.html</div>
+      </div>
+      <iframe class="design-frame" src="designs/brutalist-sesame.html" loading="lazy" title="Brutalist Sesame design"></iframe>
+    </div>
+  </div>
+
+  <div class="frame-wrapper" data-id="editorial">
+    <div class="frame-shell">
+      <div class="frame-chrome">
+        <div class="traffic"><span class="traffic-light"></span><span class="traffic-light"></span><span class="traffic-light"></span></div>
+        <div class="frame-url">designs/editorial-manuscript.html</div>
+      </div>
+      <iframe class="design-frame" data-src="designs/editorial-manuscript.html" loading="lazy" title="Editorial Manuscript design"></iframe>
+    </div>
+  </div>
+
+  <div class="frame-wrapper" data-id="terminal">
+    <div class="frame-shell">
+      <div class="frame-chrome">
+        <div class="traffic"><span class="traffic-light"></span><span class="traffic-light"></span><span class="traffic-light"></span></div>
+        <div class="frame-url">designs/terminal-console.html</div>
+      </div>
+      <iframe class="design-frame" data-src="designs/terminal-console.html" loading="lazy" title="Terminal Console design"></iframe>
+    </div>
+  </div>
+
+  <div class="frame-wrapper" data-id="serenity-quiet">
+    <div class="frame-shell">
+      <div class="frame-chrome">
+        <div class="traffic"><span class="traffic-light"></span><span class="traffic-light"></span><span class="traffic-light"></span></div>
+        <div class="frame-url">designs/serenity-quiet.html</div>
+      </div>
+      <iframe class="design-frame" data-src="designs/serenity-quiet.html" loading="lazy" title="Serenity Quiet design"></iframe>
+    </div>
+  </div>
+
+  <div class="frame-wrapper" data-id="serenity-modern">
+    <div class="frame-shell">
+      <div class="frame-chrome">
+        <div class="traffic"><span class="traffic-light"></span><span class="traffic-light"></span><span class="traffic-light"></span></div>
+        <div class="frame-url">designs/serenity-modern.html</div>
+      </div>
+      <iframe class="design-frame" data-src="designs/serenity-modern.html" loading="lazy" title="Serenity Modern design"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ───── STATUS BAR ───── -->
+<div class="statusbar">
+  <span><span class="dot"></span>Canvas ready</span>
+  <span>·</span>
+  <span id="status-current">Direction A · Brutalist Sesame</span>
+  <div class="statusbar-spacer"></div>
+  <span id="status-tip">Tip: gebruik tabs hierboven of toetsen A–E om te wisselen</span>
+</div>
+
+<script>
+  const directions = {
+    'home': {
+      letter: '⌂',
+      title: 'Overview',
+      badge: 'start',
+      desc: 'Een overzicht van vijf compleet verschillende visuele richtingen voor dezelfde PRD. Klik op een kaart of gebruik de tabs hierboven om een richting te openen.',
+      chips: ['5 directions', '1 PRD', 'iframe-isolated', 'self-contained'],
+      url: null
+    },
+    'brutalist': {
+      letter: 'A',
+      title: 'Brutalist · Sesame Street 70s',
+      badge: 'Direction A',
+      desc: 'Big Bird yellow, Elmo red, Grover blue, Oscar green, Bert orange. Heavy black 5–6px borders, hard offset shadows, Archivo Black + Rubik Mono One + Space Mono. Asymmetric rotated stickers, oversized section numerals in colored chips, PDCA as a four-color block diagram.',
+      chips: ['Archivo Black', 'Space Mono', '5px borders', 'hard shadows', 'rotated stickers'],
+      url: 'designs/brutalist-sesame.html'
+    },
+    'editorial': {
+      letter: 'B',
+      title: 'Editorial · Acta Pædagogica',
+      badge: 'Direction B',
+      desc: 'Cream paper, EB Garamond + Cormorant italic, Roman numeral sections (I–VIII), drop cap, marginalia notes with footnote refs, engraved tables for roles, an "engraved plate" for the hierarchy, IBM Plex Mono used sparingly for the AI ledger.',
+      chips: ['EB Garamond', 'Cormorant', 'roman numerals', 'drop caps', 'marginalia'],
+      url: 'designs/editorial-manuscript.html'
+    },
+    'terminal': {
+      letter: 'C',
+      title: 'Console · kms.dev',
+      badge: 'Direction C',
+      desc: 'Dark dev-tool chrome with traffic lights, sidebar nav, tabs and breadcrumb. Status row of live KPIs, principles as Px tiles, roles as a permissions table, hierarchy as three columns, a live pdca-cycle.log tail next to the PDCA quadrant, AI prompts as $ assist commands.',
+      chips: ['JetBrains Mono', 'dark theme', 'sidebar nav', 'YAML config', 'live logs'],
+      url: 'designs/terminal-console.html'
+    },
+    'serenity-quiet': {
+      letter: 'D',
+      title: 'Serenity · Quiet Office',
+      badge: 'Direction D',
+      desc: 'Off-white paper with sage, sand, mist and clay accents used as muted ink rather than fills. Instrument Serif italic for headlines, numerals, and pull quotes; Public Sans for everything else. Hairlines instead of borders, generous breathing room, PDCA rendered as a hand-drawn circular diagram.',
+      chips: ['Instrument Serif', 'Public Sans', 'hairlines', 'sage + sand', 'no shadows'],
+      url: 'designs/serenity-quiet.html'
+    },
+    'serenity-modern': {
+      letter: 'E',
+      title: 'Serenity · Modern',
+      badge: 'Direction E',
+      desc: 'Cleaner cool off-white, Geist (modern grotesque) instead of italic serif, soft 16px radii, a single restrained sage accent, large thin "01/08" numerals, pill-shaped chips. PDCA as modern circular diagram with numbered stations.',
+      chips: ['Geist', 'Geist Mono', '16px radii', 'pill chips', 'thin numerals'],
+      url: 'designs/serenity-modern.html'
+    }
+  };
+
+  const tabs = document.querySelectorAll('.tab');
+  const wrappers = document.querySelectorAll('.frame-wrapper');
+  const railMarker = document.getElementById('rail-marker');
+  const railTitle = document.getElementById('rail-title');
+  const railBadge = document.getElementById('rail-badge');
+  const railDesc = document.getElementById('rail-desc');
+  const railChips = document.getElementById('rail-chips');
+  const statusCurrent = document.getElementById('status-current');
+  const btnFullscreen = document.getElementById('btn-fullscreen');
+  const btnHome = document.getElementById('btn-home');
+
+  let currentId = 'brutalist';
+
+  function renderChips(labels) {
+    const nodes = labels.map(label => {
+      const span = document.createElement('span');
+      span.className = 'chip';
+      span.textContent = label;
+      return span;
+    });
+    railChips.replaceChildren(...nodes);
+  }
+
+  function activate(id) {
+    if (!directions[id]) return;
+    currentId = id;
+
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.id === id));
+    wrappers.forEach(w => {
+      const isActive = w.dataset.id === id;
+      w.classList.toggle('active', isActive);
+      if (isActive) {
+        const frame = w.querySelector('iframe[data-src]');
+        if (frame && !frame.src) frame.src = frame.dataset.src;
+      }
+    });
+
+    const d = directions[id];
+    railMarker.textContent = d.letter;
+    railTitle.textContent = d.title;
+    railBadge.textContent = d.badge;
+    railDesc.textContent = d.desc;
+    renderChips(d.chips);
+    statusCurrent.textContent = id === 'home'
+      ? 'Overview · 5 directions available'
+      : d.badge + ' · ' + d.title;
+
+    btnFullscreen.disabled = !d.url;
+    btnFullscreen.style.opacity = d.url ? '1' : '0.4';
+
+    history.replaceState(null, '', '#' + id);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activate(tab.dataset.id));
+  });
+
+  document.querySelectorAll('.home-card').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      activate(card.dataset.id);
+    });
+  });
+
+  btnHome.addEventListener('click', () => activate('home'));
+
+  btnFullscreen.addEventListener('click', () => {
+    const d = directions[currentId];
+    if (d && d.url) window.open(d.url, '_blank');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    const map = { 'a': 'brutalist', 'b': 'editorial', 'c': 'terminal', 'd': 'serenity-quiet', 'e': 'serenity-modern', 'h': 'home', '0': 'home' };
+    const key = e.key.toLowerCase();
+    if (map[key]) {
+      activate(map[key]);
+      e.preventDefault();
+    }
+  });
+
+  // Render initial chips for the default-active direction
+  renderChips(directions[currentId].chips);
+
+  // Hash-based initial state
+  const initialId = location.hash.slice(1);
+  if (initialId && directions[initialId]) activate(initialId);
+</script>
+
+</body>
+</html>

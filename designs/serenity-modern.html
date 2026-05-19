@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>Curriculum Navigator — Modern Serenity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf8;
+    --bg-soft:#f4f4f1;
+    --surface:#ffffff;
+    --ink:#0c0e12;
+    --ink-soft:#555c66;
+    --ink-mid:#7b8590;
+    --ink-dim:#a3acb6;
+    --hair:#ececea;
+    --hair-2:#e0dfdc;
+    --sage:#4f8a72;
+    --sage-soft:#dfeae3;
+    --sage-deep:#2f5e4d;
+    --sand:#caa57f;
+    --sand-soft:#f1e6d6;
+    --mist:#7d99a4;
+    --mist-soft:#dfe7eb;
+    --clay:#b87a64;
+    --shadow-sm:0 1px 2px rgba(12,14,18,0.04), 0 1px 1px rgba(12,14,18,0.025);
+    --shadow:0 2px 6px rgba(12,14,18,0.05), 0 1px 2px rgba(12,14,18,0.04);
+    --radius:16px;
+    --radius-sm:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"ss01","ss02","cv11";
+  }
+  body{padding:0 0 120px}
+  ::selection{background:var(--sage-soft);color:var(--sage-deep)}
+
+  .mono{font-family:"Geist Mono",ui-monospace,monospace;font-feature-settings:"ss01","ss02"}
+  .label{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);font-weight:500}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);font-weight:500}
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--sage)}
+
+  .page{max-width:1200px;margin:0 auto;padding:0 64px}
+
+  /* ────── TOPBAR ────── */
+  .top{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:24px 0;margin-bottom:80px;
+  }
+  .top .brand{display:flex;align-items:center;gap:12px}
+  .top .brand .logo{
+    width:28px;height:28px;border-radius:8px;
+    background:linear-gradient(135deg,var(--sage) 0%,var(--sage-deep) 100%);
+    position:relative;
+  }
+  .top .brand .logo::after{
+    content:"";position:absolute;left:7px;top:7px;width:14px;height:14px;
+    border-radius:50%;background:var(--bg);
+  }
+  .top .brand .name{font-size:15px;font-weight:600;letter-spacing:-0.005em}
+  .top .brand .sub{font-size:13px;color:var(--ink-mid);font-weight:400}
+  .top .meta{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--ink-soft)}
+  .top .meta .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 12px;border-radius:999px;border:1px solid var(--hair);
+    background:var(--surface);font-size:12px;color:var(--ink-soft);font-weight:500;
+  }
+  .top .meta .chip .pulse{width:6px;height:6px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 3px rgba(79,138,114,0.18)}
+
+  /* ────── HERO ────── */
+  .hero{margin-bottom:120px}
+  .hero .kicker-row{display:flex;gap:14px;margin-bottom:32px;flex-wrap:wrap}
+  .hero .kicker-row .chip{
+    display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;
+    background:var(--surface);border:1px solid var(--hair);font-size:12px;color:var(--ink-soft);font-weight:500;
+  }
+  .hero .kicker-row .chip .dot{width:6px;height:6px;border-radius:50%}
+  .hero .kicker-row .chip.s .dot{background:var(--sage)}
+  .hero .kicker-row .chip.n .dot{background:var(--sand)}
+  .hero .kicker-row .chip.m .dot{background:var(--mist)}
+  .hero h1{
+    font-size:clamp(56px,8vw,108px);font-weight:500;
+    line-height:0.98;letter-spacing:-0.035em;
+    color:var(--ink);margin-bottom:32px;max-width:18ch;
+  }
+  .hero h1 .accent{color:var(--sage)}
+  .hero h1 .thin{font-weight:200;color:var(--ink-soft)}
+  .hero .lede{
+    font-size:20px;line-height:1.55;color:var(--ink-soft);
+    max-width:54ch;margin-bottom:48px;font-weight:400;
+  }
+  .hero .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--hair);border:1px solid var(--hair);border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .hero .stats .cell{background:var(--surface);padding:24px 28px}
+  .hero .stats .cell .k{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:10px;font-weight:500}
+  .hero .stats .cell .v{font-size:20px;color:var(--ink);font-weight:500;letter-spacing:-0.01em}
+  .hero .stats .cell .v small{font-size:13px;color:var(--ink-mid);font-weight:400;display:block;margin-top:2px;letter-spacing:0}
+
+  /* ────── SECTION ────── */
+  section.s{padding:80px 0;border-top:1px solid var(--hair)}
+  .s-head{display:grid;grid-template-columns:160px 1fr 320px;gap:48px;align-items:start;margin-bottom:48px}
+  .s-head .index{
+    font-family:"Geist",sans-serif;font-weight:200;font-size:96px;
+    line-height:0.85;color:var(--ink);letter-spacing:-0.04em;
+  }
+  .s-head .index sup{font-size:22px;color:var(--ink-mid);font-weight:400;letter-spacing:0;vertical-align:top}
+  .s-head .center .label{margin-bottom:18px}
+  .s-head .center h2{
+    font-size:42px;font-weight:500;line-height:1.1;letter-spacing:-0.02em;
+    color:var(--ink);max-width:18ch;
+  }
+  .s-head .center h2 .accent{color:var(--sage)}
+  .s-head .aside{font-size:14.5px;line-height:1.6;color:var(--ink-soft);padding-top:32px;border-top:1px solid var(--hair)}
+  .s-head .aside b{display:block;color:var(--ink);font-weight:500;letter-spacing:-0.005em;margin-bottom:4px;font-size:13px}
+
+  /* Section intro paragraph */
+  .lede-block{font-size:18px;line-height:1.6;color:var(--ink-soft);max-width:68ch;margin-bottom:48px;font-weight:400}
+  .lede-block strong{color:var(--ink);font-weight:500}
+
+  /* ────── PRINCIPLES ────── */
+  .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .principle{
+    background:var(--surface);border:1px solid var(--hair);
+    border-radius:var(--radius);padding:28px 28px 26px;
+    box-shadow:var(--shadow-sm);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .principle:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+  .principle:nth-child(5){grid-column:span 2}
+  .principle .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .principle .ph .num{
+    font-family:"Geist Mono",monospace;font-size:12px;color:var(--ink-mid);font-weight:500;letter-spacing:.04em;
+  }
+  .principle .ph .pill{
+    display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;
+    background:var(--sage-soft);color:var(--sage-deep);font-size:11px;font-weight:500;letter-spacing:.04em;
+  }
+  .principle:nth-child(2) .ph .pill{background:var(--sand-soft);color:#7a5a36}
+  .principle:nth-child(3) .ph .pill{background:var(--mist-soft);color:#43616d}
+  .principle:nth-child(4) .ph .pill{background:rgba(184,122,100,0.16);color:#7a4636}
+  .principle:nth-child(5) .ph .pill{background:rgba(79,138,114,0.13);color:var(--sage-deep)}
+  .principle h3{font-size:24px;font-weight:500;letter-spacing:-0.015em;line-height:1.18;color:var(--ink);margin-bottom:10px}
+  .principle p{font-size:14.5px;line-height:1.6;color:var(--ink-soft)}
+
+  /* ────── ROLES ────── */
+  .roles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .role{
+    background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow-sm);position:relative;
+  }
+  .role .rh{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .role .rh .swatch{width:24px;height:24px;border-radius:8px;background:var(--sage-soft);border:1px solid var(--sage);position:relative}
+  .role:nth-child(2) .rh .swatch{background:var(--sand-soft);border-color:var(--sand)}
+  .role:nth-child(3) .rh .swatch{background:var(--mist-soft);border-color:var(--mist)}
+  .role:nth-child(4) .rh .swatch{background:rgba(184,122,100,0.18);border-color:var(--clay)}
+  .role .rh .level{font-family:"Geist Mono",monospace;font-size:11px;color:var(--ink-mid);letter-spacing:.04em}
+  .role h4{font-size:18px;font-weight:500;letter-spacing:-0.01em;color:var(--ink);margin-bottom:10px;line-height:1.2}
+  .role .resp{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin-bottom:18px}
+  .role .acts{font-size:13px;color:var(--ink);padding-top:14px;border-top:1px solid var(--hair);line-height:1.55}
+  .role .acts b{display:block;font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:6px;font-weight:500}
+
+  /* ────── HIERARCHY ────── */
+  .hier{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .hcard{
+    background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  }
+  .hcard::before{
+    content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--sage);
+    opacity:.9;
+  }
+  .hcard.meso::before{background:var(--sand)}
+  .hcard.micro::before{background:var(--mist)}
+  .hcard .htop{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;padding-top:8px}
+  .hcard .htop .idx{font-family:"Geist Mono",monospace;font-size:11px;color:var(--ink-mid);letter-spacing:.06em}
+  .hcard .htop .tag{
+    display:inline-flex;padding:4px 10px;border-radius:999px;
+    background:var(--sage-soft);color:var(--sage-deep);font-size:11px;font-weight:500;letter-spacing:.04em;
+  }
+  .hcard.meso .htop .tag{background:var(--sand-soft);color:#7a5a36}
+  .hcard.micro .htop .tag{background:var(--mist-soft);color:#43616d}
+  .hcard h3{font-size:28px;font-weight:500;line-height:1.05;letter-spacing:-0.02em;margin-bottom:8px}
+  .hcard .what{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-bottom:22px}
+  .hcard .feats{display:flex;flex-direction:column;gap:10px}
+  .hcard .feat{
+    padding:12px 14px;border:1px solid var(--hair);border-radius:var(--radius-sm);
+    background:var(--bg);
+  }
+  .hcard .feat .fname{font-size:13.5px;color:var(--ink);font-weight:500;margin-bottom:3px;letter-spacing:-0.005em}
+  .hcard .feat .fdesc{font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+
+  /* ────── PDCA ────── */
+  .pdca{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:32px;
+    background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:36px;box-shadow:var(--shadow-sm);
+  }
+  .pdca-fig{display:flex;align-items:center;justify-content:center}
+  .pdca-fig svg{width:100%;max-width:380px;height:auto}
+  .pdca-steps{display:flex;flex-direction:column;gap:14px}
+  .pstep{display:grid;grid-template-columns:36px 1fr;gap:18px;align-items:start;padding:14px;border-radius:var(--radius-sm);background:var(--bg)}
+  .pstep .pn{
+    width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+    background:var(--sage-soft);color:var(--sage-deep);
+    font-family:"Geist Mono",monospace;font-size:13px;font-weight:600;
+  }
+  .pstep.do .pn{background:var(--sand-soft);color:#7a5a36}
+  .pstep.check .pn{background:var(--mist-soft);color:#43616d}
+  .pstep.act .pn{background:rgba(184,122,100,0.16);color:#7a4636}
+  .pstep .nm{font-size:14px;color:var(--ink);font-weight:500;margin-bottom:4px;letter-spacing:-0.005em}
+  .pstep .nm .tag{font-family:"Geist Mono",monospace;font-size:10px;color:var(--ink-mid);font-weight:400;letter-spacing:.06em;margin-left:6px;text-transform:uppercase}
+  .pstep .q{font-size:14px;color:var(--ink-soft);line-height:1.55}
+  .pstep .q em{color:var(--ink);font-weight:500;font-style:normal}
+
+  /* ────── AI ────── */
+  .ai{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .acard{
+    background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow-sm);
+  }
+  .acard .ah{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .acard .ah .nm{font-size:16px;color:var(--ink);font-weight:500;letter-spacing:-0.005em}
+  .acard .ah .kind{
+    display:inline-flex;padding:3px 9px;border-radius:999px;background:var(--bg-soft);
+    font-family:"Geist Mono",monospace;font-size:10px;color:var(--ink-mid);letter-spacing:.06em;font-weight:500;
+  }
+  .acard .prompt{
+    font-family:"Geist Mono",monospace;font-size:13px;line-height:1.55;color:var(--ink);
+    background:var(--bg);border:1px solid var(--hair);border-radius:var(--radius-sm);padding:14px 16px;
+  }
+  .acard .prompt::before{content:"› ";color:var(--sage);font-weight:600}
+
+  /* ────── QUALITY ROW ────── */
+  .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .qq{
+    background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow-sm);
+  }
+  .qq .qn{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:32px;height:32px;border-radius:10px;
+    background:var(--sage-soft);color:var(--sage-deep);
+    font-family:"Geist Mono",monospace;font-size:13px;font-weight:600;margin-bottom:14px;
+  }
+  .qq:nth-child(2) .qn{background:var(--sand-soft);color:#7a5a36}
+  .qq:nth-child(3) .qn{background:var(--mist-soft);color:#43616d}
+  .qq h4{font-size:18px;font-weight:500;color:var(--ink);margin-bottom:8px;letter-spacing:-0.01em}
+  .qq p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+
+  /* ────── TECH ────── */
+  .tech{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tcard{
+    background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:24px;box-shadow:var(--shadow-sm);
+  }
+  .tcard .ti{font-family:"Geist Mono",monospace;font-size:11px;color:var(--ink-mid);margin-bottom:10px;letter-spacing:.04em}
+  .tcard h4{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:10px;letter-spacing:-0.01em}
+  .tcard p{font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+
+  /* ────── KPI ────── */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi{
+    background:var(--surface);border:1px solid var(--hair);border-radius:var(--radius);
+    padding:28px 24px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  }
+  .kpi .ki{font-family:"Geist Mono",monospace;font-size:11px;color:var(--ink-mid);letter-spacing:.06em;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+  .kpi .ki .tag{
+    padding:3px 8px;border-radius:999px;background:var(--sage-soft);color:var(--sage-deep);
+    font-size:10px;font-weight:500;letter-spacing:.04em;
+  }
+  .kpi:nth-child(2) .ki .tag{background:var(--sand-soft);color:#7a5a36}
+  .kpi:nth-child(3) .ki .tag{background:var(--mist-soft);color:#43616d}
+  .kpi:nth-child(4) .ki .tag{background:rgba(184,122,100,0.16);color:#7a4636}
+  .kpi .fig{
+    font-size:72px;font-weight:200;letter-spacing:-0.04em;line-height:0.95;
+    color:var(--ink);margin-bottom:18px;display:flex;align-items:baseline;gap:2px;
+  }
+  .kpi .fig small{font-size:24px;color:var(--ink-mid);font-weight:300}
+  .kpi:nth-child(1) .fig{color:var(--sage-deep)}
+  .kpi:nth-child(2) .fig{color:#8a6a44}
+  .kpi:nth-child(3) .fig{color:#43616d}
+  .kpi:nth-child(4) .fig{color:#8a4d3a}
+  .kpi h4{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:6px;letter-spacing:-0.005em}
+  .kpi p{font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+  .kpi .bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--hair);overflow:hidden}
+  .kpi .bar::after{content:"";position:absolute;left:0;top:0;bottom:0;background:var(--sage);width:90%}
+  .kpi:nth-child(2) .bar::after{width:80%;background:var(--sand)}
+  .kpi:nth-child(3) .bar::after{width:70%;background:var(--mist)}
+  .kpi:nth-child(4) .bar::after{width:65%;background:var(--clay)}
+
+  /* ────── FOOTER ────── */
+  .bottom{
+    margin-top:96px;padding-top:32px;border-top:1px solid var(--hair);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:13px;color:var(--ink-mid);
+  }
+  .bottom .left{display:flex;align-items:center;gap:14px}
+  .bottom .meta{display:flex;gap:24px;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ────── TOPBAR ────── -->
+  <header class="top">
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <div class="name">Curriculum Navigator</div>
+        <div class="sub">HBO Kwaliteitsmanagementsysteem</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="chip"><span class="pulse"></span>Versie 1.3 · Concept</span>
+      <span class="chip">Mei 2026</span>
+    </div>
+  </header>
+
+  <!-- ────── HERO ────── -->
+  <section class="hero">
+    <div class="kicker-row">
+      <span class="chip s"><span class="dot"></span>Quality by Design</span>
+      <span class="chip n"><span class="dot"></span>High Trust · High Accountability</span>
+      <span class="chip m"><span class="dot"></span>Macro · Meso · Micro</span>
+    </div>
+    <h1>
+      Een rustige <span class="accent">architectuur</span> voor
+      <span class="thin">het curriculum van morgen.</span>
+    </h1>
+    <p class="lede">
+      Een intelligent kader voor het ontwerpen, beheren en borgen van het HBO-curriculum.
+      Geen controle-instrument achteraf, maar een katalysator van kwaliteit tijdens
+      het ontwerpproces zelf — in balans met de professionele autonomie van de docent-onderzoeker.
+    </p>
+    <div class="stats">
+      <div class="cell"><div class="k">Doelgroep</div><div class="v">HBO-opleidingen<small>Bachelor &amp; Master</small></div></div>
+      <div class="cell"><div class="k">Kernfilosofie</div><div class="v">Quality by Design<small>Aan de bron geborgd</small></div></div>
+      <div class="cell"><div class="k">Houding</div><div class="v">High Trust<small>Met rekenschap</small></div></div>
+      <div class="cell"><div class="k">Werkingsgebied</div><div class="v">Drie niveaus<small>Macro · Meso · Micro</small></div></div>
+    </div>
+  </section>
+
+  <!-- ────── §1 VISIE ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">01<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Doelstelling &amp; visie</div>
+        <h2>Een <span class="accent">katalysator</span>, geen controleur.</h2>
+      </div>
+      <aside class="aside"><b>Werkwijze</b>Sjablonen en kaders die foutloos ontwerpen faciliteren — met automatische checks op leerdoel-toets alignment, aan de bron.</aside>
+    </div>
+    <p class="lede-block">
+      Het doel is het bieden van een intelligent kader voor het <strong>ontwerpen, beheren en borgen</strong>
+      van het curriculum binnen een HBO-opleiding — een kader dat de balans bewaakt tussen
+      landelijke NVAO-standaarden en de professionele vrijheid van de docent-onderzoeker.
+      Kwaliteitszorg wordt een integraal onderdeel van het onderwijsontwerp, in plaats van
+      een administratieve last die achteraf wordt opgelegd.
+    </p>
+  </section>
+
+  <!-- ────── §2 PRINCIPES ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">02<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Ontwerpprincipes</div>
+        <h2>Vijf <span class="accent">beginselen</span>, in stilte.</h2>
+      </div>
+      <aside class="aside"><b>Functie</b>Een toetssteen voor ontwerpbeslissingen. Zij staan niet op de voorgrond — zij zijn de stilte op de achtergrond.</aside>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="ph"><span class="num">P01 / Root</span><span class="pill">Foundation</span></div>
+        <h3>Quality by Design</h3>
+        <p>Kwaliteit wordt geborgd aan de bron. Sjablonen en automatische checks op leerdoel-toets alignment faciliteren foutloos ontwerpen.</p>
+      </div>
+      <div class="principle">
+        <div class="ph"><span class="num">P02 / Trust</span><span class="pill">Cultuur</span></div>
+        <h3>High Trust, High Accountability</h3>
+        <p>Volledige didactische autonomie voor de docent, met rekenschap via objectieve motivatie-indicatoren en peer-review.</p>
+      </div>
+      <div class="principle">
+        <div class="ph"><span class="num">P03 / Align</span><span class="pill">Ketens</span></div>
+        <h3>Constructive Alignment</h3>
+        <p>Een logische keten wordt afgedwongen: competentie → groeiniveau → leerdoel → onderwijsactiviteit → toetsing.</p>
+      </div>
+      <div class="principle">
+        <div class="ph"><span class="num">P04 / Evidence</span><span class="pill">Onderzoek</span></div>
+        <h3>Onderzoeks-geïnformeerd</h3>
+        <p>Integratie van actuele onderzoeksresultaten — uit lectoraten of praktijkonderzoek — is een expliciet onderdeel van het lesontwerp.</p>
+      </div>
+      <div class="principle">
+        <div class="ph"><span class="num">P05 / Trail</span><span class="pill">Borging</span></div>
+        <h3>Autonome Kwaliteitsborging</h3>
+        <p>Het systeem verzamelt continu data uit de PDCA-cycli. Daardoor ontstaat een audit-trail die direct bruikbaar is voor NVAO-accreditatie, zonder extra papierwerk.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §3 ROLLEN ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">03<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Gebruikersrollen &amp; rechten</div>
+        <h2>Vier <span class="accent">rollen</span>, vier verantwoordelijkheden.</h2>
+      </div>
+      <aside class="aside"><b>Mandaat</b>Eén rol, één scope. Geen overlappende mandaten, geen verweesde competenties.</aside>
+    </div>
+    <div class="roles">
+      <div class="role">
+        <div class="rh"><span class="swatch"></span><span class="level">Niveau micro</span></div>
+        <h4>Docent-onderzoeker</h4>
+        <p class="resp">Didactisch ontwerp en uitvoering op micro-niveau. Verantwoordelijk voor de dagelijkse onderwijspraktijk.</p>
+        <div class="acts"><b>Key actions</b>Ontwerpen workshops · uitvoeren PDCA · peer-review collega's.</div>
+      </div>
+      <div class="role">
+        <div class="rh"><span class="swatch"></span><span class="level">Niveau meso</span></div>
+        <h4>Module-eigenaar</h4>
+        <p class="resp">Samenhang en niveau-borging op meso-niveau. Bewaakt of het gestelde cognitieve niveau wordt waargemaakt.</p>
+        <div class="acts"><b>Key actions</b>Valideren module-leerdoelen · monitoren geaggregeerde scores.</div>
+      </div>
+      <div class="role">
+        <div class="rh"><span class="swatch"></span><span class="level">Niveau macro</span></div>
+        <h4>Curriculumcommissie</h4>
+        <p class="resp">Strategische koers en macro-kaders. Bewaakt de samenhang van het opleidingscurriculum als geheel.</p>
+        <div class="acts"><b>Key actions</b>Beheren competentiematrix · uitvoeren gap-analyses.</div>
+      </div>
+      <div class="role">
+        <div class="rh"><span class="swatch"></span><span class="level">Niveau systeem</span></div>
+        <h4>Interne auditor</h4>
+        <p class="resp">Procesbewaking en facilitering. Faciliteert in plaats van te controleren.</p>
+        <div class="acts"><b>Key actions</b>Analyseren systeem-trends · accreditatiedossiers voorbereiden.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §4 HIERARCHIE ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">04<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Functionele hiërarchie</div>
+        <h2>Macro · Meso · Micro <span class="accent">in balans</span>.</h2>
+      </div>
+      <aside class="aside"><b>Keten</b>Competentie → niveau → leerdoel → activiteit → toetsing. Elke laag voedt de volgende.</aside>
+    </div>
+    <div class="hier">
+      <div class="hcard macro">
+        <div class="htop"><span class="idx">Laag 4.1</span><span class="tag">Wat</span></div>
+        <h3>Macro<br>De Blauwdruk</h3>
+        <p class="what">De basis van de opleiding, onafhankelijk van enige specifieke uitvoering — wat de student aan het einde dient te kunnen.</p>
+        <div class="feats">
+          <div class="feat"><div class="fname">Competentie Dashboard</div><div class="fdesc">Beheer van landelijke beroepstaken en eindkwalificaties.</div></div>
+          <div class="feat"><div class="fname">Leerlijn-Mapping</div><div class="fdesc">Visualisatie van competentie-ontwikkeling jaar 1 → 4.</div></div>
+          <div class="feat"><div class="fname">Gap-analyse</div><div class="fdesc">Detectie van 'wees-competenties' in het curriculum.</div></div>
+        </div>
+      </div>
+      <div class="hcard meso">
+        <div class="htop"><span class="idx">Laag 4.2</span><span class="tag">Wanneer</span></div>
+        <h3>Meso<br>De Niveaubewaker</h3>
+        <p class="what">Vertaling naar onderwijseenheden — wanneer welk niveau wordt opgebouwd, en hoe het toetsen daarbij past.</p>
+        <div class="feats">
+          <div class="feat"><div class="fname">Taxonomie-monitor</div><div class="fdesc">Bloom of Miller borgen het juiste cognitieve niveau.</div></div>
+          <div class="feat"><div class="fname">Toetsmatrijs 2.0</div><div class="fdesc">Dekking, weging en slagingscriteria per toets.</div></div>
+          <div class="feat"><div class="fname">Integrale Leerdoelen</div><div class="fdesc">Hergebruik over modules voor interdisciplinariteit.</div></div>
+        </div>
+      </div>
+      <div class="hcard micro">
+        <div class="htop"><span class="idx">Laag 4.3</span><span class="tag">Hoe</span></div>
+        <h3>Micro<br>De Werkplaats</h3>
+        <p class="what">De dagelijkse omgeving van de docent-onderzoeker — hoe de les feitelijk vorm krijgt.</p>
+        <div class="feats">
+          <div class="feat"><div class="fname">Didactisch Logboek</div><div class="fdesc">Flexibele editor voor lesvoorbereiding en bronnen.</div></div>
+          <div class="feat"><div class="fname">Research-Link</div><div class="fdesc">Directe koppeling met onderzoeksrepositories.</div></div>
+          <div class="feat"><div class="fname">Validatie-module</div><div class="fdesc">Koppelt didactiek aan theoretische stroming.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §5 PDCA ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">05<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Directe effectiviteitsmeting</div>
+        <h2>De <span class="accent">PDCA</span> in vier ademhalingen.</h2>
+      </div>
+      <aside class="aside"><b>Indicatoren</b>Autonomy · Mastery · Purpose · Social. Een spinnenweb dat na elke les wordt opgehaald.</aside>
+    </div>
+    <div class="pdca">
+      <div class="pdca-fig">
+        <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr2" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto">
+              <path d="M0,0 L7,3.5 L0,7 z" fill="#7b8590"/>
+            </marker>
+          </defs>
+          <circle cx="180" cy="180" r="150" fill="#ffffff" stroke="#ececea" stroke-width="1"/>
+          <circle cx="180" cy="180" r="118" fill="none" stroke="#ececea" stroke-width="1" stroke-dasharray="2 4"/>
+          <!-- arcs -->
+          <path d="M 196 32  A 148 148 0 0 1 328 184" stroke="#7b8590" stroke-width="1.2" fill="none" marker-end="url(#arr2)"/>
+          <path d="M 328 196 A 148 148 0 0 1 196 328" stroke="#7b8590" stroke-width="1.2" fill="none" marker-end="url(#arr2)"/>
+          <path d="M 164 328 A 148 148 0 0 1 32 196"  stroke="#7b8590" stroke-width="1.2" fill="none" marker-end="url(#arr2)"/>
+          <path d="M 32 164  A 148 148 0 0 1 164 32"  stroke="#7b8590" stroke-width="1.2" fill="none" marker-end="url(#arr2)"/>
+          <!-- dots -->
+          <circle cx="180" cy="40"  r="14" fill="#dfeae3" stroke="#4f8a72" stroke-width="1.4"/>
+          <circle cx="320" cy="180" r="14" fill="#f1e6d6" stroke="#caa57f" stroke-width="1.4"/>
+          <circle cx="180" cy="320" r="14" fill="#dfe7eb" stroke="#7d99a4" stroke-width="1.4"/>
+          <circle cx="40"  cy="180" r="14" fill="rgba(184,122,100,0.16)" stroke="#b87a64" stroke-width="1.4"/>
+          <g font-family="Geist Mono, monospace" font-size="10" font-weight="600" text-anchor="middle">
+            <text x="180" y="44" fill="#2f5e4d">01</text>
+            <text x="320" y="184" fill="#7a5a36">02</text>
+            <text x="180" y="324" fill="#43616d">03</text>
+            <text x="40"  y="184" fill="#7a4636">04</text>
+          </g>
+          <g font-family="Geist, sans-serif" font-size="20" font-weight="500" fill="#0c0e12" text-anchor="middle">
+            <text x="180" y="84">Plan</text>
+            <text x="276" y="184">Do</text>
+            <text x="180" y="290">Check</text>
+            <text x="84"  y="184">Act</text>
+          </g>
+          <g font-family="Geist Mono, monospace" font-size="9" letter-spacing="1.2" fill="#7b8590" text-anchor="middle">
+            <text x="180" y="102">DESIGN</text>
+            <text x="276" y="200">METING</text>
+            <text x="180" y="308">ANALYSE</text>
+            <text x="84"  y="200">VERBETER</text>
+          </g>
+          <!-- center label -->
+          <circle cx="180" cy="180" r="42" fill="#fafaf8" stroke="#ececea" stroke-width="1"/>
+          <text x="180" y="178" font-family="Geist Mono, monospace" font-size="9" letter-spacing="1.4" fill="#7b8590" text-anchor="middle">CYCLUS</text>
+          <text x="180" y="195" font-family="Geist, sans-serif" font-size="20" font-weight="500" letter-spacing="-0.5" fill="#0c0e12" text-anchor="middle">PDCA</text>
+        </svg>
+      </div>
+      <div class="pdca-steps">
+        <div class="pstep plan"><div class="pn">01</div><div><div class="nm">Plan <span class="tag">Design</span></div><div class="q">Ik kies werkvorm X om de <em>Autonomy</em> te vergroten, door studenten hun eigen casus te laten kiezen.</div></div></div>
+        <div class="pstep do"><div class="pn">02</div><div><div class="nm">Do <span class="tag">Meting</span></div><div class="q">Na de les vullen studenten in 30 seconden hun beleving in op de vier criteria via het LMS.</div></div></div>
+        <div class="pstep check"><div class="pn">03</div><div><div class="nm">Check <span class="tag">Analyse</span></div><div class="q">Het systeem toont een spinnenweb-diagram: intentie naast werkelijkheid.</div></div></div>
+        <div class="pstep act"><div class="pn">04</div><div><div class="nm">Act <span class="tag">Verbeter</span></div><div class="q">Studenten ervoeren weinig <em>Mastery</em>; volgende keer voeg ik een tussentijdse feedback-stap toe.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §6 AI ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">06<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Intelligent assistance</div>
+        <h2>Een <span class="accent">assistent</span> die alleen op verzoek spreekt.</h2>
+      </div>
+      <aside class="aside"><b>Houding</b>Raadgever, geen rechter. De professional houdt het stuur — de AI is een expert achter de schouder.</aside>
+    </div>
+    <div class="ai">
+      <div class="acard">
+        <div class="ah"><span class="nm">Ontwerp-Assistent</span><span class="kind">Werkvormen</span></div>
+        <p class="prompt">Stel 3 activerende werkvormen voor voor een groep van 20, gericht op 'Mastery' binnen een sociaal-constructivistisch kader.</p>
+      </div>
+      <div class="acard">
+        <div class="ah"><span class="nm">Alignment Checker</span><span class="kind">Validatie</span></div>
+        <p class="prompt">Controleer of leerdoel 'De student kan X berekenen' overeenkomt met toetsvraag 'Leg uit waarom X belangrijk is'.</p>
+      </div>
+      <div class="acard">
+        <div class="ah"><span class="nm">Motivatie-Coach</span><span class="kind">Interventie</span></div>
+        <p class="prompt">Analyseer geaggregeerde feedback en stel didactische interventies voor om de score op 'Social' te verhogen bij online onderwijs.</p>
+      </div>
+      <div class="acard">
+        <div class="ah"><span class="nm">Accreditatie-Writer</span><span class="kind">Verslag</span></div>
+        <p class="prompt">Formuleer op basis van de PDCA-logs conceptteksten voor het kwaliteitsverslag van de opleiding.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §7 BORGING + TECH ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">07<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Borging &amp; randvoorwaarden</div>
+        <h2>Bureaucratie vervangen door <span class="accent">gesprek</span>.</h2>
+      </div>
+      <aside class="aside"><b>Houding</b>Professionalisering, geen audit. Drie middelen voor borging, drie architectuur-keuzes voor de techniek.</aside>
+    </div>
+    <div class="qrow" style="margin-bottom:32px">
+      <div class="qq"><div class="qn">01</div><h4>Peer-Review 3.0</h4><p>Het systeem koppelt docenten op basis van een gedeelde didactische stroming. Feedback blijft inhoudelijk — en vervangt de bureaucratische check.</p></div>
+      <div class="qq"><div class="qn">02</div><h4>QbD Health-Check</h4><p>Een real-time dashboard voor de opleiding: zijn Macro, Meso en Micro nog met elkaar in verbinding, of is er een schakel losgekomen?</p></div>
+      <div class="qq"><div class="qn">03</div><h4>Professionalisering</h4><p>Alle PDCA-cycli en peer-reviews vormen automatisch het bewijslast-portfolio voor de BKE van de docent.</p></div>
+    </div>
+    <div class="tech">
+      <div class="tcard"><div class="ti">§ 07.1 · Integratie</div><h4>LMS deep-linking</h4><p>Volledige synchronisatie met Canvas en Brightspace. Een wijziging in het KMS staat direct in de studiegids van de student.</p></div>
+      <div class="tcard"><div class="ti">§ 07.2 · Privacy</div><h4>Data-privacy</h4><p>Motivatie-data is op individueel niveau alleen zichtbaar voor de docent zelf — veilig leerklimaat. Geaggregeerd op moduleniveau voor management.</p></div>
+      <div class="tcard"><div class="ti">§ 07.3 · Architectuur</div><h4>API-first</h4><p>Koppeling met externe onderzoeksdatabases en HR-systemen voor automatische registratie van professionaliseringsuren.</p></div>
+    </div>
+  </section>
+
+  <!-- ────── §8 KPI ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="index">08<sup>/08</sup></div>
+      <div class="center">
+        <div class="kicker"><span class="dot"></span>Acceptatiecriteria &amp; KPI</div>
+        <h2>Hoe weten wij <span class="accent">dat het werkt</span>.</h2>
+      </div>
+      <aside class="aside"><b>Herijking</b>Per kwartaal door interne audit. Vier getallen, vier beloften. Niet meer, niet minder.</aside>
+    </div>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="ki"><span>KPI 01 · adoptie</span><span class="tag">Doel 90%</span></div>
+        <div class="fig">90<small>%</small></div>
+        <h4>Plan-fase voltooid</h4>
+        <p>van de docent-onderzoekers voltooit de Plan-fase binnen het systeem.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="kpi">
+        <div class="ki"><span>KPI 02 · dialoog</span><span class="tag">Doel 80%</span></div>
+        <div class="fig">80<small>%</small></div>
+        <h4>Peer-review als waardevol</h4>
+        <p>vindt feedback waardevol voor de eigen lespraktijk.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="kpi">
+        <div class="ki"><span>KPI 03 · audit</span><span class="tag">Doel −70%</span></div>
+        <div class="fig">−70<small>%</small></div>
+        <h4>Voorbereidingstijd</h4>
+        <p>minder voorbereiding voor interne audit of NVAO-bezoek.</p>
+        <div class="bar"></div>
+      </div>
+      <div class="kpi">
+        <div class="ki"><span>KPI 04 · motivatie</span><span class="tag">Doel ↗</span></div>
+        <div class="fig">↗</div>
+        <h4>Purpose &amp; Mastery</h4>
+        <p>aantoonbare stijging onder studenten over twee jaar.</p>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── FOOTER ────── -->
+  <footer class="bottom">
+    <div class="left">
+      <div class="logo" style="width:18px;height:18px;border-radius:6px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-deep) 100%)"></div>
+      <span>Curriculum Navigator</span>
+    </div>
+    <div class="meta">
+      <span>PRD · v1.3</span>
+      <span>Uitgebreid concept</span>
+      <span>HBO · Mei 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

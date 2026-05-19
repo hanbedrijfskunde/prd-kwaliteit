@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>KMS — A Quiet Architecture for Curriculum Quality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f5ef;
+    --paper-2:#fdfcf8;
+    --surface:#ffffff;
+    --ink:#1f262b;
+    --ink-soft:#5a6770;
+    --ink-dim:#8d97a0;
+    --hair:#e6e1d4;
+    --hair-2:#d9d4c6;
+    --sage:#8ea693;
+    --sage-deep:#5d7868;
+    --sand:#c9b692;
+    --sand-deep:#9a8462;
+    --mist:#aac0c8;
+    --mist-deep:#6e8b94;
+    --clay:#c08e7a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"ss01","kern";
+  }
+  body{padding:0 0 120px}
+  ::selection{background:rgba(142,166,147,0.3);color:var(--ink)}
+  
+  .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-style:italic}
+  .label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);font-weight:500}
+  
+  .page{max-width:1180px;margin:0 auto;padding:0 64px}
+
+  /* ────── HEADER ────── */
+  .top{
+    padding:24px 0 28px;
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--hair);
+    margin-bottom:120px;
+  }
+  .top .brand{display:flex;align-items:baseline;gap:14px}
+  .top .brand .mark{
+    width:10px;height:10px;border-radius:50%;background:var(--sage);
+    display:inline-block;align-self:center;
+  }
+  .top .brand .name{font-size:14px;font-weight:600;letter-spacing:.04em}
+  .top .brand .doc{font-size:13px;color:var(--ink-soft)}
+  .top .meta{display:flex;gap:32px;font-size:12px;color:var(--ink-soft)}
+  .top .meta .k{display:block;color:var(--ink-dim);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:2px}
+  
+  /* ────── HERO ────── */
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start;margin-bottom:160px}
+  .hero .lhs .eyebrow{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:32px;display:flex;align-items:center;gap:12px}
+  .hero .lhs .eyebrow::before{content:"";display:inline-block;width:24px;height:1px;background:var(--sage-deep)}
+  .hero h1{
+    font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+    font-size:clamp(56px,7vw,92px);line-height:1.02;letter-spacing:-0.015em;
+    color:var(--ink);margin-bottom:32px;
+  }
+  .hero h1 em{font-style:italic;color:var(--sage-deep)}
+  .hero h1 .br{display:block}
+  .hero .lhs .lede{
+    font-size:18px;line-height:1.6;color:var(--ink-soft);
+    max-width:42ch;margin-bottom:40px;
+  }
+  .hero .lhs .filo{
+    font-size:13px;color:var(--ink-soft);
+    border-top:1px solid var(--hair);padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  }
+  .hero .lhs .filo .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px;display:block}
+  .hero .lhs .filo .v{color:var(--ink);font-weight:500}
+  
+  .hero .rhs{padding-left:32px;border-left:1px solid var(--hair);padding-top:8px}
+  .hero .rhs .pull{
+    font-family:"Instrument Serif",Georgia,serif;font-style:italic;
+    font-size:24px;line-height:1.42;color:var(--ink);
+    max-width:32ch;
+  }
+  .hero .rhs .pull::before{content:"\""}
+  .hero .rhs .pull::after{content:"\""}
+  .hero .rhs .pull-author{
+    margin-top:24px;font-size:12px;color:var(--ink-soft);letter-spacing:.04em;
+  }
+  .hero .rhs .toc{margin-top:64px;display:flex;flex-direction:column;gap:0}
+  .hero .rhs .toc-item{
+    display:grid;grid-template-columns:36px 1fr 60px;gap:16px;align-items:baseline;
+    padding:14px 0;border-bottom:1px solid var(--hair);font-size:14px;
+  }
+  .hero .rhs .toc-item:first-of-type{border-top:1px solid var(--hair)}
+  .hero .rhs .toc-item .n{font-family:"Instrument Serif",Georgia,serif;font-style:italic;color:var(--sage-deep);font-size:18px}
+  .hero .rhs .toc-item .t{color:var(--ink)}
+  .hero .rhs .toc-item .pg{color:var(--ink-dim);text-align:right;font-size:12px;font-variant-numeric:tabular-nums}
+
+  /* ────── SECTION SCAFFOLD ────── */
+  section.s{padding:0 0 120px}
+  .s-head{display:grid;grid-template-columns:160px 1fr;gap:48px;align-items:start;margin-bottom:56px}
+  .s-head .nm{
+    font-family:"Instrument Serif",Georgia,serif;font-style:italic;
+    font-size:72px;line-height:0.9;color:var(--sage-deep);font-weight:400;
+  }
+  .s-head .right .lbl{margin-bottom:14px}
+  .s-head .right h2{
+    font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;
+    font-size:48px;line-height:1.18;letter-spacing:-0.01em;color:var(--ink);margin-bottom:28px;
+    max-width:24ch;
+  }
+  .s-head .right .lede{font-size:17px;line-height:1.6;color:var(--ink-soft);max-width:60ch}
+  
+  .s-body{display:grid;grid-template-columns:160px 1fr;gap:48px;align-items:start}
+  .s-body .gutter{font-size:12px;color:var(--ink-dim);line-height:1.5;padding-top:4px}
+  .s-body .gutter b{display:block;color:var(--ink-soft);font-weight:600;letter-spacing:.04em;margin-bottom:4px;font-size:11px;text-transform:uppercase}
+  .s-body .gutter + .gutter{margin-top:18px}
+  .s-body .col{max-width:none}
+
+  /* ────── PRINCIPLES — list ────── */
+  .principles{display:flex;flex-direction:column}
+  .principle{
+    display:grid;grid-template-columns:56px 1fr 1.3fr;gap:40px;
+    padding:28px 0;border-bottom:1px solid var(--hair);align-items:baseline;
+  }
+  .principle:first-child{border-top:1px solid var(--hair)}
+  .principle .pn{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:24px;color:var(--sand-deep)}
+  .principle .pname{font-size:22px;color:var(--ink);font-weight:500;letter-spacing:-0.005em;line-height:1.25}
+  .principle .pdesc{font-size:15px;color:var(--ink-soft);line-height:1.55}
+  .principle .pname .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--sage);margin-right:10px;vertical-align:middle;transform:translateY(-2px)}
+  .principle:nth-child(2) .pname .dot{background:var(--sand)}
+  .principle:nth-child(3) .pname .dot{background:var(--mist)}
+  .principle:nth-child(4) .pname .dot{background:var(--clay)}
+  .principle:nth-child(5) .pname .dot{background:var(--sage-deep)}
+
+  /* ────── ROLES — quiet cards ────── */
+  .roles{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .role{background:var(--paper-2);padding:32px 36px}
+  .role .rh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+  .role .rh .rn{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:20px;color:var(--sage-deep)}
+  .role h4{font-size:21px;font-weight:500;color:var(--ink);margin-bottom:8px;letter-spacing:-0.005em}
+  .role .resp{font-size:14px;color:var(--ink-soft);line-height:1.55;margin-bottom:20px}
+  .role .acts{font-size:13px;color:var(--ink);padding-top:16px;border-top:1px solid var(--hair);line-height:1.55}
+  .role .acts b{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px;font-weight:500}
+
+  /* ────── HIERARCHY ────── */
+  .hier{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .hcol{padding:0 28px 0 0;border-right:1px solid var(--hair)}
+  .hcol:last-child{border-right:none;padding-right:0}
+  .hcol:not(:first-child){padding-left:28px}
+  .hcol .hmark{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+  .hcol .hmark .seal{
+    width:32px;height:32px;border-radius:50%;border:1px solid var(--hair-2);
+    display:grid;place-items:center;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:14px;color:var(--ink);
+  }
+  .hcol.macro .seal{background:rgba(142,166,147,0.18);border-color:var(--sage);color:var(--sage-deep)}
+  .hcol.meso  .seal{background:rgba(201,182,146,0.22);border-color:var(--sand);color:var(--sand-deep)}
+  .hcol.micro .seal{background:rgba(170,192,200,0.25);border-color:var(--mist);color:var(--mist-deep)}
+  .hcol .hmark .tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)}
+  .hcol h3{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:34px;font-weight:400;color:var(--ink);line-height:1.05;margin-bottom:8px}
+  .hcol h3 small{display:block;font-style:normal;font-family:"Public Sans",sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:6px;font-weight:500}
+  .hcol .what{font-size:15px;color:var(--ink-soft);line-height:1.6;margin-bottom:24px}
+  .hcol .feats{display:flex;flex-direction:column;gap:0}
+  .hcol .feat{padding:14px 0;border-top:1px solid var(--hair)}
+  .hcol .feat:last-child{border-bottom:1px solid var(--hair)}
+  .hcol .feat .fname{font-size:14px;color:var(--ink);font-weight:600;letter-spacing:-0.002em;margin-bottom:4px}
+  .hcol .feat .fdesc{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+  /* ────── PDCA ────── */
+  .pdca{display:grid;grid-template-columns:380px 1fr;gap:64px;align-items:start}
+  .pdca-fig{
+    aspect-ratio:1/1;display:grid;place-items:center;position:relative;
+  }
+  .pdca-fig svg{width:100%;height:auto;display:block}
+  .pdca-quotes{display:flex;flex-direction:column;gap:0}
+  .pq{padding:22px 0;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:baseline}
+  .pq:first-child{border-top:1px solid var(--hair)}
+  .pq .step{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:18px;color:var(--sage-deep)}
+  .pq .step small{display:block;font-family:"Public Sans",sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);margin-top:4px;font-style:normal;font-weight:500}
+  .pq.do .step{color:var(--sand-deep)}
+  .pq.check .step{color:var(--mist-deep)}
+  .pq.act .step{color:var(--clay)}
+  .pq .q{font-size:16px;color:var(--ink);line-height:1.55;font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
+  .pq .q em{color:var(--sage-deep);font-style:italic}
+
+  /* ────── AI ────── */
+  .ai{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .acell{background:var(--paper-2);padding:32px 36px}
+  .acell .ah{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px}
+  .acell .nm{font-size:17px;color:var(--ink);font-weight:500;letter-spacing:-0.005em}
+  .acell .kind{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)}
+  .acell .prompt{
+    font-family:"Instrument Serif",Georgia,serif;font-style:italic;
+    font-size:17px;color:var(--ink);line-height:1.5;
+    padding-top:18px;border-top:1px solid var(--hair);
+  }
+  .acell .prompt::before{content:"\"";color:var(--sage-deep)}
+  .acell .prompt::after{content:"\"";color:var(--sage-deep)}
+
+  /* ────── QUALITY ROW ────── */
+  .qrow{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .qq h4{font-size:20px;font-weight:500;letter-spacing:-0.005em;color:var(--ink);margin-bottom:10px}
+  .qq .qn{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:18px;color:var(--sage-deep);margin-bottom:10px}
+  .qq p{font-size:14px;color:var(--ink-soft);line-height:1.6}
+
+  /* ────── TECH ────── */
+  .tech{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .tech .titem{padding:0 28px 0 0;border-right:1px solid var(--hair)}
+  .tech .titem:last-child{border-right:none;padding-right:0}
+  .tech .titem:not(:first-child){padding-left:28px}
+  .tech .titem .ti{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px}
+  .tech .titem h4{font-size:19px;font-weight:500;color:var(--ink);margin-bottom:10px;letter-spacing:-0.005em}
+  .tech .titem p{font-size:14px;color:var(--ink-soft);line-height:1.6}
+
+  /* ────── KPI ────── */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .kpi{background:var(--paper);padding:36px 28px 32px}
+  .kpi .label{margin-bottom:18px}
+  .kpi .fig{
+    font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;
+    font-size:88px;line-height:0.92;color:var(--ink);
+    display:flex;align-items:baseline;gap:4px;margin-bottom:18px;letter-spacing:-0.02em;
+  }
+  .kpi .fig small{font-size:32px;color:var(--ink-soft);font-style:italic}
+  .kpi h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.02em}
+  .kpi p{font-size:13px;color:var(--ink-soft);line-height:1.5}
+  .kpi:nth-child(1) .fig{color:var(--sage-deep)}
+  .kpi:nth-child(2) .fig{color:var(--sand-deep)}
+  .kpi:nth-child(3) .fig{color:var(--mist-deep)}
+  .kpi:nth-child(4) .fig{color:var(--clay)}
+
+  /* ────── FOOTER ────── */
+  .bottom{
+    margin-top:120px;padding-top:32px;border-top:1px solid var(--hair);
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:12px;color:var(--ink-soft);
+  }
+  .bottom .mark{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:18px;color:var(--sage-deep)}
+  .bottom .meta{display:flex;gap:32px}
+
+  /* Small flourishes */
+  .ornament{
+    text-align:center;font-family:"Instrument Serif",Georgia,serif;font-style:italic;
+    font-size:24px;color:var(--sand);letter-spacing:.5em;padding-left:.5em;
+    margin:0 0 24px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ────── TOP MASTHEAD ────── -->
+  <header class="top">
+    <div class="brand">
+      <span class="mark"></span>
+      <span class="name">Curriculum&nbsp;Navigator</span>
+      <span class="doc">— PRD, v1.3</span>
+    </div>
+    <div class="meta">
+      <div><span class="k">Document</span>Product Requirements</div>
+      <div><span class="k">Status</span>Uitgebreid concept</div>
+      <div><span class="k">Datum</span>Mei 2026</div>
+    </div>
+  </header>
+
+  <!-- ────── HERO ────── -->
+  <section class="hero">
+    <div class="lhs">
+      <div class="eyebrow">Kwaliteitsmanagement &nbsp;·&nbsp; HBO</div>
+      <h1>
+        Een rustige <em>architectuur</em> <span class="br">voor het curriculum</span> <em>van morgen.</em>
+      </h1>
+      <p class="lede">
+        Een intelligent kader voor het ontwerpen, beheren en borgen van het HBO-curriculum.
+        Geen controle-instrument achteraf, maar een katalysator van kwaliteit tijdens
+        het ontwerpproces zelf — in balans met de professionele autonomie van de
+        docent-onderzoeker.
+      </p>
+      <div class="filo">
+        <div><span class="k">Kernfilosofie</span><span class="v">Quality by Design</span></div>
+        <div><span class="k">Werkingsgebied</span><span class="v">Macro · Meso · Micro</span></div>
+        <div><span class="k">Doelgroep</span><span class="v">HBO-opleidingen</span></div>
+        <div><span class="k">Houding</span><span class="v">High Trust, High Accountability</span></div>
+      </div>
+    </div>
+    <aside class="rhs">
+      <p class="pull">Kwaliteit is geen controle achteraf; zij is een ontwerpkeuze die je dagelijks maakt, op het moment van de les zelf.</p>
+      <p class="pull-author">— Kernfilosofie</p>
+      <nav class="toc">
+        <div class="toc-item"><span class="n">I.</span><span class="t">Doelstelling &amp; visie</span><span class="pg">§ 01</span></div>
+        <div class="toc-item"><span class="n">II.</span><span class="t">Vijf ontwerpprincipes</span><span class="pg">§ 02</span></div>
+        <div class="toc-item"><span class="n">III.</span><span class="t">Rollen &amp; rechten</span><span class="pg">§ 03</span></div>
+        <div class="toc-item"><span class="n">IV.</span><span class="t">Macro · Meso · Micro</span><span class="pg">§ 04</span></div>
+        <div class="toc-item"><span class="n">V.</span><span class="t">De PDCA-cyclus</span><span class="pg">§ 4.4</span></div>
+        <div class="toc-item"><span class="n">VI.</span><span class="t">Intelligente assistentie</span><span class="pg">§ 05</span></div>
+        <div class="toc-item"><span class="n">VII.</span><span class="t">Borging &amp; randvoorwaarden</span><span class="pg">§ 06–07</span></div>
+        <div class="toc-item"><span class="n">VIII.</span><span class="t">Acceptatiecriteria</span><span class="pg">§ 08</span></div>
+      </nav>
+    </aside>
+  </section>
+
+  <!-- ────── §1 VISIE ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="nm">i.</div>
+      <div class="right">
+        <div class="label">§ 01 · Doelstelling &amp; visie</div>
+        <h2>Een katalysator, geen controleur.</h2>
+        <p class="lede">
+          Het doel is het bieden van een intelligent kader voor het ontwerpen, beheren en borgen
+          van het curriculum binnen een HBO-opleiding — een kader dat de balans bewaakt tussen
+          landelijke NVAO-standaarden en de professionele vrijheid van de docent-onderzoeker.
+        </p>
+      </div>
+    </div>
+    <div class="s-body">
+      <aside>
+        <div class="gutter">
+          <b>Werkwijze</b>
+          Sjablonen en kaders die foutloos ontwerpen faciliteren — met automatische checks op leerdoel-toets alignment.
+        </div>
+        <div class="gutter">
+          <b>Houding</b>
+          High trust, high accountability. Autonomie met rekenschap.
+        </div>
+      </aside>
+      <div class="col">
+        <p style="font-size:18px;color:var(--ink);line-height:1.65;max-width:62ch">
+          Kwaliteitszorg wordt een integraal onderdeel van het onderwijsontwerp,
+          in plaats van een administratieve last die naderhand wordt opgelegd. Het systeem
+          stelt zich op naast — niet boven — de professional, en levert
+          aan het einde van elke cyclus als vanzelf de bewijslast voor accreditatie.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §2 PRINCIPES ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="nm">ii.</div>
+      <div class="right">
+        <div class="label">§ 02 · Ontwerpprincipes</div>
+        <h2>Vijf beginselen, in alle stilte.</h2>
+        <p class="lede">
+          Vijf principes regeren elk scherm, elke handeling en elke beslissing in dit systeem.
+          Zij staan niet op de voorgrond — zij zijn de stilte op de achtergrond.
+        </p>
+      </div>
+    </div>
+    <div class="s-body">
+      <aside>
+        <div class="gutter"><b>Functie</b>Een toetssteen voor ontwerpbeslissingen, geen marketing.</div>
+      </aside>
+      <div class="col">
+        <div class="principles">
+          <div class="principle">
+            <div class="pn">01.</div>
+            <div class="pname"><span class="dot"></span>Quality by Design</div>
+            <div class="pdesc">Kwaliteit wordt geborgd aan de bron. Sjablonen en kaders faciliteren foutloos ontwerpen, inclusief automatische alignment-controles tussen leerdoel en toets.</div>
+          </div>
+          <div class="principle">
+            <div class="pn">02.</div>
+            <div class="pname"><span class="dot"></span>High Trust, High Accountability</div>
+            <div class="pdesc">Volledige didactische autonomie voor de docent-onderzoeker, met rekenschap via objectieve motivatie-indicatoren en peer-review.</div>
+          </div>
+          <div class="principle">
+            <div class="pn">03.</div>
+            <div class="pname"><span class="dot"></span>Constructive Alignment</div>
+            <div class="pdesc">Een logische keten wordt afgedwongen: competentie → groeiniveau → leerdoel → onderwijsactiviteit → toetsing.</div>
+          </div>
+          <div class="principle">
+            <div class="pn">04.</div>
+            <div class="pname"><span class="dot"></span>Onderzoeks-geïnformeerd</div>
+            <div class="pdesc">Integratie van actuele onderzoeksresultaten — uit lectoraten of praktijkonderzoek — is een expliciet onderdeel van het lesontwerp.</div>
+          </div>
+          <div class="principle">
+            <div class="pn">05.</div>
+            <div class="pname"><span class="dot"></span>Autonome Kwaliteitsborging</div>
+            <div class="pdesc">Het systeem verzamelt continu data uit de PDCA-cycli. Daardoor ontstaat een audit-trail die direct bruikbaar is voor NVAO-accreditatie, zonder extra papierwerk.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §3 ROLLEN ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="nm">iii.</div>
+      <div class="right">
+        <div class="label">§ 03 · Gebruikersrollen &amp; rechten</div>
+        <h2>Vier rollen, vier verantwoordelijkheden.</h2>
+        <p class="lede">
+          Geen overlappende mandaten. Geen verweesde competenties. Elke rol bewaakt
+          één aspect van de keten en draagt daar verantwoordelijkheid voor.
+        </p>
+      </div>
+    </div>
+    <div class="s-body">
+      <aside>
+        <div class="gutter"><b>Mandaat</b>Eén rol, één scope. Geen schaduw-bestuur.</div>
+      </aside>
+      <div class="col">
+        <div class="roles">
+          <div class="role">
+            <div class="rh"><span class="rn">i.</span><span class="label">Niveau micro</span></div>
+            <h4>Docent-onderzoeker</h4>
+            <div class="resp">Didactisch ontwerp en uitvoering op micro-niveau. Verantwoordelijk voor de dagelijkse onderwijspraktijk.</div>
+            <div class="acts"><b>Key actions</b>Ontwerpen workshops · uitvoeren PDCA-cyclus · peer-review van collega's.</div>
+          </div>
+          <div class="role">
+            <div class="rh"><span class="rn">ii.</span><span class="label">Niveau meso</span></div>
+            <h4>Module-eigenaar</h4>
+            <div class="resp">Samenhang en niveau-borging op meso-niveau. Bewaakt of het gestelde cognitieve niveau wordt waargemaakt.</div>
+            <div class="acts"><b>Key actions</b>Valideren module-leerdoelen · monitoren geaggregeerde motivatie-scores.</div>
+          </div>
+          <div class="role">
+            <div class="rh"><span class="rn">iii.</span><span class="label">Niveau macro</span></div>
+            <h4>Curriculumcommissie</h4>
+            <div class="resp">Strategische koers en macro-kaders. Bewaakt de samenhang van het opleidingscurriculum als geheel.</div>
+            <div class="acts"><b>Key actions</b>Beheren competentiematrix · uitvoeren gap-analyses over leerlijnen.</div>
+          </div>
+          <div class="role">
+            <div class="rh"><span class="rn">iv.</span><span class="label">Niveau systeem</span></div>
+            <h4>Interne auditor</h4>
+            <div class="resp">Procesbewaking en facilitering. Faciliteert in plaats van te controleren.</div>
+            <div class="acts"><b>Key actions</b>Analyseren systeem-trends · accreditatiedossiers voorbereiden.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §4 HIERARCHIE ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="nm">iv.</div>
+      <div class="right">
+        <div class="label">§ 04 · Functionele hiërarchie</div>
+        <h2>Macro · Meso · Micro.</h2>
+        <p class="lede">
+          De architectuur rust op drie niveaus. Elke laag voedt de volgende; iedere breuk
+          in de keten wordt zichtbaar in de Health-Check op de achtergrond.
+        </p>
+      </div>
+    </div>
+    <div class="s-body">
+      <aside>
+        <div class="gutter"><b>Keten</b>Competentie → niveau → leerdoel → activiteit → toetsing.</div>
+        <div class="gutter"><b>Taxonomie</b>Bloom of Miller, naar keuze van de opleiding.</div>
+      </aside>
+      <div class="col">
+        <div class="hier">
+          <div class="hcol macro">
+            <div class="hmark"><span class="seal">i</span><span class="tag">Laag 4.1</span></div>
+            <h3><small>Macro</small>De Blauwdruk</h3>
+            <p class="what">De basis van de opleiding, onafhankelijk van enige specifieke uitvoering — wat de student aan het einde dient te kunnen.</p>
+            <div class="feats">
+              <div class="feat"><div class="fname">Competentie Dashboard</div><div class="fdesc">Beheer van landelijke beroepstaken en eindkwalificaties.</div></div>
+              <div class="feat"><div class="fname">Leerlijn-Mapping</div><div class="fdesc">Visualisatie van competentie-ontwikkeling jaar 1 → 4.</div></div>
+              <div class="feat"><div class="fname">Gap-analyse</div><div class="fdesc">Detectie van 'wees-competenties' in het curriculum.</div></div>
+            </div>
+          </div>
+          <div class="hcol meso">
+            <div class="hmark"><span class="seal">ii</span><span class="tag">Laag 4.2</span></div>
+            <h3><small>Meso</small>De Niveaubewaker</h3>
+            <p class="what">Vertaling naar onderwijseenheden — wanneer welk niveau wordt opgebouwd, en hoe het toetsen daarbij past.</p>
+            <div class="feats">
+              <div class="feat"><div class="fname">Taxonomie-monitor</div><div class="fdesc">Bloom of Miller borgen het juiste cognitieve niveau.</div></div>
+              <div class="feat"><div class="fname">Toetsmatrijs 2.0</div><div class="fdesc">Dekking, weging en slagingscriteria per toets.</div></div>
+              <div class="feat"><div class="fname">Integrale Leerdoelen</div><div class="fdesc">Hergebruik over modules voor interdisciplinariteit.</div></div>
+            </div>
+          </div>
+          <div class="hcol micro">
+            <div class="hmark"><span class="seal">iii</span><span class="tag">Laag 4.3</span></div>
+            <h3><small>Micro</small>De Werkplaats</h3>
+            <p class="what">De dagelijkse omgeving van de docent-onderzoeker — hoe de les feitelijk vorm krijgt.</p>
+            <div class="feats">
+              <div class="feat"><div class="fname">Didactisch Logboek</div><div class="fdesc">Flexibele editor voor lesvoorbereiding en bronnen.</div></div>
+              <div class="feat"><div class="fname">Research-Link</div><div class="fdesc">Directe koppeling met onderzoeksrepositories.</div></div>
+              <div class="feat"><div class="fname">Validatie-module</div><div class="fdesc">Koppelt didactiek aan theoretische stroming.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §5 PDCA ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="nm">v.</div>
+      <div class="right">
+        <div class="label">§ 4.4 · Directe effectiviteitsmeting</div>
+        <h2>De PDCA in vier ademhalingen.</h2>
+        <p class="lede">
+          Plan, Do, Check, Act. Vier opeenvolgende bewegingen die elke les afsluit en
+          elke verbetering aandrijft — met als toetssteen vier motivatie-indicatoren:
+          Autonomy, Mastery, Purpose, Social.
+        </p>
+      </div>
+    </div>
+    <div class="s-body">
+      <aside>
+        <div class="gutter"><b>Indicatoren</b>Autonomy · Mastery · Purpose · Social — naar Deci &amp; Ryan.</div>
+        <div class="gutter"><b>Meting</b>30-seconden poll in het LMS, na elke les.</div>
+      </aside>
+      <div class="col">
+        <div class="pdca">
+          <div class="pdca-fig">
+            <svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 z" fill="#8d97a0"/>
+                </marker>
+              </defs>
+              <!-- outer hairline circle -->
+              <circle cx="180" cy="180" r="148" fill="none" stroke="#e6e1d4" stroke-width="1"/>
+              <circle cx="180" cy="180" r="120" fill="none" stroke="#e6e1d4" stroke-width="1"/>
+              <!-- four quadrant tone dots -->
+              <circle cx="180" cy="32"  r="6" fill="#8ea693"/>
+              <circle cx="328" cy="180" r="6" fill="#c9b692"/>
+              <circle cx="180" cy="328" r="6" fill="#aac0c8"/>
+              <circle cx="32"  cy="180" r="6" fill="#c08e7a"/>
+              <!-- arc arrows -->
+              <path d="M 196 36 A 148 148 0 0 1 324 184" stroke="#8d97a0" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+              <path d="M 324 196 A 148 148 0 0 1 196 324" stroke="#8d97a0" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+              <path d="M 164 324 A 148 148 0 0 1 36 196"  stroke="#8d97a0" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+              <path d="M 36 164 A 148 148 0 0 1 164 36"   stroke="#8d97a0" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+              <!-- labels -->
+              <g font-family="Instrument Serif, Georgia, serif" font-style="italic" font-size="28" fill="#1f262b" text-anchor="middle">
+                <text x="180" y="78">Plan</text>
+                <text x="282" y="188">Do</text>
+                <text x="180" y="298">Check</text>
+                <text x="78" y="188">Act</text>
+              </g>
+              <g font-family="Public Sans, sans-serif" font-size="9.5" letter-spacing="2" fill="#8d97a0" text-anchor="middle">
+                <text x="180" y="62">DESIGN</text>
+                <text x="282" y="172">METING</text>
+                <text x="180" y="316">ANALYSE</text>
+                <text x="78" y="172">VERBETER</text>
+              </g>
+              <!-- center mark -->
+              <circle cx="180" cy="180" r="3" fill="#5d7868"/>
+              <text x="180" y="218" text-anchor="middle" font-family="Public Sans" font-size="10" letter-spacing="3" fill="#8d97a0">CYCLUS</text>
+            </svg>
+          </div>
+          <div class="pdca-quotes">
+            <div class="pq plan">
+              <div class="step">i.<small>Plan</small></div>
+              <div class="q">Ik kies werkvorm X om de <em>Autonomy</em> te vergroten, doordat studenten hun eigen casus mogen kiezen.</div>
+            </div>
+            <div class="pq do">
+              <div class="step">ii.<small>Do</small></div>
+              <div class="q">Na de les vullen studenten in 30 seconden hun beleving in op de vier criteria.</div>
+            </div>
+            <div class="pq check">
+              <div class="step">iii.<small>Check</small></div>
+              <div class="q">Het systeem toont een spinnenweb-diagram: intentie naast werkelijkheid.</div>
+            </div>
+            <div class="pq act">
+              <div class="step">iv.<small>Act</small></div>
+              <div class="q">Studenten ervoeren weinig <em>Mastery</em>; volgende keer voeg ik een tussentijdse feedback-stap toe.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §6 AI ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="nm">vi.</div>
+      <div class="right">
+        <div class="label">§ 05 · Intelligent assistance</div>
+        <h2>Een assistent die alleen op verzoek spreekt.</h2>
+        <p class="lede">
+          De AI is geen beslisser. Zij is een expert die uitsluitend op uitnodiging
+          van de professional wordt geraadpleegd — en altijd onder zijn regie blijft.
+        </p>
+      </div>
+    </div>
+    <div class="s-body">
+      <aside>
+        <div class="gutter"><b>Houding</b>Raadgever, geen rechter. De professional houdt het stuur.</div>
+      </aside>
+      <div class="col">
+        <div class="ai">
+          <div class="acell">
+            <div class="ah"><span class="nm">Ontwerp-Assistent</span><span class="kind">Werkvormen</span></div>
+            <p class="prompt">Stel 3 activerende werkvormen voor voor een groep van 20, gericht op 'Mastery' binnen een sociaal-constructivistisch kader.</p>
+          </div>
+          <div class="acell">
+            <div class="ah"><span class="nm">Alignment Checker</span><span class="kind">Validatie</span></div>
+            <p class="prompt">Controleer of mijn leerdoel 'De student kan X berekenen' overeenkomt met mijn toetsvraag 'Leg uit waarom X belangrijk is'.</p>
+          </div>
+          <div class="acell">
+            <div class="ah"><span class="nm">Motivatie-Coach</span><span class="kind">Interventie</span></div>
+            <p class="prompt">Analyseer geaggregeerde feedback en stel didactische interventies voor om de score op 'Social' te verhogen bij online onderwijs.</p>
+          </div>
+          <div class="acell">
+            <div class="ah"><span class="nm">Accreditatie-Writer</span><span class="kind">Verslag</span></div>
+            <p class="prompt">Formuleer op basis van de PDCA-logs conceptteksten voor het kwaliteitsverslag van de opleiding.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §7 QUALITY + TECH ────── -->
+  <section class="s">
+    <div class="s-head">
+      <div class="nm">vii.</div>
+      <div class="right">
+        <div class="label">§ 06 — 07 · Borging &amp; randvoorwaarden</div>
+        <h2>Bureaucratie vervangen door gesprek.</h2>
+        <p class="lede">
+          Drie middelen vervangen klassieke kwaliteitscontrole: het collegiale gesprek,
+          een rustig real-time dashboard, en een portfolio dat zichzelf opbouwt.
+        </p>
+      </div>
+    </div>
+
+    <div class="s-body" style="margin-bottom:80px">
+      <aside>
+        <div class="gutter"><b>Houding</b>Professionalisering, geen audit.</div>
+      </aside>
+      <div class="col">
+        <div class="qrow">
+          <div class="qq">
+            <div class="qn">i.</div>
+            <h4>Peer-Review 3.0</h4>
+            <p>Het systeem koppelt docenten op basis van een gedeelde didactische stroming. Feedback blijft inhoudelijk, en vervangt de bureaucratische check.</p>
+          </div>
+          <div class="qq">
+            <div class="qn">ii.</div>
+            <h4>QbD Health-Check</h4>
+            <p>Een real-time dashboard voor de opleiding: zijn Macro, Meso en Micro nog met elkaar in verbinding, of is er een schakel losgekomen?</p>
+          </div>
+          <div class="qq">
+            <div class="qn">iii.</div>
+            <h4>Professionaliseringsportfolio</h4>
+            <p>Alle PDCA-cycli en peer-reviews vormen automatisch het bewijslast-portfolio voor de BKE van de docent.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-body">
+      <aside>
+        <div class="gutter"><b>Architectuur</b>API-first; deep-link met Canvas en Brightspace.</div>
+      </aside>
+      <div class="col">
+        <div class="tech">
+          <div class="titem">
+            <div class="ti">§ 07.1</div>
+            <h4>LMS deep-linking</h4>
+            <p>Volledige synchronisatie met Canvas en Brightspace. Een wijziging in het KMS staat direct in de studiegids van de student.</p>
+          </div>
+          <div class="titem">
+            <div class="ti">§ 07.2</div>
+            <h4>Data-privacy</h4>
+            <p>Motivatie-data is op individueel niveau alleen zichtbaar voor de docent zelf — een veilig leerklimaat. Geaggregeerd voor kwaliteitsmanagement.</p>
+          </div>
+          <div class="titem">
+            <div class="ti">§ 07.3</div>
+            <h4>API-first</h4>
+            <p>Koppeling met externe onderzoeksdatabases en HR-systemen voor automatische registratie van professionaliseringsuren.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §8 KPI ────── -->
+  <section class="s" style="padding-bottom:0">
+    <div class="s-head">
+      <div class="nm">viii.</div>
+      <div class="right">
+        <div class="label">§ 08 · Acceptatiecriteria</div>
+        <h2>Hoe weten wij dat het werkt.</h2>
+        <p class="lede">
+          Vier acceptatiecriteria — adoptie, dialoog, audit-efficiëntie en motivatie. Vier
+          getallen, vier rustige beloften. Niet meer, niet minder.
+        </p>
+      </div>
+    </div>
+    <div class="s-body">
+      <aside>
+        <div class="gutter"><b>Herijking</b>Per kwartaal door interne audit.</div>
+      </aside>
+      <div class="col">
+        <div class="kpis">
+          <div class="kpi">
+            <div class="label">KPI 01 · adoptie</div>
+            <div class="fig">90<small>%</small></div>
+            <h4>Plan-fase voltooid</h4>
+            <p>van de docent-onderzoekers voltooit de Plan-fase binnen het systeem.</p>
+          </div>
+          <div class="kpi">
+            <div class="label">KPI 02 · dialoog</div>
+            <div class="fig">80<small>%</small></div>
+            <h4>Peer-review als waardevol</h4>
+            <p>vindt feedback waardevol voor de eigen lespraktijk.</p>
+          </div>
+          <div class="kpi">
+            <div class="label">KPI 03 · audit</div>
+            <div class="fig">−70<small>%</small></div>
+            <h4>Voorbereidingstijd</h4>
+            <p>minder voorbereiding voor interne audit of NVAO.</p>
+          </div>
+          <div class="kpi">
+            <div class="label">KPI 04 · motivatie</div>
+            <div class="fig">↗</div>
+            <h4>Purpose &amp; Mastery</h4>
+            <p>aantoonbare stijging onder studenten over twee jaar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="ornament">·&nbsp;·&nbsp;·</p>
+
+  <!-- ────── FOOTER ────── -->
+  <footer class="bottom">
+    <div class="mark">Curriculum Navigator</div>
+    <div class="meta">
+      <span>PRD · v1.3</span>
+      <span>Uitgebreid concept</span>
+      <span>HBO · Mei 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>

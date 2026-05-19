@@ -1,0 +1,19 @@
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+._*
+
+# Externe / referentie-assets (niet in repo distribueren)
+# Verwijderbaar wanneer copyright-status duidelijk is
+normaal zijn we allemaal.pdf
+normaal zijn we allemaal.avif
+voorbeeld-pbbk.pdf
+manifesto.svg
+
+# Tijdelijke bestanden
+*.tmp
+*.bak
+*~

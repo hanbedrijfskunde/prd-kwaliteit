@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>KMS — A Quarterly on Quality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe1;
+    --paper-2:#efe6d3;
+    --ink:#1b1410;
+    --ink-soft:#4a3a2f;
+    --rule:#3a2a20;
+    --carmine:#8a1f1a;
+    --olive:#5a5a2a;
+    --indigo:#2a3a5a;
+    --gold:#9a7028;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"EB Garamond",Garamond,Georgia,serif;
+    font-size:19px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"liga","kern","onum";
+  }
+  body{
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(154,112,40,0.06), transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(154,112,40,0.05), transparent 60%),
+      var(--paper);
+    padding:0 0 120px;
+  }
+  ::selection{background:var(--gold);color:var(--paper)}
+  .page{max-width:1120px;margin:0 auto;padding:64px 80px}
+  .grid{display:grid;grid-template-columns:200px 1fr 200px;gap:48px}
+  .ml{grid-column:1}
+  .col{grid-column:2;max-width:62ch}
+  .mr{grid-column:3}
+  
+  h1,h2,h3,h4,h5{font-family:"Cormorant Garamond",serif;font-weight:500;color:var(--ink)}
+  
+  /* ────── MASTHEAD ────── */
+  .masthead{
+    border-top:6px double var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:14px 0;margin-bottom:48px;
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:"EB Garamond",serif;font-style:italic;color:var(--ink-soft);
+    font-size:14px;letter-spacing:.02em;
+  }
+  .masthead .name{font-family:"Cormorant Garamond",serif;font-style:normal;font-size:22px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:500}
+  .masthead .meta{display:flex;gap:24px}
+  
+  /* ────── FRONTISPIECE ────── */
+  .frontispiece{text-align:center;margin:32px 0 64px;padding:48px 0;border-bottom:1px solid var(--rule)}
+  .frontispiece .kicker{
+    font-family:"EB Garamond",serif;font-style:italic;color:var(--carmine);
+    letter-spacing:.16em;text-transform:uppercase;font-size:13px;margin-bottom:24px;
+  }
+  .frontispiece h1{
+    font-size:clamp(56px,7vw,96px);
+    font-weight:500;font-style:italic;
+    line-height:1.0;letter-spacing:-0.005em;
+    margin-bottom:24px;
+  }
+  .frontispiece h1 .roman{font-style:normal}
+  .frontispiece .subtitle{
+    font-family:"EB Garamond",serif;font-style:italic;
+    font-size:22px;color:var(--ink-soft);max-width:34ch;margin:0 auto 32px;
+    line-height:1.4;
+  }
+  .ornament{
+    display:flex;justify-content:center;align-items:center;gap:18px;
+    font-size:22px;color:var(--gold);margin:28px 0;
+  }
+  .ornament::before,.ornament::after{
+    content:"";flex:0 0 80px;height:1px;background:var(--rule);opacity:.5;
+  }
+  .frontispiece .by{
+    font-family:"EB Garamond",serif;font-style:italic;font-size:16px;
+    color:var(--ink-soft);
+    margin-top:20px;
+  }
+  .frontispiece .colophon{
+    margin-top:32px;font-family:"IBM Plex Mono",monospace;font-size:11px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    display:flex;justify-content:center;gap:32px;
+  }
+
+  /* ────── PROLOGUE ────── */
+  .prologue{margin:0 0 80px}
+  .prologue h2{
+    font-size:32px;font-style:italic;text-align:center;
+    margin-bottom:32px;font-weight:500;
+  }
+  .prologue h2::before,.prologue h2::after{content:" · ";color:var(--gold)}
+  .prologue p{font-size:21px;line-height:1.72;text-align:justify;hyphens:auto;margin-bottom:18px}
+  .prologue p:first-of-type::first-letter{
+    font-family:"Cormorant Garamond",serif;
+    float:left;font-size:88px;line-height:.85;
+    padding:6px 12px 0 0;font-weight:500;color:var(--carmine);
+  }
+
+  /* ────── ARTICLE / SECTIONS ────── */
+  .article{margin-bottom:72px}
+  .section-header{
+    display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:baseline;
+    padding-bottom:18px;border-bottom:1px solid var(--rule);
+    margin-bottom:32px;
+  }
+  .section-numeral{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    font-size:64px;line-height:.9;color:var(--gold);font-weight:500;
+    text-align:right;
+  }
+  .section-title h2{font-size:42px;font-style:italic;font-weight:500;line-height:1.05;margin-bottom:8px}
+  .section-title .label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--carmine)}
+  
+  .body{display:grid;grid-template-columns:200px 1fr 200px;gap:48px;align-items:start}
+  .body .col{grid-column:2;max-width:62ch}
+  .body .col p{margin-bottom:14px;text-align:justify;hyphens:auto}
+  .body .col p .smallcaps{font-variant:small-caps;letter-spacing:.06em}
+  .body .col blockquote{
+    border-left:3px solid var(--gold);
+    padding:6px 24px;margin:24px 0;
+    font-style:italic;color:var(--ink-soft);font-size:20px;line-height:1.5;
+  }
+  
+  /* Marginalia */
+  .margnote{
+    font-family:"EB Garamond",serif;font-style:italic;font-size:13px;
+    line-height:1.45;color:var(--ink-soft);
+    border-top:1px solid var(--rule);padding-top:10px;
+  }
+  .margnote .num{
+    font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:10px;
+    letter-spacing:.18em;display:block;color:var(--carmine);margin-bottom:6px;
+  }
+  .margnote + .margnote{margin-top:24px}
+  .ref{
+    font-family:"EB Garamond",serif;font-style:italic;color:var(--carmine);
+    font-size:.8em;vertical-align:super;line-height:0;padding:0 2px;
+  }
+  
+  /* ────── PRINCIPLES — small-caps list ────── */
+  .principles{
+    margin:32px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    padding:24px 0;
+  }
+  .principles .p{
+    display:grid;grid-template-columns:64px 1fr;gap:18px;padding:14px 0;
+    border-bottom:1px dotted var(--rule);
+  }
+  .principles .p:last-child{border-bottom:none}
+  .principles .p .n{
+    font-family:"Cormorant Garamond",serif;font-style:italic;
+    font-size:32px;color:var(--gold);text-align:right;line-height:1;padding-top:4px;
+  }
+  .principles .p .name{font-variant:small-caps;letter-spacing:.08em;font-size:21px;font-weight:600;display:block;margin-bottom:3px}
+  .principles .p .desc{font-size:16px;line-height:1.5;color:var(--ink-soft)}
+  
+  /* ────── ROLES — engraved card ────── */
+  .roles{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);margin:32px 0}
+  .role{padding:24px 28px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .role:nth-child(2n){border-right:none}
+  .role:nth-last-child(-n+2){border-bottom:none}
+  .role .figure{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;color:var(--gold)}
+  .role h4{font-size:22px;font-variant:small-caps;letter-spacing:.06em;font-weight:600;margin:6px 0 8px}
+  .role .resp{font-style:italic;font-size:15px;color:var(--ink-soft);margin-bottom:14px;line-height:1.45}
+  .role .acts{font-size:14px;line-height:1.5;padding-top:10px;border-top:1px dotted var(--rule)}
+  .role .acts .lbl{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--carmine);display:block;margin-bottom:4px}
+
+  /* ────── HIERARCHY — Three figures plate ────── */
+  .plate{
+    margin:48px 0;border:1px solid var(--rule);padding:32px;
+    background:rgba(154,112,40,0.04);
+  }
+  .plate .plate-title{
+    text-align:center;font-family:"IBM Plex Mono",monospace;font-size:11px;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--carmine);margin-bottom:6px;
+  }
+  .plate h3{text-align:center;font-style:italic;font-size:28px;margin-bottom:32px}
+  .levels{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .lvl{padding:24px 22px;border-right:1px solid var(--rule)}
+  .lvl:last-child{border-right:none}
+  .lvl .roman{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:38px;color:var(--gold);line-height:1;text-align:center;margin-bottom:10px}
+  .lvl h4{text-align:center;font-variant:small-caps;letter-spacing:.1em;font-size:16px;color:var(--carmine);margin-bottom:6px}
+  .lvl h5{text-align:center;font-size:24px;font-style:italic;font-weight:500;margin-bottom:14px}
+  .lvl .what{font-size:14.5px;line-height:1.55;text-align:justify;hyphens:auto;color:var(--ink-soft);margin-bottom:14px}
+  .lvl ul{list-style:none;font-size:14px;line-height:1.5}
+  .lvl ul li{padding:6px 0 6px 16px;border-top:1px dotted var(--rule);position:relative}
+  .lvl ul li:first-child{border-top:none}
+  .lvl ul li::before{content:"§";color:var(--gold);font-style:italic;position:absolute;left:0}
+  .lvl ul li .name{font-variant:small-caps;letter-spacing:.05em;font-weight:600;display:block}
+  .lvl ul li .gloss{color:var(--ink-soft);font-style:italic;font-size:13px}
+
+  /* ────── PDCA ────── */
+  .pdca-plate{
+    margin:48px 0;padding:40px 32px;border:1px solid var(--rule);
+    text-align:center;background:rgba(138,31,26,0.03);
+  }
+  .pdca-plate .plate-title{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--carmine);margin-bottom:6px}
+  .pdca-plate h3{font-style:italic;font-size:28px;margin-bottom:32px}
+  .pdca-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);text-align:left}
+  .pdca-grid > div{padding:20px;border-right:1px solid var(--rule)}
+  .pdca-grid > div:last-child{border-right:none}
+  .pdca-grid .step{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:32px;color:var(--gold)}
+  .pdca-grid .name{font-variant:small-caps;letter-spacing:.08em;font-size:18px;font-weight:600;margin:6px 0 10px}
+  .pdca-grid .quote{font-style:italic;font-size:14.5px;line-height:1.5;color:var(--ink-soft)}
+  
+  /* ────── AI ASSIST — typewritten ledger ────── */
+  .ledger{margin:32px 0;border:1px solid var(--rule);background:var(--paper-2)}
+  .ledger-row{
+    display:grid;grid-template-columns:200px 1fr;gap:24px;
+    padding:22px 28px;border-bottom:1px solid var(--rule);
+  }
+  .ledger-row:last-child{border-bottom:none}
+  .ledger-name{font-variant:small-caps;letter-spacing:.08em;font-size:18px;font-weight:600}
+  .ledger-name small{display:block;font-family:"IBM Plex Mono",monospace;font-variant:normal;letter-spacing:.18em;font-size:9px;color:var(--carmine);margin-top:4px;text-transform:uppercase}
+  .ledger-prompt{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.55;color:var(--ink);
+    background:rgba(255,255,255,0.4);padding:14px 16px;border-left:3px solid var(--gold);
+  }
+  .ledger-prompt::before{content:"› ";color:var(--carmine);font-weight:500}
+  
+  /* ────── KPI — engraved metrics ────── */
+  .metrics{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border:1px solid var(--rule);margin:32px 0;
+  }
+  .metric{padding:28px 22px;border-right:1px solid var(--rule);text-align:center}
+  .metric:last-child{border-right:none}
+  .metric .fig{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:64px;line-height:.95;color:var(--carmine);font-weight:500;display:block;margin-bottom:6px}
+  .metric h4{font-variant:small-caps;letter-spacing:.08em;font-size:15px;margin-bottom:8px}
+  .metric p{font-size:13px;line-height:1.5;color:var(--ink-soft);font-style:italic}
+
+  /* ────── COLOPHON ────── */
+  .colophon-end{
+    margin-top:96px;padding-top:32px;border-top:6px double var(--rule);
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;
+    font-family:"EB Garamond",serif;font-style:italic;color:var(--ink-soft);font-size:14px;
+  }
+  .colophon-end b{font-style:normal;font-variant:small-caps;letter-spacing:.08em;color:var(--ink);display:block;margin-bottom:6px}
+  .end-mark{text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:32px;color:var(--gold);margin:48px 0 24px}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ────── MASTHEAD ────── -->
+  <div class="masthead">
+    <div class="name">Acta Pædagogica</div>
+    <div class="meta">
+      <span>Volumen XII · Numerus iii</span>
+      <span>Anno mmxxvi</span>
+      <span>Pretium ƒ 0,—</span>
+    </div>
+  </div>
+
+  <!-- ────── FRONTISPIECE ────── -->
+  <div class="frontispiece">
+    <div class="kicker">Product Requirements · Versio 1.3 · Conceptus Amplificatus</div>
+    <h1><span class="roman">De</span> Curriculum<br>Navigatore</h1>
+    <p class="subtitle">
+      Een verhandeling over de inrichting van een kwaliteitsmanagementsysteem
+      voor het hoger beroepsonderwijs.
+    </p>
+    <div class="ornament">❦ &nbsp;·&nbsp; ❦ &nbsp;·&nbsp; ❦</div>
+    <p class="by">
+      In opdracht van <em>het curriculum-bureau</em>, in samenspraak met
+      docent-onderzoekers, module-eigenaren en de interne auditdienst.
+    </p>
+    <div class="colophon">
+      <span>Kernfilosofie · Quality by Design</span>
+      <span>Status · Concept</span>
+      <span>Editor · KMS-redactie</span>
+    </div>
+  </div>
+
+  <!-- ────── PROLOGUE ────── -->
+  <div class="prologue">
+    <h2>Prolegomena</h2>
+    <p>
+      Het hier beschreven systeem beoogt geenszins een instrument tot achteraf-toetsen,
+      maar een <span style="font-style:italic">katalysator</span> van kwaliteit gedurende
+      het ontwerpproces. Het stelt zich ten doel een intelligent kader te bieden waarin
+      de docent-onderzoeker zijn professionele autonomie ten volle kan uitoefenen, zonder
+      de landelijke kwaliteitsstandaarden van de NVAO uit het oog te verliezen.
+    </p>
+    <p>
+      In wat volgt schetsen wij — in negen samenhangende delen — de ontwerpprincipes,
+      de gebruikersrollen, de functionele hiërarchie en de acceptatiecriteria; tezamen
+      vormen zij de blauwdruk voor wat wij hier de <em>Curriculum Navigator</em> noemen.
+    </p>
+  </div>
+
+  <!-- ────── §I VISION ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">I.</div>
+      <div class="section-title">
+        <span class="label">Caput Primum · Doelstelling</span>
+        <h2>Een katalysator, geen controleur</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota A</span>NVAO — Nederlands-Vlaamse Accreditatieorganisatie.</div>
+        <div class="margnote"><span class="num">Nota B</span>De keten Macro → Meso → Micro vormt de morfologie van het systeem.</div>
+      </aside>
+      <div class="col">
+        <p>
+          Het doel van het systeem is het bieden van een intelligent kader voor het
+          ontwerpen, beheren en borgen van het curriculum binnen een HBO-opleiding.<span class="ref">a</span>
+          Het systeem is ontworpen om de balans te bewaken tussen landelijke kwaliteits­standaarden
+          en de professionele vrijheid van de <span class="smallcaps">docent-onderzoeker</span>.
+        </p>
+        <p>
+          Het systeem fungeert niet als controle-instrument achteraf, maar als een
+          <em>katalysator voor kwaliteit tijdens het ontwerpproces</em> — een principe
+          dat wij in dit document zullen aanduiden met de term <span class="smallcaps">Quality by Design</span>.<span class="ref">b</span>
+          Hierdoor wordt kwaliteitszorg een integraal onderdeel van het onderwijsontwerp
+          in plaats van een administratieve last die naderhand wordt opgelegd.
+        </p>
+        <blockquote>
+          Quality by Design omhelst de gedachte dat kwaliteit niet wordt gevonden,
+          doch wordt gemaakt — aan de bron, op het moment van ontwerp.
+        </blockquote>
+      </div>
+    </div>
+  </article>
+
+  <!-- ────── §II PRINCIPLES ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">II.</div>
+      <div class="section-title">
+        <span class="label">Caput Secundum · Principia</span>
+        <h2>Vijf leidende beginselen</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota C</span>Alignment in den zin van Biggs; zie ook <em>Teaching for Quality Learning</em>, 2003.</div>
+      </aside>
+      <div class="col">
+        <p>Aan het systeem liggen vijf ontwerpprincipes ten grondslag; zij regeren elk scherm, elke handeling en elke beslissing.</p>
+        <div class="principles">
+          <div class="p"><div class="n">i.</div><div><span class="name">Quality by Design</span><span class="desc">Kwaliteit wordt geborgd aan de bron. Het systeem biedt sjablonen en kaders die foutloos ontwerpen faciliteren — met automatische controles op leerdoel-toets alignment.<span class="ref">c</span></span></div></div>
+          <div class="p"><div class="n">ii.</div><div><span class="name">High Trust, High Accountability</span><span class="desc">De docent-onderzoeker krijgt volledige didactische autonomie, doch legt rekenschap af door middel van objectieve motivatie-indicatoren en peer-reviews.</span></div></div>
+          <div class="p"><div class="n">iii.</div><div><span class="name">Constructive Alignment</span><span class="desc">Het systeem dwingt een logische keten af: landelijke competentie → groeiniveau → leerdoel → onderwijsactiviteit → toetsing.</span></div></div>
+          <div class="p"><div class="n">iv.</div><div><span class="name">Onderzoeks-geïnformeerd</span><span class="desc">Integratie van actuele onderzoeksresultaten — uit lectoraten of praktijkonderzoek — is een expliciet onderdeel van het lesontwerp.</span></div></div>
+          <div class="p"><div class="n">v.</div><div><span class="name">Autonome Kwaliteitsborging</span><span class="desc">Het systeem verzamelt continu data uit de PDCA-cycli, waaruit als vanzelf een audit-trail ontstaat die direct dienstig is bij NVAO-accreditatie.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ────── §III ROLES ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">III.</div>
+      <div class="section-title">
+        <span class="label">Caput Tertium · Personae</span>
+        <h2>Gebruikersrollen &amp; bevoegdheden</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota D</span>Het systeem onderscheidt vier rollen, geen meer en geen minder.</div>
+      </aside>
+      <div class="col">
+        <p>Vier rollen, vier verantwoordelijkheden. Geen overlapping in mandaat, geen verweesde competenties.<span class="ref">d</span></p>
+        <div class="roles">
+          <div class="role">
+            <div class="figure">Figura i.</div>
+            <h4>Docent-onderzoeker</h4>
+            <div class="resp">Didactisch ontwerp en uitvoering op micro-niveau.</div>
+            <div class="acts"><span class="lbl">Bevoegdheden</span>Ontwerpen van workshops; uitvoeren PDCA-cyclus; voorzien van peer-review op de ontwerpen van collega's.</div>
+          </div>
+          <div class="role">
+            <div class="figure">Figura ii.</div>
+            <h4>Module-eigenaar</h4>
+            <div class="resp">Samenhang en niveau-borging op meso-niveau.</div>
+            <div class="acts"><span class="lbl">Bevoegdheden</span>Valideren van module-leerdoelen; monitoren van geaggregeerde motivatie-scores per module.</div>
+          </div>
+          <div class="role">
+            <div class="figure">Figura iii.</div>
+            <h4>Curriculumcommissie</h4>
+            <div class="resp">Strategische koers en macro-kaders.</div>
+            <div class="acts"><span class="lbl">Bevoegdheden</span>Beheren van de competentiematrix; uitvoeren van gap-analyses over leerlijnen.</div>
+          </div>
+          <div class="role">
+            <div class="figure">Figura iv.</div>
+            <h4>Interne auditor</h4>
+            <div class="resp">Procesbewaking en facilitering.</div>
+            <div class="acts"><span class="lbl">Bevoegdheden</span>Analyseren van systeem-brede trends; voorbereiden van accreditatiedossiers.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ────── §IV HIERARCHY (PLATE) ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">IV.</div>
+      <div class="section-title">
+        <span class="label">Caput Quartum · Hierarchia</span>
+        <h2>Functionele hiërarchie der drie niveaus</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota E</span>De plaat hiernaast verbeeldt de morfologie van het systeem.</div>
+        <div class="margnote"><span class="num">Nota F</span>Bloom (1956); Miller (1990). Voor onderscheid tussen <em>weten</em>, <em>kunnen</em> en <em>doen</em>.</div>
+      </aside>
+      <div class="col">
+        <p>
+          De architectuur van het systeem rust op drie niveaus, te weten het Macro-, Meso- en Micro-niveau. Tezamen vormen zij een keten waarin elke schakel zich verbindt met de volgende, zonder ruimte te laten voor verdwijnende competenties of zwevende leerdoelen.
+        </p>
+        <div class="plate">
+          <div class="plate-title">Plaat I — Morphologia systematis</div>
+          <h3>Macro · Meso · Micro</h3>
+          <div class="levels">
+            <div class="lvl">
+              <div class="roman">iv.i</div>
+              <h4>Macro</h4>
+              <h5>De Blauwdruk</h5>
+              <div class="what">De basis van de opleiding, onafhankelijk van enige specifieke uitvoering.</div>
+              <ul>
+                <li><span class="name">Competentie-Dashboard</span><span class="gloss">Beheer van landelijke beroepstaken.</span></li>
+                <li><span class="name">Leerlijn-Mapping</span><span class="gloss">Visualisatie van groei door jaargangen.</span></li>
+                <li><span class="name">Gap-Analyse</span><span class="gloss">Detectie van 'wees-competenties'.</span></li>
+              </ul>
+            </div>
+            <div class="lvl">
+              <div class="roman">iv.ii</div>
+              <h4>Meso</h4>
+              <h5>De Niveaubewaker</h5>
+              <div class="what">Vertaling naar onderwijseenheden; borging dat het niveau klopt met de jaargang.<span class="ref">f</span></div>
+              <ul>
+                <li><span class="name">Taxonomie-Monitor</span><span class="gloss">Bloom of Miller.</span></li>
+                <li><span class="name">Toetsmatrijs 2.0</span><span class="gloss">Dekking · weging · slagingscriteria.</span></li>
+                <li><span class="name">Integrale Leerdoelen</span><span class="gloss">Hergebruik tussen modules.</span></li>
+              </ul>
+            </div>
+            <div class="lvl">
+              <div class="roman">iv.iii</div>
+              <h4>Micro</h4>
+              <h5>De Werkplaats</h5>
+              <div class="what">De dagelijkse omgeving van de docent-onderzoeker.</div>
+              <ul>
+                <li><span class="name">Didactisch Logboek</span><span class="gloss">Editor voor lesontwerp.</span></li>
+                <li><span class="name">Research-Link</span><span class="gloss">Koppeling met repositories.</span></li>
+                <li><span class="name">Validatie-module</span><span class="gloss">Didactiek aan theorie gekoppeld.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ────── §V PDCA ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">V.</div>
+      <div class="section-title">
+        <span class="label">Caput Quintum · Cyclus PDCA</span>
+        <h2>Effectiviteitsmeting in vier bewegingen</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota G</span>Vier indicatoren — Autonomy, Mastery, Purpose, Social — onleen aan Deci &amp; Ryan.</div>
+      </aside>
+      <div class="col">
+        <p>
+          De verantwoording van de docent-onderzoeker zit niet in dossiers en
+          formulieren, doch in vier opeenvolgende bewegingen: <em>Plan, Do, Check, Act</em>.<span class="ref">g</span>
+          Iedere ronde laat een spoor na dat zich tezamen als bewijslast voor accreditatie laat lezen.
+        </p>
+        <div class="pdca-plate">
+          <div class="plate-title">Plaat II — Cyclus quadripartitus</div>
+          <h3>De vier bewegingen</h3>
+          <div class="pdca-grid">
+            <div><div class="step">i.</div><div class="name">Plan</div><div class="quote">"Ik kies werkvorm X om de <em>Autonomy</em> te vergroten door studenten hun eigen casus te laten kiezen."</div></div>
+            <div><div class="step">ii.</div><div class="name">Do</div><div class="quote">Studenten vullen, via een poll van dertig seconden in het LMS, hun beleving in op vier criteria.</div></div>
+            <div><div class="step">iii.</div><div class="name">Check</div><div class="quote">Het systeem toont een spinnenweb-diagram: intentie versus werkelijkheid.</div></div>
+            <div><div class="step">iv.</div><div class="name">Act</div><div class="quote">"Studenten ervoeren weinig <em>Mastery</em>. Volgende keer voeg ik een tussentijdse feedback-stap toe."</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ────── §VI AI ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">VI.</div>
+      <div class="section-title">
+        <span class="label">Caput Sextum · Intelligentia Assistens</span>
+        <h2>Een expert die slechts op verzoek spreekt</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota H</span>De AI is niet beslisser, doch raadgever — geactiveerd door de professional, niet door het systeem.</div>
+      </aside>
+      <div class="col">
+        <p>
+          De AI is geen beslisser, doch een expert-assistent die uitsluitend op verzoek van de professional wordt geraadpleegd.<span class="ref">h</span>
+          Hieronder vier voorbeelden van prompts zoals zij in de praktijk gegeven worden.
+        </p>
+        <div class="ledger">
+          <div class="ledger-row">
+            <div class="ledger-name">Ontwerp-Assistent<small>Werkvormen</small></div>
+            <div class="ledger-prompt">Stel 3 activerende werkvormen voor voor een groep van 20, gericht op 'Mastery' binnen een sociaal-constructivistisch kader.</div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-name">Alignment Checker<small>Validatie</small></div>
+            <div class="ledger-prompt">Controleer of mijn leerdoel "De student kan X berekenen" overeenkomt met mijn toetsvraag "Leg uit waarom X belangrijk is".</div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-name">Motivatie-Coach<small>Interventie</small></div>
+            <div class="ledger-prompt">Analyseer geaggregeerde feedback en stel didactische interventies voor om de score op 'Social' te verhogen bij online onderwijs.</div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-name">Accreditatie-Writer<small>Verslaglegging</small></div>
+            <div class="ledger-prompt">Formuleer op basis van de PDCA-logs conceptteksten voor het kwaliteitsverslag van de opleiding.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ────── §VII QUALITY + TECH ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">VII.</div>
+      <div class="section-title">
+        <span class="label">Caput Septimum · Custodia &amp; Architectura</span>
+        <h2>Borging, professionalisering &amp; randvoorwaarden</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota I</span>BKE — Basiskwalificatie Examinering, de docent-kwalificatie voor toetsen.</div>
+      </aside>
+      <div class="col">
+        <p>
+          Klassieke bureaucratie wordt vervangen door drie middelen: het collegiale gesprek, een real-time dashboard, en bewijslast die zichzelf bijhoudt.<span class="ref">i</span>
+        </p>
+        <ol style="padding-left:24px;margin:18px 0">
+          <li style="margin-bottom:10px"><span class="smallcaps" style="font-weight:600">Peer-Review 3.0 —</span> docenten worden gekoppeld op basis van een gedeelde didactische stroming. Zo blijft de feedback inhoudelijk en vermijdt men de bureaucratische check.</li>
+          <li style="margin-bottom:10px"><span class="smallcaps" style="font-weight:600">QbD Health-Check —</span> een real-time dashboard dat toont of de keten Macro–Meso–Micro nog met zichzelf in verbinding staat.</li>
+          <li><span class="smallcaps" style="font-weight:600">Professionaliserings-portfolio —</span> alle PDCA-cycli en peer-reviews vormen als vanzelf het bewijslast-portfolio voor de BKE.</li>
+        </ol>
+        <p style="margin-top:24px">De technische randvoorwaarden zijn drieërlei: <em>LMS deep-linking</em> met Canvas en Brightspace; <em>data-privacy</em> op individueel niveau (alleen voor de docent zelf); en een <em>API-first</em> ontwerp dat koppelingen met onderzoeksrepositories en HR-systemen mogelijk maakt.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- ────── §VIII KPI ────── -->
+  <article class="article">
+    <header class="section-header">
+      <div class="section-numeral">VIII.</div>
+      <div class="section-title">
+        <span class="label">Caput Octavum · Criteria acceptationis</span>
+        <h2>Hoe weten wij dat het werkt</h2>
+      </div>
+    </header>
+    <div class="body">
+      <aside class="ml">
+        <div class="margnote"><span class="num">Nota J</span>Vier criteria, vier getallen. Geen ruimte voor wishful thinking.</div>
+      </aside>
+      <div class="col">
+        <p>De acceptatie van het systeem wordt afgemeten aan vier criteria — adoptie, dialoog, audit-efficiëntie en motivatie-index.<span class="ref">j</span></p>
+        <div class="metrics">
+          <div class="metric"><span class="fig">90%</span><h4>Adoptie</h4><p>van docent-onderzoekers voltooit de Plan-fase binnen het systeem.</p></div>
+          <div class="metric"><span class="fig">80%</span><h4>Waardering</h4><p>beoordeelt peer-review feedback als waardevol voor de lespraktijk.</p></div>
+          <div class="metric"><span class="fig">−70%</span><h4>Audit-tijd</h4><p>minder voorbereiding voor interne audits en NVAO-bezoeken.</p></div>
+          <div class="metric"><span class="fig">↑↑</span><h4>Motivatie</h4><p>aantoonbare stijging in Purpose en Mastery over twee jaar.</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <div class="end-mark">❦ &nbsp; FINIS &nbsp; ❦</div>
+
+  <!-- ────── COLOPHON ────── -->
+  <div class="colophon-end">
+    <div><b>Editor</b>KMS-redactie · Curriculum­bureau · in opdracht van het college van bestuur.</div>
+    <div><b>Lettertype</b>Gezet uit EB Garamond &amp; Cormorant Garamond; getallen uit IBM Plex Mono.</div>
+    <div><b>Vermelding</b>Versie 1.3 · status: uitgebreid concept · vrij ter raadpleging.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

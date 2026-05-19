@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<title>KMS — BIG BLOCK EDITION</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFCE00;
+    --yellow-soft:#FFE266;
+    --red:#E2231A;
+    --blue:#1E78D8;
+    --blue-deep:#0B4FA5;
+    --green:#3FAA3D;
+    --orange:#F39A26;
+    --purple:#8E54C8;
+    --pink:#EE6FA0;
+    --ink:#0A0A0A;
+    --paper:#FFF7DD;
+    --paper-2:#FFEEBA;
+    --line:5px solid var(--ink);
+    --shadow:10px 10px 0 var(--ink);
+    --shadow-sm:6px 6px 0 var(--ink);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:"Space Mono",ui-monospace,monospace;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  body{padding:0 0 80px;background:
+    repeating-linear-gradient(45deg,transparent 0 38px,rgba(0,0,0,0.04) 38px 39px),
+    var(--paper);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  h1,h2,h3,h4{font-family:"Archivo Black",sans-serif;font-weight:900;letter-spacing:-0.01em;line-height:0.95;text-transform:uppercase}
+  .display{font-family:"Rubik Mono One",sans-serif;line-height:0.9}
+  a{color:inherit}
+  strong{font-weight:700}
+  
+  /* ────── TOP TICKER ────── */
+  .ticker{
+    background:var(--ink);color:var(--yellow);
+    font-family:"Space Mono",monospace;font-weight:700;
+    border-bottom:var(--line);
+    padding:10px 0;font-size:13px;letter-spacing:.04em;
+    overflow:hidden;white-space:nowrap;
+  }
+  .ticker span{display:inline-block;padding-right:60px}
+  .ticker .sun{color:var(--orange)}
+  .ticker .grass{color:var(--green)}
+  .ticker .sky{color:var(--blue)}
+  .ticker .berry{color:var(--red)}
+
+  /* ────── HERO ────── */
+  .hero{
+    position:relative;
+    margin:32px 0 56px;
+    border:var(--line);
+    background:var(--yellow);
+    box-shadow:var(--shadow);
+    padding:48px 56px 56px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:auto -120px -180px auto;
+    width:480px;height:480px;border-radius:50%;background:var(--red);
+    border:var(--line);
+  }
+  .hero::after{
+    content:"";position:absolute;left:-80px;top:-80px;
+    width:220px;height:220px;border-radius:50%;background:var(--blue);
+    border:var(--line);
+  }
+  .hero-inner{position:relative;z-index:1}
+  .hero-tag{
+    display:inline-block;background:var(--ink);color:var(--yellow);
+    border:var(--line);padding:8px 16px;font-weight:700;
+    font-size:12px;letter-spacing:.16em;margin-bottom:24px;
+    transform:rotate(-2deg);
+  }
+  .hero h1{font-size:clamp(56px,8vw,120px);max-width:14ch;margin-bottom:24px}
+  .hero h1 .pop1{background:var(--blue);color:var(--yellow);padding:0 14px;display:inline-block;border:var(--line);box-shadow:6px 6px 0 var(--ink);transform:rotate(-1.5deg)}
+  .hero h1 .pop2{background:var(--green);color:var(--ink);padding:0 14px;display:inline-block;border:var(--line);box-shadow:6px 6px 0 var(--ink);transform:rotate(1.2deg)}
+  .hero .lede{font-size:22px;max-width:48ch;font-weight:700;line-height:1.4}
+  .hero-stamp{
+    position:absolute;right:48px;top:48px;z-index:2;
+    width:160px;height:160px;border-radius:50%;
+    background:var(--ink);color:var(--yellow);
+    display:grid;place-items:center;text-align:center;
+    border:var(--line);box-shadow:var(--shadow-sm);
+    transform:rotate(8deg);
+    font-family:"Archivo Black",sans-serif;font-size:13px;line-height:1.2;letter-spacing:.05em;
+  }
+  .hero-stamp b{font-size:32px;display:block;color:var(--orange);margin:4px 0}
+  .hero-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .meta-chip{background:var(--paper);border:var(--line);padding:10px 18px;box-shadow:var(--shadow-sm);font-weight:700}
+  .meta-chip b{font-family:"Archivo Black",sans-serif;display:block;font-size:11px;letter-spacing:.16em;color:var(--blue-deep);text-transform:uppercase}
+  .meta-chip span{font-size:18px}
+
+  /* ────── SECTION BLOCK ────── */
+  .block{margin:0 0 56px}
+  .block-head{display:flex;align-items:flex-end;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+  .block-num{
+    font-family:"Rubik Mono One",sans-serif;
+    font-size:96px;line-height:.8;
+    background:var(--red);color:var(--paper);border:var(--line);
+    padding:8px 22px 14px;box-shadow:var(--shadow-sm);
+    transform:rotate(-3deg);
+  }
+  .block.b2 .block-num{background:var(--blue)}
+  .block.b3 .block-num{background:var(--green)}
+  .block.b4 .block-num{background:var(--orange);color:var(--ink)}
+  .block.b5 .block-num{background:var(--purple)}
+  .block.b6 .block-num{background:var(--pink);color:var(--ink)}
+  .block.b7 .block-num{background:var(--blue-deep)}
+  .block.b8 .block-num{background:var(--green)}
+  .block h2{font-size:clamp(40px,5vw,68px);max-width:18ch}
+  .block-intro{font-size:18px;max-width:62ch;margin:14px 0 0;line-height:1.55}
+
+  /* ────── PRINCIPLES ────── */
+  .principles{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+  .pcard{
+    grid-column:span 6;
+    background:var(--paper);border:var(--line);
+    box-shadow:var(--shadow-sm);
+    padding:28px;position:relative;
+  }
+  .pcard:nth-child(1){background:var(--yellow);grid-column:span 7}
+  .pcard:nth-child(2){background:var(--paper);grid-column:span 5}
+  .pcard:nth-child(3){background:var(--blue);color:var(--paper);grid-column:span 5}
+  .pcard:nth-child(4){background:var(--paper);grid-column:span 7}
+  .pcard:nth-child(5){background:var(--paper);grid-column:span 12;display:grid;grid-template-columns:1fr 2fr;align-items:center;gap:24px}
+  .pcard .ptag{
+    font-family:"Archivo Black",sans-serif;font-size:11px;
+    letter-spacing:.18em;display:inline-block;
+    background:var(--ink);color:var(--yellow);padding:6px 10px;margin-bottom:14px;
+  }
+  .pcard h3{font-size:30px;margin-bottom:10px;line-height:1}
+  .pcard p{font-size:15px;line-height:1.5}
+  .pcard .glyph{
+    width:72px;height:72px;border:var(--line);background:var(--red);
+    display:grid;place-items:center;
+    font-family:"Rubik Mono One",sans-serif;font-size:36px;color:var(--paper);
+    box-shadow:var(--shadow-sm);float:right;margin:-8px -8px 12px 12px;
+  }
+  .pcard:nth-child(2) .glyph{background:var(--green)}
+  .pcard:nth-child(3) .glyph{background:var(--orange);color:var(--ink)}
+  .pcard:nth-child(4) .glyph{background:var(--purple)}
+  .pcard:nth-child(5) .glyph{background:var(--pink);color:var(--ink);float:none;margin:0;width:140px;height:140px;font-size:64px}
+
+  /* ────── ROLES ────── */
+  .roles{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:var(--line);background:var(--ink);box-shadow:var(--shadow)}
+  .role{padding:24px;background:var(--paper);border-right:var(--line);position:relative;min-height:280px}
+  .role:last-child{border-right:none}
+  .role:nth-child(1){background:var(--yellow)}
+  .role:nth-child(2){background:var(--blue);color:var(--paper)}
+  .role:nth-child(3){background:var(--orange)}
+  .role:nth-child(4){background:var(--green);color:var(--paper)}
+  .role .role-no{
+    font-family:"Rubik Mono One",sans-serif;font-size:48px;line-height:1;display:block;margin-bottom:8px;
+  }
+  .role h4{font-size:22px;margin-bottom:14px;line-height:1}
+  .role .resp{font-size:14px;margin-bottom:18px;font-weight:700;line-height:1.45}
+  .role .acts{font-size:13px;border-top:3px solid currentColor;padding-top:12px;line-height:1.5;font-family:"Space Mono",monospace}
+  .role .acts b{font-family:"Archivo Black",sans-serif;display:block;font-size:11px;letter-spacing:.18em;margin-bottom:6px;text-transform:uppercase}
+
+  /* ────── HIERARCHY ────── */
+  .hier{display:grid;grid-template-columns:1fr;gap:0;border:var(--line);box-shadow:var(--shadow);background:var(--paper)}
+  .level{padding:36px 40px;border-bottom:var(--line);position:relative;display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center}
+  .level:last-child{border-bottom:none}
+  .level.macro{background:var(--blue);color:var(--paper)}
+  .level.meso{background:var(--green);color:var(--paper)}
+  .level.micro{background:var(--orange)}
+  .level.pdca{background:var(--yellow)}
+  .level-mark{
+    font-family:"Rubik Mono One",sans-serif;font-size:80px;line-height:.85;
+    text-align:left;
+  }
+  .level-mark small{display:block;font-family:"Archivo Black",sans-serif;font-size:14px;letter-spacing:.18em;margin-bottom:6px}
+  .level h3{font-size:34px;margin-bottom:10px;line-height:1}
+  .level .what{font-size:15px;max-width:60ch;margin-bottom:18px;line-height:1.5;font-weight:700}
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .feat{background:var(--paper);color:var(--ink);border:4px solid var(--ink);padding:14px;box-shadow:4px 4px 0 var(--ink)}
+  .feat b{font-family:"Archivo Black",sans-serif;font-size:13px;display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+  .feat span{font-size:13px;line-height:1.45}
+
+  /* ────── PDCA RING ────── */
+  .pdca-wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+  .pdca-ring{
+    aspect-ratio:1/1;max-width:420px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;
+  }
+  .pdca-cell{
+    border:var(--line);box-shadow:var(--shadow-sm);
+    display:grid;place-items:center;text-align:center;padding:18px;
+    font-family:"Archivo Black",sans-serif;
+  }
+  .pdca-cell .lab{font-size:13px;letter-spacing:.18em;margin-bottom:6px}
+  .pdca-cell .big{font-family:"Rubik Mono One",sans-serif;font-size:42px;line-height:.9}
+  .pdca-cell.plan{background:var(--red);color:var(--paper)}
+  .pdca-cell.do{background:var(--blue);color:var(--paper)}
+  .pdca-cell.check{background:var(--green);color:var(--paper)}
+  .pdca-cell.act{background:var(--orange)}
+  .pdca-quotes{display:flex;flex-direction:column;gap:14px}
+  .quote{
+    background:var(--paper);border:var(--line);padding:18px 20px;box-shadow:var(--shadow-sm);
+    position:relative;
+  }
+  .quote .tag{font-family:"Archivo Black",sans-serif;font-size:11px;letter-spacing:.18em;display:inline-block;padding:4px 8px;background:var(--ink);color:var(--yellow);margin-bottom:10px}
+  .quote .q{font-size:15px;line-height:1.5;font-weight:700}
+  .quote.q-plan .tag{background:var(--red);color:var(--paper)}
+  .quote.q-do .tag{background:var(--blue);color:var(--paper)}
+  .quote.q-check .tag{background:var(--green);color:var(--paper)}
+  .quote.q-act .tag{background:var(--orange);color:var(--ink)}
+
+  /* ────── AI ASSISTS ────── */
+  .ai-list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .ai{
+    background:var(--ink);color:var(--yellow);border:var(--line);
+    padding:24px;box-shadow:var(--shadow-sm);
+  }
+  .ai h4{color:var(--paper);font-size:22px;margin-bottom:10px;line-height:1}
+  .ai .prompt{
+    font-family:"Space Mono",monospace;font-size:14px;line-height:1.55;
+    background:var(--yellow);color:var(--ink);border:3px solid var(--paper);padding:14px;
+    font-weight:700;
+  }
+  .ai .prompt::before{content:"$ ";color:var(--red);font-weight:700}
+  .ai:nth-child(1) .prompt{background:var(--green);color:var(--ink)}
+  .ai:nth-child(2) .prompt{background:var(--orange);color:var(--ink)}
+  .ai:nth-child(3) .prompt{background:var(--blue);color:var(--paper)}
+  .ai:nth-child(4) .prompt{background:var(--pink);color:var(--ink)}
+
+  /* ────── QUALITY ────── */
+  .quality{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .qcard{
+    border:var(--line);box-shadow:var(--shadow-sm);padding:28px;
+    background:var(--paper);position:relative;
+  }
+  .qcard:nth-child(1){background:var(--purple);color:var(--paper)}
+  .qcard:nth-child(2){background:var(--yellow)}
+  .qcard:nth-child(3){background:var(--red);color:var(--paper)}
+  .qcard h4{font-size:24px;margin-bottom:12px;line-height:1}
+  .qcard p{font-size:14px;line-height:1.5;font-weight:700}
+  .qcard .num{font-family:"Rubik Mono One",sans-serif;font-size:60px;line-height:.8;margin-bottom:10px;display:block}
+
+  /* ────── TECH ────── */
+  .tech{
+    background:var(--ink);color:var(--paper);border:var(--line);box-shadow:var(--shadow);
+    padding:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  }
+  .tech-item{border-left:4px solid var(--yellow);padding-left:18px}
+  .tech-item:nth-child(2){border-color:var(--green)}
+  .tech-item:nth-child(3){border-color:var(--orange)}
+  .tech-item h4{font-size:18px;color:var(--yellow);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+  .tech-item:nth-child(2) h4{color:var(--green)}
+  .tech-item:nth-child(3) h4{color:var(--orange)}
+  .tech-item p{font-size:14px;line-height:1.55}
+
+  /* ────── KPIS ────── */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:var(--line);box-shadow:var(--shadow)}
+  .kpi{padding:28px;background:var(--paper);border-right:var(--line);text-align:center}
+  .kpi:last-child{border-right:none}
+  .kpi:nth-child(1){background:var(--yellow)}
+  .kpi:nth-child(2){background:var(--blue);color:var(--paper)}
+  .kpi:nth-child(3){background:var(--green);color:var(--paper)}
+  .kpi:nth-child(4){background:var(--red);color:var(--paper)}
+  .kpi .figure{font-family:"Rubik Mono One",sans-serif;font-size:72px;line-height:.9;display:block;margin-bottom:8px}
+  .kpi h4{font-size:16px;margin-bottom:8px;text-transform:uppercase}
+  .kpi p{font-size:13px;line-height:1.5;font-weight:700}
+
+  /* ────── FOOTER ────── */
+  .foot{
+    margin-top:64px;border-top:var(--line);padding-top:32px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
+    font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:13px;letter-spacing:.12em;
+  }
+  .foot b{color:var(--red)}
+
+  .arrow{
+    position:absolute;right:24px;top:24px;
+    width:48px;height:48px;border:var(--line);background:var(--paper);
+    display:grid;place-items:center;font-family:"Archivo Black",sans-serif;
+    box-shadow:4px 4px 0 var(--ink);font-size:22px;
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="wrap" style="display:flex;gap:48px">
+    <span class="sun">★ QUALITY BY DESIGN</span>
+    <span class="grass">▲ HIGH TRUST · HIGH ACCOUNTABILITY</span>
+    <span class="sky">● CONSTRUCTIVE ALIGNMENT</span>
+    <span class="berry">■ ONDERZOEKS-GEINFORMEERD</span>
+    <span class="sun">★ AUTONOME KWALITEITSBORGING</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ────── HERO ────── -->
+  <section class="hero">
+    <div class="hero-stamp">
+      VERSION
+      <b>1.3</b>
+      UITGEBREID<br>CONCEPT
+    </div>
+    <div class="hero-inner">
+      <div class="hero-tag">★ PRODUCT REQUIREMENTS · HBO ONDERWIJS</div>
+      <h1>
+        Curriculum<br>
+        <span class="pop1">Navigator</span><br>
+        voor de <span class="pop2">docent-onderzoeker</span>.
+      </h1>
+      <p class="lede">
+        Een kwaliteitsmanagementsysteem dat de balans bewaakt tussen
+        landelijke NVAO-standaarden en de professionele vrijheid van
+        de docent — niet als controle achteraf, maar als katalysator
+        van kwaliteit aan de bron.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-chip"><b>Doelgroep</b><span>HBO Opleidingen</span></div>
+        <div class="meta-chip"><b>Kernfilosofie</b><span>Quality by Design</span></div>
+        <div class="meta-chip"><b>Schaal</b><span>Macro · Meso · Micro</span></div>
+        <div class="meta-chip"><b>Status</b><span>Concept v1.3</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §1 DOEL ────── -->
+  <section class="block b1">
+    <div class="block-head">
+      <div class="block-num">01</div>
+      <div>
+        <h2>DOEL &amp; VISIE.</h2>
+        <p class="block-intro">
+          Een intelligent kader voor het ontwerpen, beheren en borgen van het HBO-curriculum.
+          Kwaliteitszorg wordt een integraal onderdeel van het ontwerp — geen administratieve last.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §2 PRINCIPES ────── -->
+  <section class="block b2">
+    <div class="block-head">
+      <div class="block-num">02</div>
+      <div>
+        <h2>Vijf grote<br>principes.</h2>
+        <p class="block-intro">De ontwerp-principes die elk schermpje, elke flow en elke beslissing in dit systeem regeren.</p>
+      </div>
+    </div>
+    <div class="principles">
+      <div class="pcard">
+        <div class="glyph">Q</div>
+        <div class="ptag">PRINCIPE 01</div>
+        <h3>Quality by Design.</h3>
+        <p>Kwaliteit wordt geborgd aan de bron. Sjablonen en kaders faciliteren 'foutloos ontwerpen' — automatische checks op leerdoel-toets alignment.</p>
+      </div>
+      <div class="pcard">
+        <div class="glyph">T</div>
+        <div class="ptag">PRINCIPE 02</div>
+        <h3>High Trust.</h3>
+        <p>Volledige autonomie over de didactische uitvoering, met rekenschap via motivatie-indicatoren en peer-review.</p>
+      </div>
+      <div class="pcard">
+        <div class="glyph">→</div>
+        <div class="ptag">PRINCIPE 03</div>
+        <h3>Constructive Alignment.</h3>
+        <p>Het systeem dwingt een logische keten af: Competentie → Groeiniveau → Leerdoel → Activiteit → Toetsing.</p>
+      </div>
+      <div class="pcard">
+        <div class="glyph">R</div>
+        <div class="ptag">PRINCIPE 04</div>
+        <h3>Onderzoeks-geïnformeerd.</h3>
+        <p>Integratie van actuele lectoraatsresultaten en praktijkonderzoek is een expliciet onderdeel van élk lesontwerp.</p>
+      </div>
+      <div class="pcard">
+        <div class="glyph">∞</div>
+        <div>
+          <div class="ptag">PRINCIPE 05</div>
+          <h3>Autonome Kwaliteitsborging.</h3>
+          <p>Continue datavergaring uit PDCA-cycli vormt automatisch een audit-trail die direct bruikbaar is voor NVAO-accreditatie. Zonder extra papierwerk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §3 ROLLEN ────── -->
+  <section class="block b3">
+    <div class="block-head">
+      <div class="block-num">03</div>
+      <div>
+        <h2>Wie doet wat.</h2>
+        <p class="block-intro">Vier rollen, vier kleuren. Geen overlappende verantwoordelijkheden, geen lege competenties.</p>
+      </div>
+    </div>
+    <div class="roles">
+      <div class="role">
+        <span class="role-no">01</span>
+        <h4>Docent-<br>Onderzoeker.</h4>
+        <div class="resp">Didactisch ontwerp en uitvoering op micro-niveau.</div>
+        <div class="acts"><b>Acties</b>Ontwerpen workshops · uitvoeren PDCA · peer-review collega's.</div>
+      </div>
+      <div class="role">
+        <span class="role-no">02</span>
+        <h4>Module-<br>eigenaar.</h4>
+        <div class="resp">Samenhang en niveau-borging op meso-niveau.</div>
+        <div class="acts"><b>Acties</b>Valideren module-leerdoelen · monitoren geaggregeerde motivatie-scores.</div>
+      </div>
+      <div class="role">
+        <span class="role-no">03</span>
+        <h4>Curriculum-<br>commissie.</h4>
+        <div class="resp">Strategische koers en macro-kaders.</div>
+        <div class="acts"><b>Acties</b>Beheren competentiematrix · gap-analyses over leerlijnen.</div>
+      </div>
+      <div class="role">
+        <span class="role-no">04</span>
+        <h4>Interne<br>Auditor.</h4>
+        <div class="resp">Procesbewaking en facilitering.</div>
+        <div class="acts"><b>Acties</b>Analyseren systeem-trends · accreditatiedossiers voorbereiden.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §4 HIERARCHIE ────── -->
+  <section class="block b4">
+    <div class="block-head">
+      <div class="block-num">04</div>
+      <div>
+        <h2>Drie<br>niveaus.</h2>
+        <p class="block-intro">Macro, meso, micro. De keten die het systeem afdwingt en bewaakt.</p>
+      </div>
+    </div>
+    <div class="hier">
+      <div class="level macro">
+        <div class="level-mark"><small>NIVEAU 4.1</small>MACRO</div>
+        <div>
+          <h3>De Blauwdruk.</h3>
+          <p class="what">De basis van de opleiding, onafhankelijk van de specifieke uitvoering. Beheer van eindkwalificaties en landelijke beroepstaken.</p>
+          <div class="feats">
+            <div class="feat"><b>Competentie Dashboard</b><span>Beheer van landelijke beroepstaken en eindkwalificaties.</span></div>
+            <div class="feat"><b>Leerlijn-Mapping</b><span>Visualisatie van competentie-ontwikkeling: jaar 1 → 4.</span></div>
+            <div class="feat"><b>Gap-analyse</b><span>Detectie van 'wees-competenties' in het curriculum.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="level meso">
+        <div class="level-mark"><small>NIVEAU 4.2</small>MESO</div>
+        <div>
+          <h3>De Niveau-bewaker.</h3>
+          <p class="what">Vertaling naar onderwijseenheden. Hier wordt geborgd dat een jaar-3 module ook werkelijk op jaar-3 niveau toetst.</p>
+          <div class="feats">
+            <div class="feat"><b>Taxonomie-monitor</b><span>Bloom of Miller borgt het juiste cognitieve niveau.</span></div>
+            <div class="feat"><b>Toetsmatrijs 2.0</b><span>Interactieve matrix met dekking, weging en slagingscriteria.</span></div>
+            <div class="feat"><b>Integrale Leerdoelen</b><span>Hergebruik over modules voor interdisciplinariteit.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="level micro">
+        <div class="level-mark"><small>NIVEAU 4.3</small>MICRO</div>
+        <div>
+          <h3>De Werkplaats.</h3>
+          <p class="what">De dagelijkse omgeving van de docent-onderzoeker. Lesvoorbereiding waar content, bronnen en werkvormen samenkomen.</p>
+          <div class="feats">
+            <div class="feat"><b>Didactisch Logboek</b><span>Flexibele editor voor lesvoorbereiding en bronnen.</span></div>
+            <div class="feat"><b>Research-Link</b><span>Directe koppeling met onderzoeksrepositories.</span></div>
+            <div class="feat"><b>Validatie-module</b><span>Koppelt didactiek aan theoretische stroming.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="level pdca">
+        <div class="level-mark"><small>NIVEAU 4.4</small>PDCA</div>
+        <div>
+          <h3>Effectiviteits-meting.</h3>
+          <p class="what">Vier motivatie-indicatoren — Autonomy, Mastery, Purpose, Social — geven het systeem zijn morele kompas en zijn audit-trail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── PDCA RING ────── -->
+  <section class="block b5">
+    <div class="block-head">
+      <div class="block-num">05</div>
+      <div>
+        <h2>De PDCA-<br>rondedans.</h2>
+        <p class="block-intro">Plan, Do, Check, Act. Vier stappen, één continu verbeterende docent. Iedere ronde levert bewijs voor accreditatie.</p>
+      </div>
+    </div>
+    <div class="pdca-wrap">
+      <div class="pdca-ring">
+        <div class="pdca-cell plan"><span><span class="lab">PLAN</span><span class="big">DESIGN</span></span></div>
+        <div class="pdca-cell do"><span><span class="lab">DO</span><span class="big">METING</span></span></div>
+        <div class="pdca-cell act"><span><span class="lab">ACT</span><span class="big">VERBETER</span></span></div>
+        <div class="pdca-cell check"><span><span class="lab">CHECK</span><span class="big">ANALYSE</span></span></div>
+      </div>
+      <div class="pdca-quotes">
+        <div class="quote q-plan">
+          <div class="tag">PLAN</div>
+          <div class="q">"Ik kies werkvorm X om de <u>Autonomy</u> te vergroten door studenten hun eigen casus te laten kiezen."</div>
+        </div>
+        <div class="quote q-do">
+          <div class="tag">DO</div>
+          <div class="q">Studenten vullen na de les via een 30-seconden poll hun beleving in op vier criteria.</div>
+        </div>
+        <div class="quote q-check">
+          <div class="tag">CHECK</div>
+          <div class="q">Het systeem toont een spinnenweb-diagram: intentie versus werkelijkheid.</div>
+        </div>
+        <div class="quote q-act">
+          <div class="tag">ACT</div>
+          <div class="q">"Studenten ervoeren weinig <u>Mastery</u>. Volgende keer voeg ik een tussentijdse feedback-stap toe."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §6 AI ────── -->
+  <section class="block b6">
+    <div class="block-head">
+      <div class="block-num">06</div>
+      <div>
+        <h2>De AI als<br>assistent.</h2>
+        <p class="block-intro">De AI is geen beslisser. Alleen op verzoek geactiveerd. Altijd onder regie van de professional.</p>
+      </div>
+    </div>
+    <div class="ai-list">
+      <div class="ai">
+        <h4>Ontwerp-Assistent</h4>
+        <div class="prompt">Stel 3 activerende werkvormen voor voor een groep van 20, gericht op 'Mastery' binnen een sociaal-constructivistisch kader.</div>
+      </div>
+      <div class="ai">
+        <h4>Alignment Checker</h4>
+        <div class="prompt">Controleer of leerdoel 'De student kan X berekenen' overeenkomt met toetsvraag 'Leg uit waarom X belangrijk is'.</div>
+      </div>
+      <div class="ai">
+        <h4>Motivatie-Coach</h4>
+        <div class="prompt">Analyseer geaggregeerde feedback en stel didactische interventies voor om de score op 'Social' te verhogen bij online onderwijs.</div>
+      </div>
+      <div class="ai">
+        <h4>Accreditatie-Writer</h4>
+        <div class="prompt">Formuleer op basis van PDCA-logs conceptteksten voor het kwaliteitsverslag van de opleiding.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §7 QUALITY ────── -->
+  <section class="block b7">
+    <div class="block-head">
+      <div class="block-num">07</div>
+      <div>
+        <h2>Borging &amp; pro-<br>fessionalisering.</h2>
+        <p class="block-intro">Bureaucratie wordt vervangen door gesprek, dashboards en bewijslast die zichzelf bouwt.</p>
+      </div>
+    </div>
+    <div class="quality">
+      <div class="qcard">
+        <span class="num">01</span>
+        <h4>Peer-Review 3.0</h4>
+        <p>Het systeem koppelt docenten op basis van gedeelde didactische stroming, zodat feedback inhoudelijk blijft — geen bureaucratische check.</p>
+      </div>
+      <div class="qcard">
+        <span class="num">02</span>
+        <h4>QbD Health-Check</h4>
+        <p>Real-time dashboard: zijn Macro, Meso en Micro nog met elkaar verbonden? Of is er een schakel losgekomen?</p>
+      </div>
+      <div class="qcard">
+        <span class="num">03</span>
+        <h4>Portfolio</h4>
+        <p>Alle PDCA-cycli en peer-reviews vormen automatisch het bewijsmateriaal voor de BKE van de docent.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §8 TECH ────── -->
+  <section class="block b8">
+    <div class="block-head">
+      <div class="block-num">08</div>
+      <div>
+        <h2>Onder de motorkap.</h2>
+        <p class="block-intro">Technische randvoorwaarden — kort, hard, zonder fluf.</p>
+      </div>
+    </div>
+    <div class="tech">
+      <div class="tech-item">
+        <h4>LMS DEEP-LINK</h4>
+        <p>Volledige synchronisatie met Canvas en Brightspace. Een wijziging in het KMS staat direct in de studiegids van de student.</p>
+      </div>
+      <div class="tech-item">
+        <h4>DATA-PRIVACY</h4>
+        <p>Individuele motivatie-data is alleen zichtbaar voor de docent zelf (veilig leerklimaat). Geaggregeerd op moduleniveau voor kwaliteitsmanagement.</p>
+      </div>
+      <div class="tech-item">
+        <h4>API-FIRST</h4>
+        <p>Koppeling met externe onderzoeksdatabases en HR-systemen voor automatische registratie van professionaliseringsuren.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §9 KPIS ────── -->
+  <section class="block b9">
+    <div class="block-head">
+      <div class="block-num">09</div>
+      <div>
+        <h2>Hoe we<br>weten dat 't werkt.</h2>
+        <p class="block-intro">Vier acceptatiecriteria. Vier knaller-cijfers. Geen ruimte voor wishful thinking.</p>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi">
+        <span class="figure">90%</span>
+        <h4>Adoptie</h4>
+        <p>van de docent-onderzoekers voltooit de Plan-fase binnen het systeem.</p>
+      </div>
+      <div class="kpi">
+        <span class="figure">80%</span>
+        <h4>Waardering</h4>
+        <p>vindt peer-review feedback "waardevol voor mijn lespraktijk".</p>
+      </div>
+      <div class="kpi">
+        <span class="figure">−70%</span>
+        <h4>Audit-tijd</h4>
+        <p>minder voorbereiding voor interne audit of NVAO-bezoek.</p>
+      </div>
+      <div class="kpi">
+        <span class="figure">↑</span>
+        <h4>Motivatie</h4>
+        <p>aantoonbare stijging in 'Purpose' en 'Mastery' over twee jaar.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div><b>KMS</b> · HBO Curriculum Navigator · v1.3</div>
+    <div>★ Quality by Design</div>
+    <div>EINDE DOCUMENT — DRUK OP ↑ OM TERUG</div>
+  </footer>
+
+</main>
+
+</body>
+</html>
