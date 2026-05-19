@@ -50,7 +50,7 @@ Voor de maatschappelijke vraagstukken van nu en morgen zijn **slimme, schone en 
 
 ### **2.2 Onze smaak — vertaling naar identiteit**
 
-De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die ons onderscheiden van andere HBO-opleidingen die dezelfde strategie volgen. Net zoals het Agile Manifesto software-ontwikkelaars een set basisprincipes geeft waaraan elke beslissing kan worden getoetst, formuleren wij ons eigen manifest. Onderstaande slots worden door de opleiding ingevuld tijdens het onderwijsteamoverleg of ontwerp-workshops — daarna is elke PRD-keuze toetsbaar aan deze waarden.
+De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die ons onderscheiden van andere Bedrijfskunde-opleidingen in Nederland. Net zoals het Agile Manifesto software-ontwikkelaars een set basisprincipes geeft waaraan elke beslissing kan worden getoetst, formuleren wij ons eigen manifest. Onderstaande slots worden door de opleiding ingevuld tijdens het onderwijsteamoverleg of ontwerp-workshops — daarna is elke PRD-keuze toetsbaar aan deze waarden.
 
 #### **Ons manifest — dit boven dat**
 
