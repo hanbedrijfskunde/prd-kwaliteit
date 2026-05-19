@@ -54,7 +54,7 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 
 #### **Ons manifest — dit boven dat**
 
-* **Verschillen als rijkdom** *boven* verschillen als probleem *(referentie: van-binnenuit.com — "normaal zijn we allemaal")*
+* **diversiteit als rijkdom** *boven* verschillen als probleem *(referentie: van-binnenuit.com — "normaal zijn we allemaal")*
 * *[ stelling A — wat wij waarderen ]* **boven** *[ stelling B — wat we niet ontkennen ]*
 * *[ stelling A ]* **boven** *[ stelling B ]*
 * *[ stelling A ]* **boven** *[ stelling B ]*
