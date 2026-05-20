@@ -10,7 +10,7 @@
 
 ## **1\. Doelstelling & Visie**
 
-*Van waardecreatie tot realisatie.*
+*Waardecreatie en -realisatie.*
 
 Het doel van dit systeem is het bieden van een holistisch kader voor het ontwerpen, beheren en borgen van het curriculum binnen de opleiding HAN Bedrijfskunde. Het systeem is ontworpen om de balans te bewaken tussen landelijke kwaliteitsstandaarden (NVAO) en de professionele vrijheid van de **docent-onderzoeker**.
 
@@ -69,33 +69,33 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 
 #### **Vier pijlers — waar onze smaak zich uit**
 
-**Pijler 1 — Structuur** · *"Welke organisatie-inrichting en samenwerking geven onze smaak vorm?"*
+**Pijler 1 — Cultuur** · *"Welke werkcultuur en omgang met elkaar is onze norm?"* (zie van-binnenuit.com — "normaal zijn we allemaal")
 
-* *[ Onze keuze 01 — bijv. organisatiestructuur, rapportagelijnen, beslissingsbevoegdheid ]*
-* *[ Onze keuze 02 — bijv. samenstelling en ritme van het onderwijsteam, taakverdeling ]*
-* *[ Onze keuze 03 — bijv. governance-rollen: curriculumcommissie, examencommissie, beroepsveldcommissie ]*
-* **Te koppelen aan:** §4 Rollen · §7 Peer-Review 3.0
+* *[ Onze keuze 01 — bijv. feedback vragen vs feedback geven, docent als roeping vs als baan ]*
+* *[ Onze keuze 02 — bijv. verschillen als rijkdom, inclusie, veilige gesprekken ]*
+* *[ Onze keuze 03 — bijv. fout maken als leermoment, transparantie ]*
+* **Te koppelen aan:** §3 P02 High Trust · §5.4 Social-indicator · §4 Rollen
 
-**Pijler 2 — Processen & Systemen** · *"Welke werkwijzen, ritmes en systemen dragen onze smaak?"*
-
-* *[ Onze keuze 01 — bijv. PDCA-frequentie, peer-review ritme, herontwerp-cycli ]*
-* *[ Onze keuze 02 — bijv. toetsbeleid, validatie-procedure, besluitvorming ]*
-* *[ Onze keuze 03 — bijv. LMS-inrichting, dashboards, data-architectuur, integraties ]*
-* **Te koppelen aan:** §5.4 PDCA · §7 QbD Health-Check · §8 LMS Deep-Linking · §8 API-First
-
-**Pijler 3 — Mens** (IST → SOLL) · *"Welke groei verwachten en faciliteren wij van docenten en medewerkers?"*
+**Pijler 2 — Mens** (IST → SOLL) · *"Welke groei verwachten en faciliteren wij van docenten en medewerkers?"*
 
 * *[ Onze keuze 01 — bijv. ambitieniveau BKE, didactische bekwaamheid ]*
 * *[ Onze keuze 02 — bijv. lectoraats-betrokkenheid, onderzoekstijd ]*
 * *[ Onze keuze 03 — bijv. ontwikkel-budget, scholings-paden, mentorschap ]*
 * **Te koppelen aan:** §7 Professionaliserings-portfolio · §3 P02 High Trust · §7 Peer-Review 3.0
 
-**Pijler 4 — Cultuur** · *"Welke werkcultuur en omgang met elkaar is onze norm?"* (zie van-binnenuit.com — "normaal zijn we allemaal")
+**Pijler 3 — Structuur** · *"Welke organisatie-inrichting en samenwerking geven onze smaak vorm?"*
 
-* *[ Onze keuze 01 — bijv. feedback vragen vs feedback geven, docent als roeping vs als baan ]*
-* *[ Onze keuze 02 — bijv. verschillen als rijkdom, inclusie, veilige gesprekken ]*
-* *[ Onze keuze 03 — bijv. fout maken als leermoment, transparantie ]*
-* **Te koppelen aan:** §3 P02 High Trust · §5.4 Social-indicator · §4 Rollen
+* *[ Onze keuze 01 — bijv. organisatiestructuur, rapportagelijnen, beslissingsbevoegdheid ]*
+* *[ Onze keuze 02 — bijv. samenstelling en ritme van het onderwijsteam, taakverdeling ]*
+* *[ Onze keuze 03 — bijv. governance-rollen: curriculumcommissie, examencommissie, beroepsveldcommissie ]*
+* **Te koppelen aan:** §4 Rollen · §7 Peer-Review 3.0
+
+**Pijler 4 — Processen & Systemen** · *"Welke werkwijzen, ritmes en systemen dragen onze smaak?"*
+
+* *[ Onze keuze 01 — bijv. PDCA-frequentie, peer-review ritme, herontwerp-cycli ]*
+* *[ Onze keuze 02 — bijv. toetsbeleid, validatie-procedure, besluitvorming ]*
+* *[ Onze keuze 03 — bijv. LMS-inrichting, dashboards, data-architectuur, integraties ]*
+* **Te koppelen aan:** §5.4 PDCA · §7 QbD Health-Check · §8 LMS Deep-Linking · §8 API-First
 
 ## **3\. Ontwerpprincipes (Guiding Principles)**
 
@@ -186,7 +186,7 @@ De AI is geen beslisser, maar een expert-assistent die alleen op verzoek van de 
 
 *Borging via dialoog, niet bureaucratie.*
 
-* **Peer-Review 3.0:** Het systeem koppelt docenten (bijv. op basis van een gedeelde didactische stroming) om elkaars ontwerpen van feedback te voorzien. Dit vervangt de traditionele bureaucratische controle.  
+* **Peer-Review 3.0:** Een veilige feedbackcultuur binnen het team van professionals. Collega's zien en bevragen elkaars werk; de eindverantwoordelijkheid blijft individueel, het toezicht is gedistribueerd.  
 * **QbD Health-Check:** Een real-time dashboard voor de opleiding dat toont of alle onderdelen van de 'keten' (Macro-Meso-Micro) nog met elkaar in verbinding staan.  
 * **Professionaliserings-portfolio:** Alle PDCA-cycli en peer-reviews vormen automatisch het bewijslast-portfolio voor de BKE (Basiskwalificatie Examinering) van de docent.
 * **Alumni-Loop:** Afgestudeerden blijven structureel verbonden als kennisbron. Hun praktijkervaring voedt periodiek de competentiematrix en de PDCA-cyclus van modules — verbinding tussen opleiding en alumnus blijft tweerichtingsverkeer.
