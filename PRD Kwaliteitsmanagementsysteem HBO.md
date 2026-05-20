@@ -10,11 +10,15 @@
 
 ## **1\. Doelstelling & Visie**
 
+*Waar dit systeem voor staat.*
+
 Het doel van dit systeem is het bieden van een intelligent kader voor het ontwerpen, beheren en borgen van het curriculum binnen een HBO-opleiding. Het systeem is ontworpen om de balans te bewaken tussen landelijke kwaliteitsstandaarden (NVAO) en de professionele vrijheid van de **docent-onderzoeker**.
 
 Het systeem fungeert niet als controle-instrument achteraf, maar als een katalysator voor kwaliteit tijdens het ontwerpproces (**Quality by Design**). Hierdoor wordt kwaliteitszorg een integraal onderdeel van het onderwijsontwerp in plaats van een administratieve last.
 
 ## **2\. Strategische Verankering**
+
+*Van HAN-strategie naar curriculum.*
 
 Voor de maatschappelijke vraagstukken van nu en morgen zijn **slimme, schone en sociale** oplossingen nodig. De HAN draagt daar aan bij via zes strategische doelen. Dit kwaliteitsmanagementsysteem is de operationalisering van die strategie op het niveau van het curriculum — elk PRD-element draagt aantoonbaar bij aan minstens één van deze zes doelen.
 
@@ -95,6 +99,8 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 
 ## **3\. Ontwerpprincipes (Guiding Principles)**
 
+*Zes principes voor elke ontwerpkeuze.*
+
 * **Quality by Design (QbD):** Kwaliteit wordt geborgd aan de bron. Het systeem biedt sjablonen en kaders die 'foutloos ontwerpen' faciliteren (bijv. automatische checks op leerdoel-toets alignment).  
 * **High Trust, High Accountability:** De docent-onderzoeker krijgt volledige autonomie over de didactische uitvoering, maar legt rekenschap af over de effectiviteit via objectieve motivatie-indicatoren en peer-reviews.  
 * **Constructive Alignment:** Het systeem dwingt een logische keten af: Landelijke competentie → Groeiniveau → Leerdoel → Onderwijsactiviteit → Toetsing.  
@@ -104,6 +110,8 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 
 ## **4\. Gebruikersrollen & Rechten**
 
+*Wie doet wat, op welk niveau.*
+
 | Rol | Verantwoordelijkheden | Key Actions in Systeem |
 | :---- | :---- | :---- |
 | **Docent-Onderzoeker** | Didactisch ontwerp en uitvoering op micro-niveau. | Ontwerpen workshops, uitvoeren PDCA, peer-review collega's. |
@@ -112,6 +120,8 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 | **Interne Auditor** | Procesbewaking en facilitering. | Analyseren van systeem-brede trends, voorbereiden van accreditatiedossiers. |
 
 ## **5\. Functionele Hiërarchie**
+
+*Van blauwdruk tot lespraktijk.*
 
 ### **5.1 Macro-niveau: De Blauwdruk (Wat)**
 
@@ -156,6 +166,8 @@ Deze vier indicatoren worden in de PDCA-cyclus toegepast:
 
 ## **6\. Intelligent Assistance (AI-integratie op afroep)**
 
+*AI als onderzoeker, geen rechter.*
+
 De AI is geen beslisser, maar een expert-assistent die alleen op verzoek van de professional wordt geactiveerd. Zij is een onderzoeker achter de schouder van de docent — met de eigen opleidings-kennis als enige bron van waarheid.
 
 ### **6.1 Grounding & audit-trail**
@@ -172,6 +184,8 @@ De AI is geen beslisser, maar een expert-assistent die alleen op verzoek van de 
 
 ## **7\. Kwaliteitsborging & Professionalisering**
 
+*Borging via dialoog, niet bureaucratie.*
+
 * **Peer-Review 3.0:** Het systeem koppelt docenten (bijv. op basis van een gedeelde didactische stroming) om elkaars ontwerpen van feedback te voorzien. Dit vervangt de traditionele bureaucratische controle.  
 * **QbD Health-Check:** Een real-time dashboard voor de opleiding dat toont of alle onderdelen van de 'keten' (Macro-Meso-Micro) nog met elkaar in verbinding staan.  
 * **Professionaliserings-portfolio:** Alle PDCA-cycli en peer-reviews vormen automatisch het bewijslast-portfolio voor de BKE (Basiskwalificatie Examinering) van de docent.
@@ -179,11 +193,15 @@ De AI is geen beslisser, maar een expert-assistent die alleen op verzoek van de 
 
 ## **8\. Technische Randvoorwaarden**
 
+*De technische basis.*
+
 * **LMS Deep-Linking:** Volledige synchronisatie met Canvas/Brightspace. Wijzigingen in het KMS worden direct doorgevoerd in de studiegids van de student.  
 * **Data-Privacy:** Motivatie-data is op individueel niveau alleen zichtbaar voor de docent-onderzoeker zelf (veilig leerklimaat). Geaggregeerde data (op moduleniveau) is beschikbaar voor kwaliteitsmanagement.  
 * **API-First:** Mogelijkheid om te koppelen met externe onderzoeksdatabases en HR-systemen voor professionaliseringsuren.
 
 ## **9\. Acceptatiecriteria & KPI's**
+
+*Hoe wij weten of het werkt.*
 
 1. **Adoptiegraad:** 90% van de docent-onderzoekers voltooit de 'Plan' fase van hun modules binnen het systeem.  
 2. **Kwaliteit van dialoog:** Peer-review feedback wordt door 80% van de ontvangers beoordeeld als "waardevol voor mijn lespraktijk".  
