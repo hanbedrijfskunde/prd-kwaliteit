@@ -54,20 +54,22 @@ Voor de maatschappelijke vraagstukken van nu en morgen zijn **slimme, schone en 
 
 ### **2.2 Onze smaak — vertaling naar identiteit**
 
-De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die ons onderscheiden van andere Bedrijfskunde-opleidingen in Nederland. Net zoals het Agile Manifesto software-ontwikkelaars een set basisprincipes geeft waaraan elke beslissing kan worden getoetst, formuleren wij ons eigen manifest. Onderstaande slots worden door de opleiding ingevuld tijdens het onderwijsteamoverleg of ontwerp-workshops — daarna is elke PRD-keuze toetsbaar aan deze waarden.
+De HAN-doelen zijn breed; ze passen op meerdere opleidingen. Wat HAN Bedrijfskunde uniek maakt, is onze eigen smaak — de keuzes die we maken over hoe wij die doelen invullen, en die ons onderscheiden van andere bedrijfskunde-opleidingen in Nederland. We werken die smaak uit in twee lagen die naar elkaar verwijzen: een **manifest** met onze waardenvoorkeur, en **vier pijlers** waarin die voorkeur zichtbaar wordt in hoe we werken. Beide lagen vullen we als team in tijdens onderwijsteamoverleg of ontwerp-workshops; vanaf dat moment is elke PRD-keuze toetsbaar aan onze waarden.
 
-#### **Ons manifest — dit boven dat**
+#### **Laag 1 — Ons manifest · wat wij waarderen *boven* wat we niet ontkennen**
 
-* **diversiteit als rijkdom** *boven* verschillen als probleem *(referentie: van-binnenuit.com — "normaal zijn we allemaal")*
+* **diversiteit als rijkdom** *boven* verschillen als probleem
 * *[ stelling A — wat wij waarderen ]* **boven** *[ stelling B — wat we niet ontkennen ]*
 * *[ stelling A ]* **boven** *[ stelling B ]*
 * *[ stelling A ]* **boven** *[ stelling B ]*
 * *[ stelling A ]* **boven** *[ stelling B ]*
 * *[ stelling A ]* **boven** *[ stelling B ]*
 
-> *Vul in tijdens onderwijsteamoverleg · elk slot is een ontwerp-toetssteen*
+> *Eén paar is al ingevuld als anker; de overige slots vult het team in. Elk manifest-paar landt in één of meer van de vier pijlers hieronder.*
 
-#### **Vier pijlers — waar onze smaak zich uit**
+#### **Laag 2 — Vier pijlers waarin onze smaak zich manifesteert**
+
+Een waardenvoorkeur is pas concreet als zij zichtbaar wordt in hoe we werken. We onderscheiden vier pijlers in volgorde van zacht naar hard: **Cultuur** (de grondtoon — wie wij zijn), **Mens** (de dragers — hoe wij groei verwachten en faciliteren), **Structuur** (het kader — hoe wij onze organisatie inrichten) en **Processen & Systemen** (de uitvoering — ritmes, instrumenten en data). Cultuur is de wortel; processen en systemen het zichtbare gebruik. Een keuze in de ene pijler werkt vrijwel altijd door in de andere drie.
 
 **Pijler 1 — Cultuur** · *"Welke werkcultuur en omgang met elkaar is onze norm?"* (zie van-binnenuit.com — "normaal zijn we allemaal")
 
@@ -106,7 +108,7 @@ Het kwaliteitsmanagementsysteem dient drie beloftes tegelijk — aan de student,
 ### Drievoudige belofte
 
 * **Aan de student.** Inspiratie en bevlogenheid in elke periode, professionele en persoonlijke groei, toegang tot de nieuwste kennis via lectoraten en onderzoek-geïnformeerd onderwijs, een netwerk van peers, alumni, docent-onderzoekers en werkveldpartners, en een formeel bewijs — diploma en portfolio — waarmee dit alles aantoonbaar wordt aan de buitenwereld.
-* **Aan de maatschappij.** Een Bachelor of Science die voldoet aan de NVAO-standaarden, de Dublin-descriptoren en NLQF/EQF-niveau 6. Externe accreditatie elke zes jaar, gerealiseerd eindniveau (standaard 4) altijd onderdeel, landelijke verankering via LOOBK.
+* **Aan de maatschappij.** Een continue stroom van zelfbewuste, verbindende bedrijfskundigen die organisaties helpen functioneren in bedrijfsleven, maatschappelijke sectoren en overheid; meervoudige waardecreatie voor brede welvaart (mens, milieu, organisatie en maatschappij); transparantie en verantwoording bij publieke middelen — in-control-verklaringen, toezicht en goed bestuur; transformatiekracht voor de digitale, duurzame en internationale opgaven van Nederland; en een geijkt waarmerk — Bachelor of Science, NVAO-geaccrediteerd — dat publiek vertrouwen geeft in deze beroepsgroep.
 * **Aan het werkveld.** Een startbekwame bedrijfskundige die meervoudige waarde creëert door processen en samenwerkingen te verbeteren en vernieuwen. Geborgd via Beroepenveldcommissie (≥3× per jaar), HBO-monitor en aansluiting op brede welvaart, digitale transformatie en internationalisering.
 
 ### Stakeholders
