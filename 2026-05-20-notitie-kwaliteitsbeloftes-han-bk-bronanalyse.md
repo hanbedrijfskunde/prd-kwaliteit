@@ -58,7 +58,7 @@ Het KMS borgt drie beloftes die *parallel* lopen en niet tot één gemeenschappe
 
 | Belofte aan | Inhoud | Kern-bewijslast |
 |---|---|---|
-| **De student** | Diploma op EQF-6 met overdraagbare vaardigheden, persoonlijke vorming, en doorstroommogelijkheid naar werkveld of master | Behaalde leeruitkomsten, individueel integraal assessment, kwaliteit beoordeelde beroepsproducten |
+| **De student** | Inspiratie en bevlogenheid; professionele en persoonlijke groei; toegang tot de nieuwste kennis; netwerk van peers, alumni en werkveldpartners; formeel bewijs (diploma + portfolio) voor de buitenwereld | Behaalde leeruitkomsten, individueel integraal assessment, kwaliteit beoordeelde beroepsproducten, reflectie Professionele Ontwikkeling |
 | **De maatschappij** | Bachelor of Science die voldoet aan NVAO-standaarden, Dublin-descriptoren en NLQF-niveau 6, herkenbaar als bedrijfskundige in werkveld en doorstroom | Externe accreditatie (6-jaarscyclus), gerealiseerd eindniveau (standaard 4), Bachelor of Science-titulatuur |
 | **Het werkveld** | Startbekwame bedrijfskundige professional die meervoudige waarde creëert, processen verbetert/vernieuwt, en past in de actuele beroepscontext | Beroepenveldcommissie-oordelen, alumni-monitor, werkveldraadpleging via LOOBK, beroepsproducten in realistische context |
 

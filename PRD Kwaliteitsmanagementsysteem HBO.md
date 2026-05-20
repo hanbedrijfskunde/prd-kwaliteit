@@ -105,7 +105,7 @@ Het kwaliteitsmanagementsysteem dient drie beloftes tegelijk — aan de student,
 
 ### Drievoudige belofte
 
-* **Aan de student.** Een diploma op EQF-6 met de vijf HAN-leeruitkomsten beheerst op het niveau *competent* (Dreyfus). Individuele toetsing via kennistoets én integraal assessment, persoonlijke vorming via de leerlijn Professionele Ontwikkeling, doorstroom naar werkveld of (pre)master.
+* **Aan de student.** Inspiratie en bevlogenheid in elke periode, professionele en persoonlijke groei, toegang tot de nieuwste kennis via lectoraten en onderzoek-geïnformeerd onderwijs, een netwerk van peers, alumni, docent-onderzoekers en werkveldpartners, en een formeel bewijs — diploma en portfolio — waarmee dit alles aantoonbaar wordt aan de buitenwereld.
 * **Aan de maatschappij.** Een Bachelor of Science die voldoet aan de NVAO-standaarden, de Dublin-descriptoren en NLQF/EQF-niveau 6. Externe accreditatie elke zes jaar, gerealiseerd eindniveau (standaard 4) altijd onderdeel, landelijke verankering via LOOBK.
 * **Aan het werkveld.** Een startbekwame bedrijfskundige die meervoudige waarde creëert door processen en samenwerkingen te verbeteren en vernieuwen. Geborgd via Beroepenveldcommissie (≥3× per jaar), HBO-monitor en aansluiting op brede welvaart, digitale transformatie en internationalisering.
 
