@@ -25,32 +25,32 @@ Voor de maatschappelijke vraagstukken van nu en morgen zijn **slimme, schone en 
 * **HAN 01 — Wereldburgerschap**
   * *"Studenten worden maatschappelijk betrokken wereldburgers."*
   * Het curriculum verbindt leerdoelen aan maatschappelijke vraagstukken en geeft Purpose een centrale plek in de motivatie-indicatoren. Onderzoeks-geïnformeerd onderwijs zorgt dat studenten actuele maatschappelijke thema's bestuderen, niet alleen vakkennis.
-  * **Realisatie in PRD:** P04 Onderzoeks-geïnformeerd · P06 Werkveld & Maatschappij · §5.4 Purpose-indicator
+  * **Realisatie in PRD:** P04 Onderzoeks-geïnformeerd · P06 Werkveld & Maatschappij · §6.4 Purpose-indicator
 
 * **HAN 02 — Digi- en datavaardig**
   * *"Studenten en medewerkers worden digi- en datavaardig."*
   * Het hele systeem maakt docenten en bij uitbreiding studenten datavaardig: PDCA-data, motivatie-spinnenweb, kwaliteitsdashboards en AI-assistentie op afroep zijn onderdeel van de dagelijkse onderwijspraktijk. Data wordt het ambacht.
-  * **Realisatie in PRD:** P01 Quality by Design · §6 AI-assistance · §5.4 PDCA-cyclus · §8.2 Data-privacy · KPI 01 Adoptie
+  * **Realisatie in PRD:** P01 Quality by Design · §7 AI-assistance · §6.4 PDCA-cyclus · §9.2 Data-privacy · KPI 01 Adoptie
 
 * **HAN 03 — Flexibel onderwijs**
   * *"We richten ons onderwijs flexibel in."*
   * Constructive Alignment, Integrale Leerdoelen en de AI Ontwerp-Assistent maken het mogelijk om curriculum-onderdelen te hergebruiken en snel te herontwerpen, zonder de kwaliteitsketen te breken. Flexibiliteit zonder verlies van borging.
-  * **Realisatie in PRD:** P03 Constructive Alignment · §5.2 Integrale Leerdoelen · §6 Ontwerp-Assistent
+  * **Realisatie in PRD:** P03 Constructive Alignment · §6.2 Integrale Leerdoelen · §7 Ontwerp-Assistent
 
 * **HAN 04 — Duurzame verbindingen**
   * *"We gaan duurzame verbindingen aan met onze partners."*
   * Het nieuwe principe Werkveld & Maatschappij verankert structurele samenwerking met regionale partners in het curriculum. De Werkveld-Verbinding maakt feedback-loops met werkveld een vast onderdeel van competentie-validatie.
-  * **Realisatie in PRD:** P06 Werkveld & Maatschappij · §5.1 Werkveld-Verbinding · KPI 05 Werkveld-Tevredenheid
+  * **Realisatie in PRD:** P06 Werkveld & Maatschappij · §6.1 Werkveld-Verbinding · KPI 05 Werkveld-Tevredenheid
 
 * **HAN 05 — Portfolio met de regio**
   * *"We stemmen ons portfolio voor professionals af met het werkveld in de regio."*
   * Het Competentie Dashboard op macro-niveau combineert landelijke beroepstaken met regionale werkveld-input via de Werkveld-Verbinding. De KPI Werkveld-Tevredenheid meet of het portfolio werkelijk aansluit bij wat de regio vraagt.
-  * **Realisatie in PRD:** P06 Werkveld & Maatschappij · §5.1 Competentie Dashboard · §5.1 Werkveld-Verbinding · KPI 05 Werkveld-Tevredenheid
+  * **Realisatie in PRD:** P06 Werkveld & Maatschappij · §6.1 Competentie Dashboard · §6.1 Werkveld-Verbinding · KPI 05 Werkveld-Tevredenheid
 
 * **HAN 06 — Een leven lang HAN**
   * *"Studenten voelen zich een leven lang verbonden met de HAN."*
   * De Alumni-Loop maakt afgestudeerden tot structurele kennisbron voor het curriculum. Hun praktijkervaring voedt de PDCA-cyclus en het Professionaliserings-portfolio van docenten — verbinding blijft tweerichtingsverkeer, ook na de diploma-uitreiking.
-  * **Realisatie in PRD:** §7 Alumni-Loop · §7 Professionaliserings-portfolio · KPI 02 Dialoog
+  * **Realisatie in PRD:** §8 Alumni-Loop · §8 Professionaliserings-portfolio · KPI 02 Dialoog
 
 ### **2.2 Onze smaak — vertaling naar identiteit**
 
@@ -74,30 +74,64 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 * *[ Onze keuze 01 — bijv. feedback vragen vs feedback geven, docent als roeping vs als baan ]*
 * *[ Onze keuze 02 — bijv. verschillen als rijkdom, inclusie, veilige gesprekken ]*
 * *[ Onze keuze 03 — bijv. fout maken als leermoment, transparantie ]*
-* **Te koppelen aan:** §3 P02 High Trust · §5.4 Social-indicator · §4 Rollen
+* **Te koppelen aan:** §4 P02 High Trust · §6.4 Social-indicator · §5 Rollen
 
 **Pijler 2 — Mens** (IST → SOLL) · *"Welke groei verwachten en faciliteren wij van docenten en medewerkers?"*
 
 * *[ Onze keuze 01 — bijv. ambitieniveau BKE, didactische bekwaamheid ]*
 * *[ Onze keuze 02 — bijv. lectoraats-betrokkenheid, onderzoekstijd ]*
 * *[ Onze keuze 03 — bijv. ontwikkel-budget, scholings-paden, mentorschap ]*
-* **Te koppelen aan:** §7 Professionaliserings-portfolio · §3 P02 High Trust · §7 Peer-Review 3.0
+* **Te koppelen aan:** §8 Professionaliserings-portfolio · §4 P02 High Trust · §8 Peer-Review 3.0
 
 **Pijler 3 — Structuur** · *"Welke organisatie-inrichting en samenwerking geven onze smaak vorm?"*
 
 * *[ Onze keuze 01 — bijv. organisatiestructuur, rapportagelijnen, beslissingsbevoegdheid ]*
 * *[ Onze keuze 02 — bijv. samenstelling en ritme van het onderwijsteam, taakverdeling ]*
 * *[ Onze keuze 03 — bijv. governance-rollen: curriculumcommissie, examencommissie, beroepsveldcommissie ]*
-* **Te koppelen aan:** §4 Rollen · §7 Peer-Review 3.0
+* **Te koppelen aan:** §5 Rollen · §8 Peer-Review 3.0
 
 **Pijler 4 — Processen & Systemen** · *"Welke werkwijzen, ritmes en systemen dragen onze smaak?"*
 
 * *[ Onze keuze 01 — bijv. PDCA-frequentie, peer-review ritme, herontwerp-cycli ]*
 * *[ Onze keuze 02 — bijv. toetsbeleid, validatie-procedure, besluitvorming ]*
 * *[ Onze keuze 03 — bijv. LMS-inrichting, dashboards, data-architectuur, integraties ]*
-* **Te koppelen aan:** §5.4 PDCA · §7 QbD Health-Check · §8 LMS Deep-Linking · §8 API-First
+* **Te koppelen aan:** §6.4 PDCA · §8 QbD Health-Check · §9 LMS Deep-Linking · §9 API-First
 
-## **3\. Ontwerpprincipes (Guiding Principles)**
+## **3\. Stakeholders & Beloftes**
+
+*Aan wie wij beloven, wat wij beloven, waar het is vastgelegd.*
+
+Het kwaliteitsmanagementsysteem dient drie beloftes tegelijk — aan de student, aan de maatschappij en aan het werkveld. Geen daarvan reduceert tot één indicator. Deze paragraaf benoemt de drie beloftes, de stakeholders die hun stem geven, en de gezaghebbende documenten waarin de beloftes zijn vastgelegd.
+
+### Drievoudige belofte
+
+* **Aan de student.** Een diploma op EQF-6 met de vijf HAN-leeruitkomsten beheerst op het niveau *competent* (Dreyfus). Individuele toetsing via kennistoets én integraal assessment, persoonlijke vorming via de leerlijn Professionele Ontwikkeling, doorstroom naar werkveld of (pre)master.
+* **Aan de maatschappij.** Een Bachelor of Science die voldoet aan de NVAO-standaarden, de Dublin-descriptoren en NLQF/EQF-niveau 6. Externe accreditatie elke zes jaar, gerealiseerd eindniveau (standaard 4) altijd onderdeel, landelijke verankering via LOOBK.
+* **Aan het werkveld.** Een startbekwame bedrijfskundige die meervoudige waarde creëert door processen en samenwerkingen te verbeteren en vernieuwen. Geborgd via Beroepenveldcommissie (≥3× per jaar), HBO-monitor en aansluiting op brede welvaart, digitale transformatie en internationalisering.
+
+### Stakeholders
+
+* **Studenten** — opleidingscommissie (50%), medezeggenschapsraad, academieraad, NSE, onderwijsevaluatie per semester, exit-onderzoek.
+* **Docent-Onderzoekers** — duale professionals die de driehoek Onderwijs–Onderzoek–Werkveld dragen. Kalibratie, professionaliserings-portfolio (BKE), peer-feedback binnen het team.
+* **Lectoraten (AOO)** — Logistiek & Allianties · Arbeid & Gezondheid · Human Capital Innovations · Smart Business · Bijzonder Lectoraat Arbeidsdeskundigheid.
+* **Opleidingscommissie BK** — gezamenlijke OC bachelor + Ad, twee kamers (voltijd, deeltijd/duaal). Instemmings- en adviesrecht over OER, jaarlijkse beoordeling uitvoering, ≥8 vergaderingen waarvan ≥2 openbaar.
+* **Examencommissie + Toetsborgingscommissie AOO** — borgen toetskwaliteit en gerealiseerd eindniveau via methodiek *de toetsing getoetst* (toetscirkel). Jaarverslag in november naar CvB en academiedirecteur.
+* **Beroepenveldcommissie + WAC's + LOOBK** — BVC ≥3× per jaar voor regionale werkveldijking. Werkveldadviescommissies in drie LOOBK-clusters (Noord-Oost, Randstad, Zuid). Landelijke peer review en kalibratie afstudeerprojecten via LOOBK.
+* **Alumni** — HBO-monitor (landelijk, jaarlijks) en Alumni-Loop (intern). Praktijkervaring voedt de competentiematrix en de PDCA-cyclus van modules.
+* **NVAO + Inspectie + Vereniging Hogescholen** — externe accreditatie elke zes jaar met halverwege interne audit of ontwikkelgesprek. Vier NVAO-standaarden bij beperkte opleidingsbeoordeling; standaard 4 (gerealiseerd eindniveau) altijd onderdeel.
+
+### Brondocumenten
+
+Elk PRD-onderdeel is herleidbaar naar minstens één gezaghebbende bron. Geen orphan-onderdelen, geen interne uitvinding van wat al landelijk of wettelijk is geregeld.
+
+* **Landelijk Opleidingsprofiel Bedrijfskunde 2024** — LOOBK, CROHO 34035, vastgesteld 8 maart 2024 door 13 hogescholen. Definieert het beroepsbeeld, de vier landelijke leeruitkomsten, KSAVE, vier kernvakgebieden en mapping naar Dublin-descriptoren.
+* **Opleidingsstatuut + OER 2025-26 (HAN)** — vastgesteld 19 juni 2025 door academiedirecteur AOO. Drie delen: Algemeen, Onderwijs- en Examenregeling, Overige regelingen (Regeling tentamens, Reglement examencommissie, Reglement opleidingscommissie). 160 pagina's.
+* **HAN Instellingsplan + Koersbeeld 2022-2028** — "Voor een slimme, schone en sociale wereld van morgen." Zes strategische doelen die deze opleiding op curriculum-niveau operationaliseert (zie §2).
+* **NVAO Accreditatiekader + Dublin-descriptoren + NLQF/EQF** — vier NVAO-standaarden, vijf Dublin-categorieën (kennis & inzicht · toepassen · oordeelsvorming · communicatie · leervaardigheden), NLQF/EQF-6 als wettelijk bachelorniveau.
+* **Wet op het Hoger Onderwijs en Wetenschappelijk onderzoek (WHW)** — onder andere artikel 7.13 (OER), 7.59 (studentenstatuut), 7.60 (College van Beroep voor Examens), 7.12b lid 1 sub a (toetskwaliteit).
+* **Bronanalyse-notitie en visienotitie (intern, 20 mei 2026)** — kwaliteitsbeloftes HAN BK (LOP + OER) en AI-native KMS-visie. Voeden de ontwerpprincipes en de keuzes in §3 en §4.
+
+## **4\. Ontwerpprincipes (Guiding Principles)**
 
 *Zes principes voor elke ontwerpkeuze.*
 
@@ -108,7 +142,7 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 * **Autonome Kwaliteitsborging:** Het systeem verzamelt continu data uit de PDCA-cycli, waardoor een 'audit-trail' ontstaat die direct bruikbaar is voor NVAO-accreditaties.
 * **Werkveld- & Maatschappij-georiënteerd:** Het curriculum staat in structurele verbinding met regionale werkveldpartners en met maatschappelijke vraagstukken. Competenties worden niet alleen landelijk geijkt maar ook regionaal gevalideerd; leerdoelen krijgen betekenis door hun verbinding met de praktijk en de samenleving.
 
-## **4\. Gebruikersrollen & Rechten**
+## **5\. Gebruikersrollen & Rechten**
 
 *Wie doet wat, op welk niveau.*
 
@@ -118,7 +152,7 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 | **Semestercoördinator** | Samenhang en niveau-borging op meso-niveau. | Valideren van module-leerdoelen, monitoren van geaggregeerde motivatie-scores. |
 | **Curriculumcommissie** | Strategische koers en macro-kaders. | Beheren competentiematrix, uitvoeren gap-analyses over leerlijnen. |
 
-## **5\. Functionele Hiërarchie**
+## **6\. Functionele Hiërarchie**
 
 *Van blauwdruk tot lespraktijk.*
 
@@ -163,7 +197,7 @@ Deze vier indicatoren worden in de PDCA-cyclus toegepast:
 3. **Check (Analyse):** Het systeem toont een spinnenweb-diagram: Intentie vs. Werkelijkheid.  
 4. **Act (Verbetering):** De docent schrijft een korte reflectie: *"Studenten ervoeren weinig **Mastery**. Volgende keer voeg ik een tussentijdse feedback-stap toe."*
 
-## **6\. Intelligent Assistance (AI-integratie op afroep)**
+## **7\. Intelligent Assistance (AI-integratie op afroep)**
 
 *AI als onderzoeker, geen rechter.*
 
@@ -181,7 +215,7 @@ De AI is geen beslisser, maar een expert-assistent die alleen op verzoek van de 
 * **Motivatie-Coach:** *"Analyseer de geaggregeerde feedback van deze module en stel evidence-based interventies voor om de score op 'Social' te verhogen bij online onderwijs."* — Bron: onderzoek motivatie & online didactiek uit lectoraats-publicaties. Output: PDCA-log met voorgestelde interventies.
 * **Accreditatie-Writer:** *"Stel op basis van de PDCA-logs van deze module een conceptparagraaf op voor het kwaliteitsverslag, volgens de NVAO-rapportagerichtlijnen."* — Bron: NVAO-handreiking + template kwaliteitsverslag. Output: accreditatiedossier met conceptverslag in review-staat.
 
-## **7\. Kwaliteitsborging & Professionalisering**
+## **8\. Kwaliteitsborging & Professionalisering**
 
 *Borging via dialoog, niet bureaucratie.*
 
@@ -190,7 +224,7 @@ De AI is geen beslisser, maar een expert-assistent die alleen op verzoek van de 
 * **Professionaliserings-portfolio:** Alle PDCA-cycli en peer-reviews vormen automatisch het bewijslast-portfolio voor de BKE (Basiskwalificatie Examinering) van de docent.
 * **Alumni-Loop:** Afgestudeerden blijven structureel verbonden als kennisbron. Hun praktijkervaring voedt periodiek de competentiematrix en de PDCA-cyclus van modules — verbinding tussen opleiding en alumnus blijft tweerichtingsverkeer.
 
-## **8\. Technische Randvoorwaarden**
+## **9\. Technische Randvoorwaarden**
 
 *De technische basis.*
 
@@ -198,7 +232,7 @@ De AI is geen beslisser, maar een expert-assistent die alleen op verzoek van de 
 * **Data-Privacy:** Motivatie-data is op individueel niveau alleen zichtbaar voor de docent-onderzoeker zelf (veilig leerklimaat). Geaggregeerde data (op moduleniveau) is beschikbaar voor kwaliteitsmanagement.  
 * **API-First:** Mogelijkheid om te koppelen met externe onderzoeksdatabases en HR-systemen voor professionaliseringsuren.
 
-## **9\. Acceptatiecriteria & KPI's**
+## **10\. Acceptatiecriteria & KPI's**
 
 *Hoe wij weten of het werkt.*
 
