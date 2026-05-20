@@ -117,7 +117,6 @@ De HAN-doelen vragen om vertaling naar onze eigen ontwerpkeuzes — keuzes die o
 | **Docent-Onderzoeker** | Didactisch ontwerp en uitvoering op micro-niveau. | Ontwerpen workshops, uitvoeren PDCA, peer-review collega's. |
 | **Semestercoördinator** | Samenhang en niveau-borging op meso-niveau. | Valideren van module-leerdoelen, monitoren van geaggregeerde motivatie-scores. |
 | **Curriculumcommissie** | Strategische koers en macro-kaders. | Beheren competentiematrix, uitvoeren gap-analyses over leerlijnen. |
-| **Interne Auditor** | Procesbewaking en facilitering. | Analyseren van systeem-brede trends, voorbereiden van accreditatiedossiers. |
 
 ## **5\. Functionele Hiërarchie**
 
