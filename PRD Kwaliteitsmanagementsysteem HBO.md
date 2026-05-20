@@ -1,6 +1,6 @@
 # **Product Requirements Document (PRD): HBO Kwaliteitsmanagementsysteem**
 
-**Projectnaam:** HBO Curriculum Navigator
+**Projectnaam:** BK Kwaliteit Navigator
 
 **Versie:** 1.3
 
@@ -10,9 +10,9 @@
 
 ## **1\. Doelstelling & Visie**
 
-*Waar dit systeem voor staat.*
+*Van waardecreatie tot realisatie.*
 
-Het doel van dit systeem is het bieden van een intelligent kader voor het ontwerpen, beheren en borgen van het curriculum binnen een HBO-opleiding. Het systeem is ontworpen om de balans te bewaken tussen landelijke kwaliteitsstandaarden (NVAO) en de professionele vrijheid van de **docent-onderzoeker**.
+Het doel van dit systeem is het bieden van een holistisch kader voor het ontwerpen, beheren en borgen van het curriculum binnen de opleiding HAN Bedrijfskunde. Het systeem is ontworpen om de balans te bewaken tussen landelijke kwaliteitsstandaarden (NVAO) en de professionele vrijheid van de **docent-onderzoeker**.
 
 Het systeem fungeert niet als controle-instrument achteraf, maar als een katalysator voor kwaliteit tijdens het ontwerpproces (**Quality by Design**). Hierdoor wordt kwaliteitszorg een integraal onderdeel van het onderwijsontwerp in plaats van een administratieve last.
 
