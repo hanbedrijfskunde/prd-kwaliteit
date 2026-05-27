@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BK MODULES — HAN BEDRIJFSKUNDE · LMS LANDING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFCE00;
+    --yellow-soft:#FFE266;
+    --red:#E2231A;
+    --blue:#1E78D8;
+    --blue-deep:#0B4FA5;
+    --green:#3FAA3D;
+    --green-deep:#2A7A2A;
+    --orange:#F39A26;
+    --purple:#8E54C8;
+    --pink:#EE6FA0;
+    --ink:#0A0A0A;
+    --paper:#FFF7DD;
+    --paper-2:#FFEEBA;
+    --line:5px solid var(--ink);
+    --line-thin:3px solid var(--ink);
+    --shadow:10px 10px 0 var(--ink);
+    --shadow-sm:6px 6px 0 var(--ink);
+    --shadow-xs:4px 4px 0 var(--ink);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--ink);font-family:"Space Mono",ui-monospace,monospace;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  body{padding:0 0 80px;background:
+    repeating-linear-gradient(45deg,transparent 0 38px,rgba(0,0,0,0.04) 38px 39px),
+    var(--paper);
+  }
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  h1,h2,h3,h4{font-family:"Archivo Black",sans-serif;font-weight:900;letter-spacing:-0.01em;line-height:0.95;text-transform:uppercase}
+  .display{font-family:"Rubik Mono One",sans-serif;line-height:0.9}
+  a{color:inherit}
+  strong{font-weight:700}
+
+  /* ────── TOP TICKER ────── */
+  .ticker{
+    background:var(--ink);color:var(--yellow);
+    font-family:"Space Mono",monospace;font-weight:700;
+    border-bottom:var(--line);
+    padding:10px 0;font-size:13px;letter-spacing:.04em;
+    overflow:hidden;white-space:nowrap;
+  }
+  .ticker .row{display:flex;gap:48px;align-items:center}
+  .ticker span{display:inline-block}
+  .ticker .sun{color:var(--orange)}
+  .ticker .grass{color:var(--green)}
+  .ticker .sky{color:var(--blue)}
+  .ticker .berry{color:var(--red)}
+  .ticker .lilac{color:var(--purple)}
+
+  /* ────── NAV ────── */
+  .nav{
+    margin:24px 0 32px;
+    border:var(--line);
+    background:var(--paper);
+    box-shadow:var(--shadow-sm);
+    padding:14px 22px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+  }
+  .nav .brand{display:flex;align-items:center;gap:14px}
+  .nav .brand .mark{
+    width:36px;height:36px;background:var(--red);
+    border:var(--line-thin);box-shadow:3px 3px 0 var(--ink);
+    display:grid;place-items:center;
+    font-family:"Rubik Mono One",sans-serif;color:var(--paper);font-size:16px;
+    transform:rotate(-4deg);
+  }
+  .nav .brand .name{font-family:"Archivo Black",sans-serif;font-size:18px}
+  .nav .brand .sub{font-size:12px;font-weight:700;color:rgba(10,10,10,.6)}
+  .nav .pills{display:flex;gap:8px;flex-wrap:wrap}
+  .nav .pill{
+    background:var(--ink);color:var(--yellow);
+    padding:6px 12px;font-weight:700;font-size:11px;letter-spacing:.12em;
+    border:var(--line-thin);
+  }
+  .nav .pill.alt{background:var(--paper);color:var(--ink)}
+
+  /* ────── HERO ────── */
+  .hero{
+    position:relative;
+    margin:0 0 56px;
+    border:var(--line);
+    background:var(--yellow);
+    box-shadow:var(--shadow);
+    padding:48px 56px 56px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:auto -120px -180px auto;
+    width:480px;height:480px;border-radius:50%;background:var(--blue);
+    border:var(--line);
+  }
+  .hero::after{
+    content:"";position:absolute;left:-80px;top:-80px;
+    width:220px;height:220px;border-radius:50%;background:var(--green);
+    border:var(--line);
+  }
+  .hero-inner{position:relative;z-index:1}
+  .hero-tag{
+    display:inline-block;background:var(--ink);color:var(--yellow);
+    border:var(--line);padding:8px 16px;font-weight:700;
+    font-size:12px;letter-spacing:.16em;margin-bottom:24px;
+    transform:rotate(-2deg);
+  }
+  .hero h1{font-size:clamp(48px,7.5vw,108px);max-width:14ch;margin-bottom:24px}
+  .hero h1 .pop1{background:var(--red);color:var(--paper);padding:0 14px;display:inline-block;border:var(--line);box-shadow:6px 6px 0 var(--ink);transform:rotate(-1.5deg)}
+  .hero h1 .pop2{background:var(--ink);color:var(--yellow);padding:0 14px;display:inline-block;border:var(--line);box-shadow:6px 6px 0 var(--ink);transform:rotate(1.2deg)}
+  .hero .lede{font-size:20px;max-width:48ch;font-weight:700;line-height:1.4;position:relative;z-index:2}
+  .hero-stamp{
+    position:absolute;right:48px;top:48px;z-index:2;
+    width:170px;height:170px;border-radius:50%;
+    background:var(--ink);color:var(--yellow);
+    display:grid;place-items:center;text-align:center;
+    border:var(--line);box-shadow:var(--shadow-sm);
+    transform:rotate(8deg);
+    font-family:"Archivo Black",sans-serif;font-size:12px;line-height:1.2;letter-spacing:.05em;
+  }
+  .hero-stamp b{font-size:30px;display:block;color:var(--orange);margin:4px 0}
+  .hero-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px;position:relative;z-index:2}
+  .meta-chip{background:var(--paper);border:var(--line);padding:10px 18px;box-shadow:var(--shadow-xs);font-weight:700}
+  .meta-chip b{font-family:"Archivo Black",sans-serif;display:block;font-size:11px;letter-spacing:.16em;color:var(--blue-deep);text-transform:uppercase}
+  .meta-chip span{font-size:17px}
+
+  /* ────── ANCHOR BAR (HAN doelen + leeruitkomsten + motivatie) ────── */
+  .anchors{
+    margin:0 0 56px;
+    display:grid;grid-template-columns:1fr 1.4fr 1.2fr;gap:0;
+    border:var(--line);box-shadow:var(--shadow);
+    background:var(--ink);
+  }
+  .anchor{
+    padding:24px 26px;background:var(--paper);border-right:var(--line);
+    min-height:180px;display:flex;flex-direction:column;
+  }
+  .anchor:last-child{border-right:none}
+  .anchor.a1{background:var(--yellow)}
+  .anchor.a2{background:var(--paper)}
+  .anchor.a3{background:var(--ink);color:var(--paper)}
+  .anchor .a-tag{
+    font-family:"Archivo Black",sans-serif;font-size:11px;letter-spacing:.18em;
+    display:inline-block;background:var(--ink);color:var(--yellow);
+    padding:5px 10px;margin-bottom:14px;align-self:flex-start;
+  }
+  .anchor.a3 .a-tag{background:var(--yellow);color:var(--ink)}
+  .anchor h3{font-size:22px;margin-bottom:10px;line-height:1}
+  .anchor p{font-size:13px;line-height:1.5;font-weight:700}
+  .han-dots{display:flex;gap:10px;margin:14px 0 0;flex-wrap:wrap}
+  .han-dot{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+  .han-dot .d{width:14px;height:14px;border:3px solid var(--ink)}
+  .han-dot .d.slim{background:var(--yellow)}
+  .han-dot .d.schoon{background:var(--green)}
+  .han-dot .d.sociaal{background:var(--blue)}
+  .doelen-list{
+    list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:5px;
+    margin-top:14px;
+  }
+  .doelen-cell{
+    border:var(--line-thin);background:var(--paper);
+    padding:6px 4px;text-align:center;font-size:9px;font-weight:700;line-height:1.15;
+    box-shadow:2px 2px 0 var(--ink);
+  }
+  .doelen-cell b{display:block;font-family:"Rubik Mono One",sans-serif;font-size:13px;margin-bottom:2px}
+  .doelen-cell.d1{background:var(--blue);color:var(--paper)}
+  .doelen-cell.d2{background:var(--yellow)}
+  .doelen-cell.d3{background:var(--orange)}
+  .doelen-cell.d4{background:var(--pink)}
+  .doelen-cell.d5{background:var(--green);color:var(--paper)}
+  .doelen-cell.d6{background:var(--purple);color:var(--paper)}
+  .lu-list{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:auto;padding-top:14px}
+  .lu-cell{
+    border:var(--line-thin);background:var(--paper);
+    padding:8px 6px;text-align:center;font-size:10px;font-weight:700;line-height:1.2;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .lu-cell b{display:block;font-family:"Rubik Mono One",sans-serif;font-size:16px;margin-bottom:2px}
+  .lu-cell:nth-child(1){background:var(--red);color:var(--paper)}
+  .lu-cell:nth-child(2){background:var(--orange)}
+  .lu-cell:nth-child(3){background:var(--green);color:var(--paper)}
+  .lu-cell:nth-child(4){background:var(--blue);color:var(--paper)}
+  .lu-cell:nth-child(5){background:var(--purple);color:var(--paper)}
+  .mot-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:auto;padding-top:14px}
+  .mot-cell{
+    border:3px solid var(--yellow);padding:8px 10px;
+    font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .mot-cell b{font-family:"Rubik Mono One",sans-serif;font-size:14px;color:var(--yellow)}
+
+  /* ────── SECTION BLOCK ────── */
+  .block{margin:0 0 56px}
+  .block-head{display:flex;align-items:flex-end;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+  .block-num{
+    font-family:"Rubik Mono One",sans-serif;
+    font-size:88px;line-height:.8;
+    background:var(--red);color:var(--paper);border:var(--line);
+    padding:8px 22px 14px;box-shadow:var(--shadow-sm);
+    transform:rotate(-3deg);
+  }
+  .block.b2 .block-num{background:var(--blue)}
+  .block.b3 .block-num{background:var(--green)}
+  .block.b4 .block-num{background:var(--orange);color:var(--ink)}
+  .block.b5 .block-num{background:var(--purple)}
+  .block h2{font-size:clamp(36px,4.5vw,60px);max-width:22ch}
+  .block-intro{font-size:17px;max-width:62ch;margin:14px 0 0;line-height:1.55}
+
+  /* ────── FILTER BAR ────── */
+  .filter{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    border:var(--line);background:var(--paper);padding:16px 20px;
+    box-shadow:var(--shadow-sm);margin-bottom:32px;
+  }
+  .filter .lab{
+    font-family:"Archivo Black",sans-serif;font-size:11px;letter-spacing:.18em;
+    background:var(--ink);color:var(--yellow);padding:5px 10px;
+  }
+  .filter .fchip{
+    background:var(--paper-2);border:var(--line-thin);padding:6px 12px;
+    font-weight:700;font-size:12px;letter-spacing:.04em;cursor:default;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .filter .fchip.active{background:var(--ink);color:var(--yellow)}
+  .filter .fchip.slim{background:var(--yellow)}
+  .filter .fchip.schoon{background:var(--green);color:var(--paper)}
+  .filter .fchip.sociaal{background:var(--blue);color:var(--paper)}
+  .filter .spacer{flex:1;min-width:8px}
+  .filter .count{font-family:"Rubik Mono One",sans-serif;font-size:18px}
+
+  /* ────── MODULE GRID ────── */
+  .modules{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+  .mod{
+    grid-column:span 6;
+    background:var(--paper);border:var(--line);
+    box-shadow:var(--shadow-sm);
+    padding:28px 28px 24px;
+    position:relative;
+    display:flex;flex-direction:column;
+    min-height:560px;
+    overflow:hidden;
+  }
+  .mod.featured{grid-column:span 12;background:var(--paper-2)}
+  .mod .corner-stamp{
+    position:absolute;top:18px;right:18px;
+    background:var(--ink);color:var(--yellow);
+    border:var(--line-thin);box-shadow:3px 3px 0 var(--ink);
+    padding:6px 10px;font-family:"Archivo Black",sans-serif;
+    font-size:10px;letter-spacing:.14em;transform:rotate(4deg);
+    z-index:2;
+  }
+  .mod .corner-stamp.new{background:var(--red);color:var(--paper);transform:rotate(-5deg)}
+  .mod .mod-acro{
+    font-family:"Rubik Mono One",sans-serif;
+    font-size:clamp(52px,6vw,86px);line-height:.85;
+    margin-bottom:6px;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .mod .mod-title{
+    font-family:"Archivo Black",sans-serif;font-size:18px;line-height:1.1;
+    text-transform:uppercase;margin-bottom:14px;
+    max-width:30ch;
+  }
+  .mod .mod-pitch{
+    font-size:14px;line-height:1.55;font-weight:700;margin-bottom:18px;
+    max-width:60ch;
+  }
+  .mod .mod-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;
+    margin-bottom:14px;
+  }
+  .mod .mod-box{
+    border:var(--line-thin);background:var(--paper);
+    padding:12px 14px;box-shadow:3px 3px 0 var(--ink);
+  }
+  .mod .mod-box .bk{
+    font-family:"Archivo Black",sans-serif;font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:rgba(10,10,10,.65);margin-bottom:6px;display:block;
+  }
+  .mod .mod-box .bv{font-size:13px;font-weight:700;line-height:1.4}
+  .mod .han-pill{
+    display:inline-flex;align-items:center;gap:6px;
+    border:var(--line-thin);padding:4px 10px;font-weight:700;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    margin-right:6px;margin-bottom:4px;box-shadow:2px 2px 0 var(--ink);
+  }
+  .mod .han-pill.slim{background:var(--yellow)}
+  .mod .han-pill.schoon{background:var(--green);color:var(--paper)}
+  .mod .han-pill.sociaal{background:var(--blue);color:var(--paper)}
+
+  /* HAN-DOELEN chip-strip per module */
+  .doelen-row{
+    display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 14px;
+    padding:10px 12px;border:var(--line-thin);background:var(--paper);
+    box-shadow:2px 2px 0 var(--ink);align-items:center;
+  }
+  .doelen-row .dr-lab{
+    font-family:"Archivo Black",sans-serif;font-size:9px;letter-spacing:.14em;
+    text-transform:uppercase;color:rgba(10,10,10,.65);margin-right:4px;
+  }
+  .dchip{
+    display:inline-flex;align-items:center;gap:5px;
+    border:2px solid var(--ink);padding:3px 8px;
+    font-weight:700;font-size:11px;letter-spacing:.02em;
+    box-shadow:2px 2px 0 var(--ink);
+  }
+  .dchip b{font-family:"Rubik Mono One",sans-serif;font-size:11px}
+  .dchip.d1{background:var(--blue);color:var(--paper)}
+  .dchip.d2{background:var(--yellow);color:var(--ink)}
+  .dchip.d3{background:var(--orange);color:var(--ink)}
+  .dchip.d4{background:var(--pink);color:var(--ink)}
+  .dchip.d5{background:var(--green);color:var(--paper)}
+  .dchip.d6{background:var(--purple);color:var(--paper)}
+
+  /* Module color-coded edges based on primary HAN goal */
+  .mod.slim::before,
+  .mod.schoon::before,
+  .mod.sociaal::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:14px;
+  }
+  .mod.slim::before{background:var(--yellow)}
+  .mod.schoon::before{background:var(--green)}
+  .mod.sociaal::before{background:var(--blue)}
+  .mod{padding-left:42px}
+
+  /* Coverage strip — 5 leeruitkomsten */
+  .lu-strip{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:4px;
+    margin:8px 0 16px;
+  }
+  .lu-block{
+    border:var(--line-thin);background:var(--paper);
+    text-align:center;padding:8px 4px;font-size:10px;font-weight:700;
+    box-shadow:2px 2px 0 var(--ink);line-height:1.15;
+  }
+  .lu-block b{display:block;font-family:"Rubik Mono One",sans-serif;font-size:18px;margin-bottom:2px}
+  .lu-block.l1{background:var(--red);color:var(--paper)}
+  .lu-block.l2{background:var(--orange)}
+  .lu-block.l3{background:var(--green);color:var(--paper)}
+  .lu-block.l4{background:var(--blue);color:var(--paper)}
+  .lu-block.l5{background:var(--purple);color:var(--paper)}
+
+  /* Motivation bars */
+  .mot-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+  .mot-bar{
+    border:var(--line-thin);background:var(--paper);padding:10px 10px 12px;
+    box-shadow:2px 2px 0 var(--ink);position:relative;
+  }
+  .mot-bar .mk{
+    font-family:"Archivo Black",sans-serif;font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;margin-bottom:6px;
+  }
+  .mot-bar .track{height:10px;background:var(--paper-2);border:2px solid var(--ink);position:relative;overflow:hidden}
+  .mot-bar .fill{position:absolute;left:0;top:0;bottom:0;background:var(--ink)}
+  .mot-bar.aut .fill{background:var(--red)}
+  .mot-bar.mas .fill{background:var(--blue)}
+  .mot-bar.pur .fill{background:var(--green)}
+  .mot-bar.soc .fill{background:var(--orange)}
+  .mot-bar .score{
+    font-family:"Rubik Mono One",sans-serif;font-size:14px;
+    position:absolute;top:8px;right:10px;
+  }
+
+  .mod-foot{
+    margin-top:auto;border-top:var(--line-thin);padding-top:12px;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  .mod-foot .lect{font-size:11px;font-weight:700;line-height:1.4;max-width:60%}
+  .mod-foot .lect b{font-family:"Archivo Black",sans-serif;font-size:10px;letter-spacing:.14em;display:block;color:rgba(10,10,10,.6);margin-bottom:3px}
+  .mod-foot .cta{
+    background:var(--ink);color:var(--yellow);
+    border:var(--line-thin);padding:8px 14px;
+    font-family:"Archivo Black",sans-serif;font-size:11px;letter-spacing:.14em;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .mod-foot .cta:hover{background:var(--red);color:var(--paper)}
+
+  /* ────── QbD GATE (Quality by Design explainer) ────── */
+  .gate{
+    background:var(--ink);color:var(--paper);
+    border:var(--line);box-shadow:var(--shadow);
+    padding:40px 44px;display:grid;grid-template-columns:1fr 2fr;gap:32px;
+    align-items:start;
+  }
+  .gate h3{font-size:36px;color:var(--yellow);margin-bottom:14px;line-height:1}
+  .gate p{font-size:15px;line-height:1.6;color:var(--paper)}
+  .gate .gate-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .gate .gstep{
+    background:var(--paper);color:var(--ink);
+    border:var(--line-thin);padding:14px;box-shadow:3px 3px 0 var(--yellow);
+  }
+  .gate .gstep b{font-family:"Archivo Black",sans-serif;font-size:11px;letter-spacing:.14em;display:block;margin-bottom:4px;text-transform:uppercase}
+  .gate .gstep span{font-size:13px;font-weight:700;line-height:1.4}
+  .gate .gstep:nth-child(1){background:var(--red);color:var(--paper)}
+  .gate .gstep:nth-child(2){background:var(--orange);color:var(--ink)}
+  .gate .gstep:nth-child(3){background:var(--green);color:var(--paper)}
+  .gate .gstep:nth-child(4){background:var(--yellow);color:var(--ink)}
+
+  /* ────── RESEARCH STRIP ────── */
+  .research{
+    margin-top:32px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border:var(--line);box-shadow:var(--shadow);
+  }
+  .rs{padding:24px;background:var(--paper);border-right:var(--line);min-height:200px}
+  .rs:last-child{border-right:none}
+  .rs:nth-child(1){background:var(--green);color:var(--paper)}
+  .rs:nth-child(2){background:var(--yellow)}
+  .rs:nth-child(3){background:var(--blue);color:var(--paper)}
+  .rs h4{font-size:22px;margin-bottom:10px;line-height:1}
+  .rs p{font-size:13px;font-weight:700;line-height:1.5}
+  .rs .lect-tag{
+    font-family:"Archivo Black",sans-serif;font-size:10px;letter-spacing:.18em;
+    background:var(--ink);color:var(--yellow);padding:4px 10px;
+    display:inline-block;margin-bottom:14px;
+  }
+  .rs:nth-child(2) .lect-tag{background:var(--ink);color:var(--yellow)}
+
+  /* ────── FOOTER ────── */
+  .foot{
+    margin-top:64px;border-top:var(--line);padding-top:24px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;
+    font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:12px;letter-spacing:.12em;
+  }
+  .foot b{color:var(--red)}
+
+  /* ────── RESPONSIVE ────── */
+  @media (max-width: 1080px){
+    .mod{grid-column:span 12}
+    .anchors{grid-template-columns:1fr}
+    .anchor{border-right:none;border-bottom:var(--line)}
+    .anchor:last-child{border-bottom:none}
+    .gate{grid-template-columns:1fr}
+    .gate .gate-steps{grid-template-columns:repeat(2,1fr)}
+    .research{grid-template-columns:1fr}
+    .rs{border-right:none;border-bottom:var(--line)}
+    .rs:last-child{border-bottom:none}
+  }
+  @media (max-width: 640px){
+    .wrap{padding:0 18px}
+    .hero{padding:32px 28px 40px}
+    .hero-stamp{display:none}
+    .mot-bars{grid-template-columns:repeat(2,1fr)}
+    .lu-strip{grid-template-columns:repeat(5,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<!-- ────── TICKER ────── -->
+<div class="ticker">
+  <div class="wrap row">
+    <span class="sun">★ HAN BEDRIJFSKUNDE · LMS · COLLEGEJAAR 2026-2027</span>
+    <span class="grass">▲ QUALITY BY DESIGN</span>
+    <span class="sky">● 5 LEERUITKOMSTEN · 4 MOTIVATIE-INDICATOREN</span>
+    <span class="berry">■ ONDERZOEKS-GEÏNFORMEERD</span>
+    <span class="lilac">◆ SLIM · SCHOON · SOCIAAL</span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ────── NAV ────── -->
+  <nav class="nav">
+    <div class="brand">
+      <div class="mark">BK</div>
+      <div>
+        <div class="name">BK Module Catalogus</div>
+        <div class="sub">HAN Bedrijfskunde · jaar 2 &amp; 3 · 2026-2027</div>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill">CATALOGUS</span>
+      <span class="pill alt">MIJN LEERPAD</span>
+      <span class="pill alt">PORTFOLIO</span>
+      <span class="pill alt">DOCENT-VIEW</span>
+    </div>
+  </nav>
+
+  <!-- ────── HERO ────── -->
+  <section class="hero">
+    <div class="hero-stamp">
+      JAAR
+      <b>26·27</b>
+      QbD VERSIE<br>1.0
+    </div>
+    <div class="hero-inner">
+      <div class="hero-tag">★ LMS LANDING · MODULENAVIGATOR</div>
+      <h1>
+        Negen modules,<br>
+        één <span class="pop1">bedrijfskundig</span><br>
+        <span class="pop2">handelings</span>kompas.
+      </h1>
+      <p class="lede">
+        Elke module is ontworpen — niet achteraf gecontroleerd — om
+        aantoonbaar te scoren op de vier motivatie-indicatoren, de vijf
+        leeruitkomsten van de handelingscyclus, en minstens één strategisch
+        doel uit de HAN-koers 2022-2028. Kies je module. De kwaliteit zit er al in.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-chip"><b>Aanbod</b><span>9 modules</span></div>
+        <div class="meta-chip"><b>Studielast</b><span>elk 15 EC</span></div>
+        <div class="meta-chip"><b>Niveau</b><span>NLQF 6 · Dublin</span></div>
+        <div class="meta-chip"><b>Onderzoek</b><span>via lectoraten</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── ANCHOR BAR — drie kwaliteitsankers ────── -->
+  <section class="anchors">
+    <div class="anchor a1">
+      <span class="a-tag">ANKER 01 · HAN-KOERS</span>
+      <h3>6 doelen onder 1 slogan.</h3>
+      <p>De slogan kleurt; de zes doelen toetsen. Elke module verankert in minstens één HAN-doel.</p>
+      <div class="han-dots">
+        <span class="han-dot"><span class="d slim"></span>Slim</span>
+        <span class="han-dot"><span class="d schoon"></span>Schoon</span>
+        <span class="han-dot"><span class="d sociaal"></span>Sociaal</span>
+      </div>
+      <ul class="doelen-list">
+        <li class="doelen-cell d1"><b>01</b>Wereld-­burger­schap</li>
+        <li class="doelen-cell d2"><b>02</b>Digitale geletterd­heid</li>
+        <li class="doelen-cell d3"><b>03</b>Flexibi­liteit</li>
+        <li class="doelen-cell d4"><b>04</b>Partner­schap</li>
+        <li class="doelen-cell d5"><b>05</b>Werkveld-­afstemming</li>
+        <li class="doelen-cell d6"><b>06</b>Levens­lang verbonden</li>
+      </ul>
+    </div>
+    <div class="anchor a2">
+      <span class="a-tag">ANKER 02 · 5 LEERUITKOMSTEN</span>
+      <h3>De handelingscyclus.</h3>
+      <p>Iedere module dekt aantoonbaar alle vijf — analyse, ontwerp, verandering, evaluatie, professionalisering.</p>
+      <ul class="lu-list">
+        <li class="lu-cell"><b>L1</b>Analyseren &amp; diagnosticeren</li>
+        <li class="lu-cell"><b>L2</b>(Her)ontwerpen</li>
+        <li class="lu-cell"><b>L3</b>Begeleiden verandering</li>
+        <li class="lu-cell"><b>L4</b>Evalueren</li>
+        <li class="lu-cell"><b>L5</b>Bedrijfskundig pro­fessional</li>
+      </ul>
+    </div>
+    <div class="anchor a3">
+      <span class="a-tag">ANKER 03 · MOTIVATIE</span>
+      <h3>De 4 QbD-indicatoren.</h3>
+      <p>Het ontwerp stuurt direct op Autonomy, Mastery, Purpose, Social. Niet gemeten ná, maar ingebakken.</p>
+      <div class="mot-list">
+        <div class="mot-cell"><span>Autonomy</span><b>A</b></div>
+        <div class="mot-cell"><span>Mastery</span><b>M</b></div>
+        <div class="mot-cell"><span>Purpose</span><b>P</b></div>
+        <div class="mot-cell"><span>Social</span><b>S</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §1 INTRO ────── -->
+  <section class="block b1">
+    <div class="block-head">
+      <div class="block-num">01</div>
+      <div>
+        <h2>Het aanbod.</h2>
+        <p class="block-intro">
+          Negen keuzemodules voor jaar 2 en jaar 3. Vier zijn ingebracht door
+          de opleidingscommissie, vier zijn voorgesteld vanuit het lectoraat Smart Business
+          op basis van actuele AI-Wiki-signalen, één is toegevoegd op basis van gap-analyse
+          over de zes HAN-doelen (LOOP dekt de ondergedekte doelen 03 en 06).
+          Ze voldoen allemaal aan dezelfde QbD-poort.
+        </p>
+      </div>
+    </div>
+
+    <!-- Filter — slogan-laag -->
+    <div class="filter">
+      <span class="lab">SLOGAN</span>
+      <span class="fchip active">ALLES (9)</span>
+      <span class="fchip slim">SLIM (9)</span>
+      <span class="fchip schoon">SCHOON (4)</span>
+      <span class="fchip sociaal">SOCIAAL (6)</span>
+      <span class="fchip">JAAR 2 (3)</span>
+      <span class="fchip">JAAR 3 (6)</span>
+      <span class="fchip">NIEUW (6)</span>
+      <span class="spacer"></span>
+      <span class="count">→ 9</span>
+    </div>
+
+    <!-- Filter — operationele HAN-doelen-laag -->
+    <div class="filter" style="margin-top:-22px">
+      <span class="lab">HAN-DOELEN</span>
+      <span class="fchip" style="background:var(--blue);color:var(--paper)">01 · Wereldburgerschap (2)</span>
+      <span class="fchip" style="background:var(--yellow)">02 · Digitale geletterdheid (7)</span>
+      <span class="fchip" style="background:var(--orange)">03 · Flexibiliteit (2)</span>
+      <span class="fchip" style="background:var(--pink)">04 · Partnerschap (3)</span>
+      <span class="fchip" style="background:var(--green);color:var(--paper)">05 · Werkveld-afstemming (5)</span>
+      <span class="fchip" style="background:var(--purple);color:var(--paper)">06 · Levenslang verbonden (2)</span>
+    </div>
+
+    <!-- Modules grid -->
+    <div class="modules">
+
+      <!-- ────── MODULE 1: MECA ────── -->
+      <article class="mod schoon">
+        <span class="corner-stamp">JAAR 3 · 15 EC</span>
+        <div class="mod-acro">MECA</div>
+        <div class="mod-title">Make Europe Competitive Again.</div>
+        <p class="mod-pitch">
+          Vertrek vanuit het Draghi-rapport: hoe maken Europese MKB-bedrijven
+          de concurrentieslag goed met de VS en China? Studenten ontwerpen
+          een realistische strategische response voor één NL-onderneming.
+        </p>
+
+        <div>
+          <span class="han-pill schoon">● Schoon</span>
+          <span class="han-pill slim">● Slim</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d1"><b>01</b>Wereldburgerschap</span>
+          <span class="dchip d5"><b>05</b>Werkveld-afstemming</span>
+        </div>
+
+        <div class="lu-strip" title="Dekking 5 leeruitkomsten">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="mk">Auton.</div><div class="track"><div class="fill" style="width:75%"></div></div><div class="score">7,5</div></div>
+          <div class="mot-bar mas"><div class="mk">Mastery</div><div class="track"><div class="fill" style="width:88%"></div></div><div class="score">8,8</div></div>
+          <div class="mot-bar pur"><div class="mk">Purpose</div><div class="track"><div class="fill" style="width:95%"></div></div><div class="score">9,5</div></div>
+          <div class="mot-bar soc"><div class="mk">Social</div><div class="track"><div class="fill" style="width:80%"></div></div><div class="score">8,0</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>ONDERZOEKSANKER</b>
+            Lectoraat Logistiek in de Vitale Samenleving · cases NL maakindustrie
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 2: DRAGANO ────── -->
+      <article class="mod slim">
+        <span class="corner-stamp new">★ NIEUW · JAAR 3</span>
+        <div class="mod-acro">DRAGANO</div>
+        <div class="mod-title">Developing, Running &amp; Growing AI-Native Organizations.</div>
+        <p class="mod-pitch">
+          Niet “AI erbij plakken” maar organisaties die geboren zijn met agentic
+          workflows in hun DNA. Studenten herontwerpen één bestaand bedrijfsproces
+          van een NL-MKB als AI-native — en valideren met de eigenaar.
+        </p>
+
+        <div>
+          <span class="han-pill slim">● Slim</span>
+          <span class="han-pill sociaal">● Sociaal</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d2"><b>02</b>Digitale geletterdheid</span>
+          <span class="dchip d5"><b>05</b>Werkveld-afstemming</span>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:90%"></div></div><div class="mk">Auton.</div><div class="score">9,0</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:85%"></div></div><div class="mk">Mastery</div><div class="score">8,5</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:80%"></div></div><div class="mk">Purpose</div><div class="score">8,0</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:75%"></div></div><div class="mk">Social</div><div class="score">7,5</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            AI-Wiki · workflow-not-task · MKB AI-adoptie
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 3: OEL4 ────── -->
+      <article class="mod slim">
+        <span class="corner-stamp">JAAR 2 · 15 EC</span>
+        <div class="mod-acro">OEL4</div>
+        <div class="mod-title">Operational Excellence with Lean 4.0.</div>
+        <p class="mod-pitch">
+          Lean ontmoet Industry 4.0: digital twins, IoT-sensoren en
+          predictive maintenance in dienst van flow en waste-eliminatie.
+          Cumulatief naar yellow-belt certificering (cluster D-doorloop).
+        </p>
+
+        <div>
+          <span class="han-pill slim">● Slim</span>
+          <span class="han-pill schoon">● Schoon</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d2"><b>02</b>Digitale geletterdheid</span>
+          <span class="dchip d5"><b>05</b>Werkveld-afstemming</span>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:70%"></div></div><div class="mk">Auton.</div><div class="score">7,0</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:92%"></div></div><div class="mk">Mastery</div><div class="score">9,2</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:78%"></div></div><div class="mk">Purpose</div><div class="score">7,8</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:82%"></div></div><div class="mk">Social</div><div class="score">8,2</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            Gomaa (2025) · Lean 4.0 roadmap smart manufacturing
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 4: DCOO ────── -->
+      <article class="mod slim">
+        <span class="corner-stamp">JAAR 3 · 15 EC</span>
+        <div class="mod-acro">DCOO</div>
+        <div class="mod-title">Dynamic Capabilities for the Octopus Organization.</div>
+        <p class="mod-pitch">
+          De Octopus-organisatie (Werner &amp; Le-Brun, HBR 2025) als nieuw
+          archetype: decentrale armen, één strategisch brein. Studenten
+          bouwen een dynamic-capabilities scan voor een NL-organisatie in transitie.
+        </p>
+
+        <div>
+          <span class="han-pill slim">● Slim</span>
+          <span class="han-pill sociaal">● Sociaal</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d3"><b>03</b>Flexibiliteit</span>
+          <span class="dchip d4"><b>04</b>Partnerschap</span>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:85%"></div></div><div class="mk">Auton.</div><div class="score">8,5</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:80%"></div></div><div class="mk">Mastery</div><div class="score">8,0</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:88%"></div></div><div class="mk">Purpose</div><div class="score">8,8</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:90%"></div></div><div class="mk">Social</div><div class="score">9,0</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            Werner &amp; Le-Brun (HBR, 2025) · Warner &amp; Wäger (LRP, 2019)
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 5: AGORA (uit AI-Wiki) ────── -->
+      <article class="mod sociaal">
+        <span class="corner-stamp new">★ NIEUW · UIT AI-WIKI</span>
+        <div class="mod-acro">AGORA</div>
+        <div class="mod-title">Agentic Organization &amp; Realigned Accountability.</div>
+        <p class="mod-pitch">
+          Wat gebeurt er met verantwoordelijkheid, governance en HR-rollen
+          zodra AI-agents in het organigram verschijnen? Studenten ontwerpen
+          een accountability-framework voor één concrete NL-praktijkcasus
+          (zorg, financieel of overheid).
+        </p>
+
+        <div>
+          <span class="han-pill sociaal">● Sociaal</span>
+          <span class="han-pill slim">● Slim</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d2"><b>02</b>Digitale geletterdheid</span>
+          <span class="dchip d1"><b>01</b>Wereldburgerschap</span>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:82%"></div></div><div class="mk">Auton.</div><div class="score">8,2</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:78%"></div></div><div class="mk">Mastery</div><div class="score">7,8</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:94%"></div></div><div class="mk">Purpose</div><div class="score">9,4</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:92%"></div></div><div class="mk">Social</div><div class="score">9,2</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            AI-Wiki · accountability redesign · anthropomorphizing als failure mode
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 6: SKILLSHIFT (uit AI-Wiki) ────── -->
+      <article class="mod sociaal">
+        <span class="corner-stamp new">★ NIEUW · UIT AI-WIKI</span>
+        <div class="mod-acro">SKILL<br>SHIFT</div>
+        <div class="mod-title">Durable Skills &amp; Augmentation in the Workforce.</div>
+        <p class="mod-pitch">
+          Welke vaardigheden blijven robuust onder AI-disruptie — en welke verdampen?
+          Studenten bouwen een Skill Change Index voor één Nederlandse sector
+          en adviseren een HR-directeur over re-skilling versus augmentation.
+        </p>
+
+        <div>
+          <span class="han-pill sociaal">● Sociaal</span>
+          <span class="han-pill slim">● Slim</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d6"><b>06</b>Levenslang verbonden</span>
+          <span class="dchip d2"><b>02</b>Digitale geletterdheid</span>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:88%"></div></div><div class="mk">Auton.</div><div class="score">8,8</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:82%"></div></div><div class="mk">Mastery</div><div class="score">8,2</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:90%"></div></div><div class="mk">Purpose</div><div class="score">9,0</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:88%"></div></div><div class="mk">Social</div><div class="score">8,8</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            AI-Wiki · Skill Change Index · automatie vs. augmentatie · Lectoraat Human Capital Innovations
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 8: LOOP — gap-driven invulling HAN-03 + HAN-06 ────── -->
+      <article class="mod sociaal">
+        <span class="corner-stamp new">★ NIEUW · JAAR 2 · GAP-DRIVEN</span>
+        <div class="mod-acro">LOOP</div>
+        <div class="mod-title">Lifelong Organizational &amp; Professional learning loops.</div>
+        <p class="mod-pitch">
+          Twee ontwerpopdrachten in één module: je eigen 10-jaars loopbaanblauwdruk
+          én een L&amp;D-systeem voor één NL-MKB. Een HAN-alumnus uit dezelfde sector
+          is mentor. Lifelong begint hier; flexibiliteit betekent: je kiest tempo, route
+          en sector.
+        </p>
+
+        <div>
+          <span class="han-pill sociaal">● Sociaal</span>
+          <span class="han-pill slim">● Slim</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d3"><b>03</b>Flexibiliteit</span>
+          <span class="dchip d6"><b>06</b>Levenslang verbonden</span>
+          <span class="dchip d2"><b>02</b>Digitale geletterdheid</span>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol+</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:94%"></div></div><div class="mk">Auton.</div><div class="score">9,4</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:85%"></div></div><div class="mk">Mastery</div><div class="score">8,5</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:90%"></div></div><div class="mk">Purpose</div><div class="score">9,0</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:90%"></div></div><div class="mk">Social</div><div class="score">9,0</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            Lectoraat Human Capital Innovations · longitudinal alumni-cohort studie
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 9: CUBE (uit AI-Wiki) — vult layout-gap naast LOOP ────── -->
+      <article class="mod slim">
+        <span class="corner-stamp new">★ NIEUW · UIT AI-WIKI · JAAR 2</span>
+        <div class="mod-acro">CUBE</div>
+        <div class="mod-title">Compose · Use · Build · Evaluate.</div>
+        <p class="mod-pitch">
+          Voor elke AI-capability die een organisatie wil heeft ze drie wegen:
+          een SaaS-product gebruiken, bestaande componenten samenstellen, of zelf
+          bouwen. Studenten voeren een CUBE-analyse uit voor één NL-MKB en leveren
+          een 2-jaars acquisitie-roadmap op met TCO en risico-profiel per laag.
+        </p>
+
+        <div>
+          <span class="han-pill slim">● Slim</span>
+          <span class="han-pill schoon">● Schoon</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d2"><b>02</b>Digitale geletterdheid</span>
+          <span class="dchip d4"><b>04</b>Partnerschap</span>
+          <span class="dchip d5"><b>05</b>Werkveld-afstemming</span>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol+</div>
+          <div class="lu-block l3"><b>L3</b>vol</div>
+          <div class="lu-block l4"><b>L4</b>vol+</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:80%"></div></div><div class="mk">Auton.</div><div class="score">8.0</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:90%"></div></div><div class="mk">Mastery</div><div class="score">9.0</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:82%"></div></div><div class="mk">Purpose</div><div class="score">8.2</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:78%"></div></div><div class="mk">Social</div><div class="score">7.8</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            AI-Wiki · USE/COMPOSE/BUILD economics · Lectoraat Smart Business
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+      <!-- ────── MODULE 7: WEDGE (uit AI-Wiki) — featured-full ────── -->
+      <article class="mod featured schoon">
+        <span class="corner-stamp new">★ NIEUW · FEATURED · JAAR 3</span>
+        <div class="mod-acro">WEDGE</div>
+        <div class="mod-title">Winning with Embedded AI in Domain-driven Ecosystems.</div>
+        <p class="mod-pitch">
+          Vertical AI in gereguleerde, “legacy-zware” sectoren — zorg, energietransitie, openbaar bestuur —
+          waar context, vertrouwen en compliance een grotere moat zijn dan modelkwaliteit.
+          Studenten ontwerpen een go-to-market wedge voor één NL-MKB die een vertical AI-product wil
+          lanceren in een gereguleerde sector. Eindproduct: een investor-ready businesscase +
+          NIS2/AI-Act risico-mapping.
+        </p>
+
+        <div>
+          <span class="han-pill schoon">● Schoon</span>
+          <span class="han-pill slim">● Slim</span>
+          <span class="han-pill sociaal">● Sociaal</span>
+        </div>
+
+        <div class="doelen-row">
+          <span class="dr-lab">HAN-DOELEN</span>
+          <span class="dchip d2"><b>02</b>Digitale geletterdheid</span>
+          <span class="dchip d4"><b>04</b>Partnerschap</span>
+          <span class="dchip d5"><b>05</b>Werkveld-afstemming</span>
+        </div>
+
+        <div class="mod-row">
+          <div class="mod-box">
+            <span class="bk">LEERUITKOMSTEN — DEKKING</span>
+            <span class="bv">Alle vijf vol gedekt; L2 (ontwerpen) en L3 (verandering) zijn zwaartepunt door de go-to-market focus.</span>
+          </div>
+          <div class="mod-box">
+            <span class="bk">ONDERZOEKSBIJDRAGE</span>
+            <span class="bv">Patroon-onderzoek naar welke wedges succesvol zijn in NL-gereguleerde sectoren — publiceerbaar resultaat via de lectoraten Smart Business en Logistiek in de Vitale Samenleving.</span>
+          </div>
+        </div>
+
+        <div class="lu-strip">
+          <div class="lu-block l1"><b>L1</b>vol</div>
+          <div class="lu-block l2"><b>L2</b>vol+</div>
+          <div class="lu-block l3"><b>L3</b>vol+</div>
+          <div class="lu-block l4"><b>L4</b>vol</div>
+          <div class="lu-block l5"><b>L5</b>vol</div>
+        </div>
+
+        <div class="mot-bars">
+          <div class="mot-bar aut"><div class="track"><div class="fill" style="width:92%"></div></div><div class="mk">Auton.</div><div class="score">9,2</div></div>
+          <div class="mot-bar mas"><div class="track"><div class="fill" style="width:90%"></div></div><div class="mk">Mastery</div><div class="score">9,0</div></div>
+          <div class="mot-bar pur"><div class="track"><div class="fill" style="width:96%"></div></div><div class="mk">Purpose</div><div class="score">9,6</div></div>
+          <div class="mot-bar soc"><div class="track"><div class="fill" style="width:85%"></div></div><div class="mk">Social</div><div class="score">8,5</div></div>
+        </div>
+
+        <div class="mod-foot">
+          <div class="lect">
+            <b>BRONLIJN</b>
+            AI-Wiki · vertical AI wedges · context-as-moat · EU AI-Act · NIS2 · Lectoraat Smart Business
+          </div>
+          <a class="cta" href="#">OPEN MODULE →</a>
+        </div>
+      </article>
+
+    </div><!-- /modules -->
+  </section>
+
+  <!-- ────── §2 QbD GATE EXPLAINER ────── -->
+  <section class="block b2">
+    <div class="block-head">
+      <div class="block-num">02</div>
+      <div>
+        <h2>Hoe wordt elke<br>module gefilterd?</h2>
+        <p class="block-intro">
+          Elke bovenstaande module passeert dezelfde vier QbD-poorten. Geen module komt op deze pagina te staan zonder
+          alle vier afgevinkt te krijgen. Dit is geen audit achteraf — dit is selectie aan de bron.
+        </p>
+      </div>
+    </div>
+
+    <div class="gate">
+      <div>
+        <h3>De QbD-poort.</h3>
+        <p>
+          Vier ontwerp-voorwaarden, gesteld vóór een module in de catalogus terechtkomt.
+          Geen retrospectief beoordelen — een ontwerp-filter.
+        </p>
+      </div>
+      <div>
+        <div class="gate-steps">
+          <div class="gstep">
+            <b>POORT 01 · HAN</b>
+            <span>Verankert in minimaal één van de zes HAN-doelen (01–06) onder de slogan Slim · Schoon · Sociaal.</span>
+          </div>
+          <div class="gstep">
+            <b>POORT 02 · LEERUITKOMSTEN</b>
+            <span>Dekt alle 5 leeruitkomsten van de bedrijfskundige handelingscyclus.</span>
+          </div>
+          <div class="gstep">
+            <b>POORT 03 · MOTIVATIE</b>
+            <span>Ontwerp scoort minimaal 7,0 op alle vier motivatie-indicatoren (A/M/P/S).</span>
+          </div>
+          <div class="gstep">
+            <b>POORT 04 · ONDERZOEK</b>
+            <span>Levert een onderzoeksbijdrage aan de bedrijfskundige professie via een HAN-lectoraat.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── §3 ONDERZOEKSBIJDRAGE — LECTORATEN STRIP ────── -->
+  <section class="block b3">
+    <div class="block-head">
+      <div class="block-num">03</div>
+      <div>
+        <h2>De onderzoekslijn<br>onder de modules.</h2>
+        <p class="block-intro">
+          De zeven modules sluiten aan op drie HAN-lectoraten. Studentenwerk levert echte data aan lopende lectoraatsprojecten, geen oefen-papers in een la.
+        </p>
+      </div>
+    </div>
+    <div class="research">
+      <div class="rs">
+        <span class="lect-tag">LECTORAAT · LOGISTIEK IN DE VITALE SAMENLEVING</span>
+        <h4>Europese keten-veerkracht.</h4>
+        <p>MECA + DCOO leveren cases over Europese supply chain re-shoring en strategische vernieuwing van MKB-ketens. Publicatielijn: 2027.</p>
+      </div>
+      <div class="rs">
+        <span class="lect-tag">LECTORAAT · SMART BUSINESS</span>
+        <h4>AI-native MKB &amp; vertical AI.</h4>
+        <p>DRAGANO, AGORA, WEDGE en CUBE voeden onderzoek naar AI-adoptie­patronen, USE/COMPOSE/BUILD-keuzes en governance van agentic workflows in NL-MKB.</p>
+      </div>
+      <div class="rs">
+        <span class="lect-tag">LECTORAAT · HUMAN CAPITAL INNOVATIONS</span>
+        <h4>Durable skills NL.</h4>
+        <p>SKILLSHIFT levert per cohort een geactualiseerde Skill Change Index voor één NL-sector — bruikbare bouwsteen voor HR-adviesrapporten.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div><b>BK MODULE CATALOGUS</b> · HAN Bedrijfskunde · 2026-2027 · Mockup v1.3</div>
+    <div>★ Quality by Design — geen audit, maar ontwerp</div>
+    <div>BRON · <a href="https://hanbedrijfskunde.github.io/prd-kwaliteit/PRD-Kwaliteitsmanagementsysteem-HBO.html" style="color:var(--red)">PRD-KMS HBO</a></div>
+    <div>EINDE · ↑ TERUG NAAR TOP</div>
+  </footer>
+
+</main>
+
+</body>
+</html>
