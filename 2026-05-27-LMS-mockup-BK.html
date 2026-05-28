@@ -430,24 +430,114 @@
   }
   .foot b{color:var(--red)}
 
-  /* ────── RESPONSIVE ────── */
+  /* ────── RESPONSIVE ─────────────────────────────────────────
+     Drie breakpoints:
+     ≤1080px → layout-collapse: 2-kol modules + 3-kol grids → 1-kol.
+     ≤720px  → typografie + paddings naar tablet; inner-grids fijner.
+     ≤480px  → telefoon: kleinste paddings, hero-stamp uit, mot-bars 2-kol.
+     ──────────────────────────────────────────────────────────── */
+
+  /* Tablet (collapse to 1 column) */
   @media (max-width: 1080px){
     .mod{grid-column:span 12}
     .anchors{grid-template-columns:1fr}
     .anchor{border-right:none;border-bottom:var(--line)}
     .anchor:last-child{border-bottom:none}
-    .gate{grid-template-columns:1fr}
+    .gate{grid-template-columns:1fr;padding:32px 32px}
     .gate .gate-steps{grid-template-columns:repeat(2,1fr)}
     .research{grid-template-columns:1fr}
     .rs{border-right:none;border-bottom:var(--line)}
     .rs:last-child{border-bottom:none}
+    .hero{padding:40px 40px 44px}
+    .hero-stamp{width:130px;height:130px;font-size:11px;right:32px;top:32px}
+    .hero-stamp b{font-size:22px}
+    .block-num{font-size:64px;padding:6px 16px 10px}
+    .block h2{font-size:clamp(30px,5vw,52px)}
   }
-  @media (max-width: 640px){
-    .wrap{padding:0 18px}
-    .hero{padding:32px 28px 40px}
+
+  /* Small tablet / phablet */
+  @media (max-width: 720px){
+    .wrap{padding:0 20px}
+    .ticker{font-size:11px}
+    .ticker .row{gap:24px}
+    .nav{padding:12px 16px}
+    .nav .brand .name{font-size:16px}
+    .hero{padding:32px 22px 36px}
+    .hero h1{font-size:clamp(40px,9vw,72px);margin-bottom:18px}
+    .hero .lede{font-size:17px}
+    .hero-stamp{width:96px;height:96px;font-size:9px;right:18px;top:18px}
+    .hero-stamp b{font-size:17px;margin:2px 0}
+    .hero::before{width:320px;height:320px;inset:auto -200px -220px auto}
+    .hero::after{display:none}
+    .block-head{gap:16px;margin-bottom:18px}
+    .block-num{font-size:52px;padding:5px 14px 8px}
+    .block h2{font-size:clamp(26px,6.5vw,42px)}
+    .block-intro{font-size:15px}
+    .gate{padding:26px 22px}
+    .gate h3{font-size:28px}
+    .gate p{font-size:14px}
+    .gate .gate-steps{grid-template-columns:1fr}
+    .doelen-list{grid-template-columns:repeat(3,1fr)}
+    .mod{grid-column:span 12;padding:24px 22px 22px 36px;min-height:auto}
+    .mod .mod-acro{font-size:clamp(48px,9vw,68px)}
+    .mod .mod-title{font-size:17px}
+    .mod .mod-pitch{font-size:13px}
+    .mod .mod-row{grid-template-columns:1fr}
+    .mod-foot{flex-direction:column;align-items:flex-start;gap:14px}
+    .mod-foot .lect{max-width:100%}
+    .mod-foot .cta{align-self:stretch;text-align:center;padding:10px 14px}
+    .rs{padding:22px;min-height:auto}
+    .rs h4{font-size:20px}
+    .filter{padding:14px 16px;gap:8px}
+  }
+
+  /* Phone */
+  @media (max-width: 480px){
+    body{padding:0 0 40px}
+    .wrap{padding:0 14px}
+    .hero{padding:26px 18px 32px}
+    .hero-tag{font-size:11px;padding:6px 12px;margin-bottom:16px}
+    .hero h1{font-size:clamp(34px,10vw,56px);margin-bottom:16px}
+    .hero h1 .pop1, .hero h1 .pop2{padding:0 10px;box-shadow:4px 4px 0 var(--ink)}
+    .hero .lede{font-size:15px}
     .hero-stamp{display:none}
-    .mot-bars{grid-template-columns:repeat(2,1fr)}
-    .lu-strip{grid-template-columns:repeat(5,1fr)}
+    .hero-meta{margin-top:24px;gap:10px}
+    .meta-chip{padding:8px 14px}
+    .meta-chip b{font-size:10px}
+    .meta-chip span{font-size:14px}
+    .block-head{gap:12px;margin-bottom:16px}
+    .block-num{font-size:42px;padding:4px 12px 8px;transform:rotate(-2deg)}
+    .block h2{font-size:clamp(24px,8vw,34px)}
+    .block-intro{font-size:14px}
+    .anchor{padding:20px 18px;min-height:auto}
+    .anchor h3{font-size:19px}
+    .doelen-list{grid-template-columns:repeat(2,1fr)}
+    .filter{padding:12px 14px}
+    .filter .fchip{font-size:11px;padding:5px 10px}
+    .modules{gap:16px}
+    .mod{padding:20px 16px 18px 30px}
+    .mod.slim::before, .mod.schoon::before, .mod.sociaal::before{width:10px}
+    .mod .corner-stamp{font-size:9px;padding:4px 8px;top:12px;right:12px}
+    .mod .mod-acro{font-size:48px;line-height:.9}
+    .mod .mod-title{font-size:15px;max-width:24ch}
+    .mod .mod-pitch{font-size:12px}
+    .mot-bars{grid-template-columns:repeat(2,1fr);gap:6px}
+    .mot-bar{padding:8px 8px 10px}
+    .lu-strip{gap:3px}
+    .lu-block{font-size:9px;padding:6px 2px}
+    .lu-block b{font-size:13px}
+    .doelen-row{padding:8px 10px;gap:4px}
+    .doelen-row .dr-lab{font-size:8px}
+    .dchip{font-size:10px;padding:2px 6px}
+    .gate{padding:22px 18px}
+    .gate h3{font-size:24px}
+    .gate p{font-size:13px}
+    .gate .gstep{padding:12px}
+    .gate .gstep b{font-size:10px}
+    .gate .gstep span{font-size:12px}
+    .rs{padding:18px}
+    .rs h4{font-size:17px}
+    .foot{font-size:10px;gap:10px}
   }
 </style>
 </head>
